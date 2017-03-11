@@ -1,0 +1,281 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F6C232BA1E73899B0009D9A4 /* ODDisableLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */; };
+		F6C232BB1E73899B0009D9A4 /* ODEnableLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */; };
+		F6C232BC1E73899B0009D9A4 /* ODLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B51E73899B0009D9A4 /* ODLogging.cpp */; };
+		F6C232BD1E73899B0009D9A4 /* ODLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B61E73899B0009D9A4 /* ODLogging.h */; };
+		F6C232BE1E73899B0009D9A4 /* ODLogging.inc.c in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */; };
+		F6C232BF1E73899B0009D9A4 /* ODLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B81E73899B0009D9A4 /* ODLogging.m */; };
+		F6C232C01E73899B0009D9A4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B91E73899B0009D9A4 /* README.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F6C232AA1E7389700009D9A4 /* libodl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libodl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6C232B11E73899B0009D9A4 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		F6C232B21E73899B0009D9A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODDisableLogging.h; sourceTree = SOURCE_ROOT; };
+		F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEnableLogging.h; sourceTree = SOURCE_ROOT; };
+		F6C232B51E73899B0009D9A4 /* ODLogging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ODLogging.cpp; sourceTree = SOURCE_ROOT; };
+		F6C232B61E73899B0009D9A4 /* ODLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODLogging.h; sourceTree = SOURCE_ROOT; };
+		F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ODLogging.inc.c; sourceTree = SOURCE_ROOT; };
+		F6C232B81E73899B0009D9A4 /* ODLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLogging.m; sourceTree = SOURCE_ROOT; };
+		F6C232B91E73899B0009D9A4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F6C232A71E73896F0009D9A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F6C232A11E73896F0009D9A4 = {
+			isa = PBXGroup;
+			children = (
+				F6C232B11E73899B0009D9A4 /* CMakeLists.txt */,
+				F6C232B21E73899B0009D9A4 /* LICENSE */,
+				F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */,
+				F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */,
+				F6C232B51E73899B0009D9A4 /* ODLogging.cpp */,
+				F6C232B61E73899B0009D9A4 /* ODLogging.h */,
+				F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */,
+				F6C232B81E73899B0009D9A4 /* ODLogging.m */,
+				F6C232B91E73899B0009D9A4 /* README.md */,
+				F6C232AB1E7389700009D9A4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F6C232AB1E7389700009D9A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6C232AA1E7389700009D9A4 /* libodl.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F6C232A81E73896F0009D9A4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6C232BD1E73899B0009D9A4 /* ODLogging.h in Headers */,
+				F6C232BB1E73899B0009D9A4 /* ODEnableLogging.h in Headers */,
+				F6C232BA1E73899B0009D9A4 /* ODDisableLogging.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F6C232A91E73896F0009D9A4 /* odl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6C232AE1E7389700009D9A4 /* Build configuration list for PBXNativeTarget "odl" */;
+			buildPhases = (
+				F6C232A61E73896F0009D9A4 /* Sources */,
+				F6C232A71E73896F0009D9A4 /* Frameworks */,
+				F6C232A81E73896F0009D9A4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = odl;
+			productName = odl;
+			productReference = F6C232AA1E7389700009D9A4 /* libodl.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6C232A21E73896F0009D9A4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Norman Jaffe";
+				TargetAttributes = {
+					F6C232A91E73896F0009D9A4 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = JCN44SXWSE;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F6C232A51E73896F0009D9A4 /* Build configuration list for PBXProject "odl" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F6C232A11E73896F0009D9A4;
+			productRefGroup = F6C232AB1E7389700009D9A4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F6C232A91E73896F0009D9A4 /* odl */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F6C232A61E73896F0009D9A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6C232BF1E73899B0009D9A4 /* ODLogging.m in Sources */,
+				F6C232BE1E73899B0009D9A4 /* ODLogging.inc.c in Sources */,
+				F6C232C01E73899B0009D9A4 /* README.md in Sources */,
+				F6C232BC1E73899B0009D9A4 /* ODLogging.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F6C232AC1E7389700009D9A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F6C232AD1E7389700009D9A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F6C232AF1E7389700009D9A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F6C232B01E7389700009D9A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F6C232A51E73896F0009D9A4 /* Build configuration list for PBXProject "odl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6C232AC1E7389700009D9A4 /* Debug */,
+				F6C232AD1E7389700009D9A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6C232AE1E7389700009D9A4 /* Build configuration list for PBXNativeTarget "odl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6C232AF1E7389700009D9A4 /* Debug */,
+				F6C232B01E7389700009D9A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F6C232A21E73896F0009D9A4 /* Project object */;
+}
