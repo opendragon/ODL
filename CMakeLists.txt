@@ -73,6 +73,22 @@ else(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 endif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 
 if(APPLE)
+    macro(ADD_FRAMEWORK fwname appname)
+        find_library(FRAMEWORK_${fwname}
+                    NAMES ${fwname}
+                    PATHS ${CMAKE_OSX_SYSROOT}/System/Library
+                    PATH_SUFFIXES Frameworks
+                    NO_DEFAULT_PATH)
+        if( ${FRAMEWORK_${fwname}} STREQUAL FRAMEWORK_${fwname}-NOTFOUND)
+            MESSAGE(ERROR ": Framework ${fwname} not found")
+        else()
+            TARGET_LINK_LIBRARIES(${appname} "${FRAMEWORK_${fwname}}/${fwname}")
+            MESSAGE(STATUS "Framework ${fwname} found at ${FRAMEWORK_${fwname}}")
+        endif()
+    endmacro(ADD_FRAMEWORK)
+endif(APPLE)
+
+if(APPLE)
     set(E_PATH "@executable_path")
     set(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for Mac OSX" FORCE)
     set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Deployment target for Mac OSX" FORCE)
@@ -127,26 +143,17 @@ set(OTHER_TARGET_CSHARP odLogging_swig_csharp)
 set(OTHER_TARGET_PYTHON odLogging_swig_python)
 
 if(APPLE)
-    option(ODL_UseObjectiveCDebug "Use Objective C Debug" OFF)
     set(DO_SHARED "SHARED")
 else(APPLE)
-    set(ODL_UseObjectiveCDebug OFF)
     set(DO_SHARED "")
 endif(APPLE)
-mark_as_advanced(ODL_UseObjectiveCDebug)
 
 option(ODL_DO_SWIG OFF)
 mark_as_advanced(ODL_DO_SWIG)
 
-if(ODL_UseObjectiveCDebug)
-    add_library(${THIS_TARGET}
-                ${DO_SHARED}
-                ODLogging.m)
-else(ODL_UseObjectiveCDebug)
-    add_library(${THIS_TARGET}
-                ${DO_SHARED}
-                ODLogging.cpp)
-endif(ODL_UseObjectiveCDebug)
+add_library(${THIS_TARGET}
+            ${DO_SHARED}
+            ODLogging.cpp)
 
 install(TARGETS ${THIS_TARGET}
         DESTINATION lib
@@ -158,6 +165,19 @@ install(FILES
         ODLogging.h
         DESTINATION include
         COMPONENT headers)
+
+if(APPLE)
+    set(THIS_TARGET odLoggingOC)
+
+    add_library(${THIS_TARGET}
+                ${DO_SHARED}
+                ODLogging.m)
+    add_framework(Foundation ${THIS_TARGET})
+
+    install(TARGETS ${THIS_TARGET}
+            DESTINATION lib
+            COMPONENT libraries)
+endif(APPLE)
 
 if(ODL_DO_SWIG)
     set(ODL_SWIG_SOURCES swig_odl_in/ODLogging.i ODLogging.h ODLogging.cpp)
