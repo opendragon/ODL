@@ -41,17 +41,19 @@ cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 
 if(WIN32)
     set(CMAKE_CONFIGURATION_TYPES Debug Release CACHE INTERNAL "" FORCE)
-endif(WIN32)
+endif()
 
-project(odl)
+set(PROJECT_NAME "ODL")
 
-set(odl_VERSION_MAJOR 1)
-set(odl_VERSION_MINOR 0)
-set(odl_VERSION_PATCH 0)
-set(odl_VERSION_STRING "${odl_VERSION_MAJOR}.${odl_VERSION_MINOR}.${odl_VERSION_PATCH}")
-set(odl_COMPANY "OpenDragon")
+project(${PROJECT_NAME})
 
-set(odl_SOURCE_DIR "${PROJECT_SOURCE_DIR}")
+set(ODL_VERSION_MAJOR 1)
+set(ODL_VERSION_MINOR 0)
+set(ODL_VERSION_PATCH 0)
+set(ODL_VERSION "${ODL_VERSION_MAJOR}.${ODL_VERSION_MINOR}.${ODL_VERSION_PATCH}")
+set(ODL_COMPANY "OpenDragon")
+
+set(ODL_SOURCE_DIR "${PROJECT_SOURCE_DIR}")
 
 # Make some flags to control the build flags visibilities
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS)
@@ -64,13 +66,13 @@ if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
     set(LINUX ON)
     if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "unknown")
         set(UNKNOWN_CPU ON)
-    else(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "unknown")
+    else()
         set(UNKNOWN_CPU OFF)
-    endif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "unknown")
-else(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+    endif()
+else()
     set(LINUX OFF)
     set(UNKNOWN_CPU OFF)
-endif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+endif()
 
 if(APPLE)
     macro(ADD_FRAMEWORK fwname appname)
@@ -86,7 +88,7 @@ if(APPLE)
             MESSAGE(STATUS "Framework ${fwname} found at ${FRAMEWORK_${fwname}}")
         endif()
     endmacro(ADD_FRAMEWORK)
-endif(APPLE)
+endif()
 
 if(APPLE)
     set(E_PATH "@executable_path")
@@ -103,127 +105,82 @@ if(APPLE)
     set(CMAKE_BUILD_WITH_INSTALL_RPATH ON CACHE BOOL "Make sure to use rpath")
 # 'rpath' warning
     cmake_policy(SET CMP0042 OLD)
-endif(APPLE)
+endif()
 
 if(WIN32)
     if(NOT ("${CMAKE_EXE_LINKER_FLAGS}" MATCHES ".*NODEFAULTLIB:libcmt.*"))
         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:libcmt" CACHE STRING
             "Flags used by the linker." FORCE)
-    endif(NOT ("${CMAKE_EXE_LINKER_FLAGS}" MATCHES ".*NODEFAULTLIB:libcmt.*"))
-endif(WIN32)
+    endif()
+endif()
 
 set(CMAKE_USE_RELATIVE_PATHS ON CACHE BOOL "Always set file paths as relative")
 
 if(WIN32)
     option(WIN64 "Build 64-bit binaries" ON)
-else(WIN32)
+else()
     set(WIN64 OFF)
-endif(WIN32)
+endif()
 
-option(odl_ChattyStart "Report the version numbers when launching an executable")
-
-option(odl_DoExplicitCheckForOK "Check OK responses for validity")
-
-option(odl_DO_SWIG "Build the SWIG files" OFF)
-
-# Add the odl target path so that odl can be found
+# Add the ODL target path so that odl can be found
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 
-# Find SWIG
-if(odl_DO_SWIG)
-    find_package(SWIG REQUIRED)
-    include(${SWIG_USE_FILE})
-    set(CMAKE_SWIG_FLAGS "")
-endif(odl_DO_SWIG)
+set(LIB_DEST "lib")
+set(INCLUDE_DEST "include")
 
-include_directories("${odl_SOURCE_DIR}")
+configure_file(ODLConfigVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake @ONLY)
 
-set(THIS_TARGET odLogging)
-set(OTHER_TARGET_CSHARP odLogging_swig_csharp)
-set(OTHER_TARGET_PYTHON odLogging_swig_python)
+set(MAIN_TARGET odLogging)
 
 if(APPLE)
     set(DO_SHARED "SHARED")
-else(APPLE)
+else()
     set(DO_SHARED "")
-endif(APPLE)
+endif()
 
-option(ODL_DO_SWIG OFF)
-mark_as_advanced(ODL_DO_SWIG)
-
-add_library(${THIS_TARGET}
+add_library(${MAIN_TARGET}
             ${DO_SHARED}
             ODLogging.cpp)
+target_include_directories(${MAIN_TARGET} PUBLIC
+                            $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                            $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
+                            )
 
-install(TARGETS ${THIS_TARGET}
-        DESTINATION lib
+install(TARGETS ${MAIN_TARGET}
+        EXPORT ${PROJECT_NAME}
+        DESTINATION ${LIB_DEST}
         COMPONENT libraries)
 
 install(FILES
         ODDisableLogging.h
         ODEnableLogging.h
         ODLogging.h
-        DESTINATION include
+        DESTINATION ${INCLUDE_DEST}
         COMPONENT headers)
 
-if(APPLE)
-    set(THIS_TARGET odLoggingOC)
+install(FILES
+        ODLConfig.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake
+        DESTINATION ${LIB_DEST}
+        COMPONENT scripts)
 
-    add_library(${THIS_TARGET}
+if(APPLE)
+    set(SECONDARY_TARGET odLoggingOC)
+
+    add_library(${SECONDARY_TARGET}
                 ${DO_SHARED}
                 ODLogging.m)
-    add_framework(Foundation ${THIS_TARGET})
-
-    install(TARGETS ${THIS_TARGET}
-            DESTINATION lib
+    add_framework(Foundation ${SECONDARY_TARGET})
+    target_include_directories(${SECONDARY_TARGET} PUBLIC
+                                $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                                $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
+                                )
+    install(TARGETS ${SECONDARY_TARGET}
+            EXPORT ${PROJECT_NAME}
+            DESTINATION ${LIB_DEST}
             COMPONENT libraries)
-endif(APPLE)
+endif()
 
-if(ODL_DO_SWIG)
-    set(ODL_SWIG_SOURCES swig_odl_in/ODLogging.i ODLogging.h ODLogging.cpp)
+install(EXPORT ${PROJECT_NAME}
+        DESTINATION ${LIB_DEST})
 
-    include_directories("${PROJECT_SOURCE_DIR}/odl")
-    set_source_files_properties(swig_odl_in/ODLogging.i PROPERTIES CPLUSPLUS ON)
-    set_source_files_properties(swig_odl_in/ODLogging.i PROPERTIES SWIG_FLAGS "-includeall")
-
-    set(CMAKE_SWIG_OUTDIR "${PROJECT_SOURCE_DIR}/odl/swig_odl_out_csharp")
-
-    swig_add_module(${OTHER_TARGET_CSHARP} csharp ${ODL_SWIG_SOURCES})
-
-    install(TARGETS ${OTHER_TARGET_CSHARP}
-            DESTINATION lib
-            COMPONENT libraries)
-
-    install(FILES
-            swig_odl_out_csharp/ODLogging.cs
-            swig_odl_out_csharp/ODLoggingPINVOKE.cs
-            DESTINATION csharp
-            COMPONENT headers)
-
-    set(CMAKE_SWIG_OUTDIR "${PROJECT_SOURCE_DIR}/odl/swig_odl_out_python")
-
-    find_package(PythonLibs)
-    include_directories(${PYTHON_INCLUDE_PATH})
-
-    swig_add_module(${OTHER_TARGET_PYTHON} python ${ODL_SWIG_SOURCES})
-
-    swig_link_libraries(${OTHER_TARGET_PYTHON}
-                        ${THIS_TARGET}
-                        ${PYTHON_LIBRARIES})
-
-    # Note the modified target name!
-    install(TARGETS _${OTHER_TARGET_PYTHON}
-            DESTINATION lib
-            COMPONENT libraries)
-
-    install(FILES
-            swig_odl_out_python/ODLogging.py
-            swig_odl_out_python/ODLoggingPYTHON_wrap.cxx
-            DESTINATION python
-            COMPONENT headers)
-
-endif(ODL_DO_SWIG)
-
-#add_subdirectory(CPack)
-
-enable_testing()

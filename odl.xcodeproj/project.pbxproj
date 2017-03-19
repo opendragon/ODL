@@ -17,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfig.cmake; sourceTree = SOURCE_ROOT; };
+		F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfigVersion.cmake.in; sourceTree = SOURCE_ROOT; };
 		F6C232AA1E7389700009D9A4 /* libodl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libodl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C232B11E73899B0009D9A4 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 		F6C232B21E73899B0009D9A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
@@ -44,6 +46,8 @@
 			isa = PBXGroup;
 			children = (
 				F6C232B11E73899B0009D9A4 /* CMakeLists.txt */,
+				F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */,
+				F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */,
 				F6C232B21E73899B0009D9A4 /* LICENSE */,
 				F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */,
 				F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */,
