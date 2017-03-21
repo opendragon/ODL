@@ -129,9 +129,9 @@ set(LIB_DEST "lib")
 set(INCLUDE_DEST "include")
 
 configure_file(ODLConfigVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake @ONLY)
-configure_file("${ODL_SOURCE_DIR}/ODLogging.h.in" "${ODL_SOURCE_DIR}/ODLogging.h")
+configure_file("${ODL_SOURCE_DIR}/odlConfig.h.in" "${ODL_SOURCE_DIR}/odlConfig.h")
 
-set(MAIN_TARGET odLogging)
+set(MAIN_TARGET odlC)
 
 if(APPLE)
     set(DO_SHARED "SHARED")
@@ -141,7 +141,7 @@ endif()
 
 add_library(${MAIN_TARGET}
             ${DO_SHARED}
-            ODLogging.cpp)
+            odlSupport.cpp)
 target_include_directories(${MAIN_TARGET} PUBLIC
                             $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
                             $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
@@ -153,9 +153,10 @@ install(TARGETS ${MAIN_TARGET}
         COMPONENT libraries)
 
 install(FILES
-        ODDisableLogging.h
-        ODEnableLogging.h
-        ODLogging.h
+        odlDisable.h
+        odlEnable.h
+        odlInclude.h
+	odlConfig.h
         DESTINATION ${INCLUDE_DEST}
         COMPONENT headers)
 
@@ -166,11 +167,11 @@ install(FILES
         COMPONENT scripts)
 
 if(APPLE)
-    set(SECONDARY_TARGET odLoggingOC)
+    set(SECONDARY_TARGET odlOC)
 
     add_library(${SECONDARY_TARGET}
                 ${DO_SHARED}
-                ODLogging.m)
+                odlSupport.m)
     add_framework(Foundation ${SECONDARY_TARGET})
     target_include_directories(${SECONDARY_TARGET} PUBLIC
                                 $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building

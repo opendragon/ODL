@@ -1,14 +1,14 @@
 //--------------------------------------------------------------------------------------------------
 //
-//  File:       odl/ODLogging.cpp
+//  File:       odlDisable.h
 //
-//  Project:    m+m
+//  Project:    ODL
 //
-//  Contains:   The C++ variation of the debugging facility.
+//  Contains:   The macro definitions to disable the logging facility.
 //
 //  Written by: Norman Jaffe
 //
-//  Copyright:  (c) 2013 by OpenDragon.
+//  Copyright:  (c) 2014 by OpenDragon.
 //
 //              All rights reserved. Redistribution and use in source and binary forms, with or
 //              without modification, are permitted provided that the following conditions are met:
@@ -32,14 +32,11 @@
 //              ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 //              DAMAGE.
 //
-//  Created:    2013-04-07
+//  Created:    2014-03-28
 //
 //--------------------------------------------------------------------------------------------------
 
-/*! @brief Compile with logging enabled. */
-#include <ODEnableLogging.h>
-
-#include "ODLogging.inc.c"
+// Note that this must NOT have a header guard, as it may be included more than once!
 
 #if defined(__APPLE__)
 # pragma clang diagnostic push
@@ -47,10 +44,12 @@
 # pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
 #endif // defined(__APPLE__)
 /*! @file
- @brief The C++ variation of the debugging facility. */
-
-/*! @dir /odl
- @brief The set of files that implement the logging facility. */
+ @brief The macro definitions to disable the logging facility. */
 #if defined(__APPLE__)
 # pragma clang diagnostic pop
 #endif // defined(__APPLE__)
+
+#undef ODL_ENABLE_LOGGING_
+
+// Allow a reload of the logging macros.
+#undef ODL_INCLUDE_H_

@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------------------------------
 //
-//  File:       odl/ODLogging.m
+//  File:       odlSupport.cpp
 //
-//  Project:    m+m
+//  Project:    ODL
 //
-//  Contains:   The Objective C variation of the debugging facility.
+//  Contains:   The C++ variation of the debugging facility.
 //
 //  Written by: Norman Jaffe
 //
@@ -37,9 +37,9 @@
 //--------------------------------------------------------------------------------------------------
 
 /*! @brief Compile with logging enabled. */
-#include <ODEnableLogging.h>
+#include <odlEnable.h>
 
-#include "ODLogging.inc.c"
+#include "odlSupport.inc.c"
 
 #if defined(__APPLE__)
 # pragma clang diagnostic push
@@ -47,7 +47,10 @@
 # pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
 #endif // defined(__APPLE__)
 /*! @file
- @brief The Objective-C variation of the debugging facility. */
+ @brief The C++ variation of the debugging facility. */
+
+/*! @dir /odl
+ @brief The set of files that implement the logging facility. */
 #if defined(__APPLE__)
 # pragma clang diagnostic pop
 #endif // defined(__APPLE__)
