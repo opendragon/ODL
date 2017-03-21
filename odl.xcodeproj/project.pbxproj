@@ -10,7 +10,7 @@
 		F6C232BA1E73899B0009D9A4 /* ODDisableLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */; };
 		F6C232BB1E73899B0009D9A4 /* ODEnableLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */; };
 		F6C232BC1E73899B0009D9A4 /* ODLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B51E73899B0009D9A4 /* ODLogging.cpp */; };
-		F6C232BD1E73899B0009D9A4 /* ODLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B61E73899B0009D9A4 /* ODLogging.h */; };
+		F6C232BD1E73899B0009D9A4 /* ODLogging.h.in in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B61E73899B0009D9A4 /* ODLogging.h.in */; };
 		F6C232BE1E73899B0009D9A4 /* ODLogging.inc.c in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */; };
 		F6C232BF1E73899B0009D9A4 /* ODLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B81E73899B0009D9A4 /* ODLogging.m */; };
 		F6C232C01E73899B0009D9A4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B91E73899B0009D9A4 /* README.md */; };
@@ -25,7 +25,7 @@
 		F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODDisableLogging.h; sourceTree = SOURCE_ROOT; };
 		F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEnableLogging.h; sourceTree = SOURCE_ROOT; };
 		F6C232B51E73899B0009D9A4 /* ODLogging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ODLogging.cpp; sourceTree = SOURCE_ROOT; };
-		F6C232B61E73899B0009D9A4 /* ODLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODLogging.h; sourceTree = SOURCE_ROOT; };
+		F6C232B61E73899B0009D9A4 /* ODLogging.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLogging.h.in; sourceTree = SOURCE_ROOT; };
 		F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ODLogging.inc.c; sourceTree = SOURCE_ROOT; };
 		F6C232B81E73899B0009D9A4 /* ODLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLogging.m; sourceTree = SOURCE_ROOT; };
 		F6C232B91E73899B0009D9A4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -52,7 +52,7 @@
 				F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */,
 				F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */,
 				F6C232B51E73899B0009D9A4 /* ODLogging.cpp */,
-				F6C232B61E73899B0009D9A4 /* ODLogging.h */,
+				F6C232B61E73899B0009D9A4 /* ODLogging.h.in */,
 				F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */,
 				F6C232B81E73899B0009D9A4 /* ODLogging.m */,
 				F6C232B91E73899B0009D9A4 /* README.md */,
@@ -75,7 +75,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6C232BD1E73899B0009D9A4 /* ODLogging.h in Headers */,
+				F6C232BD1E73899B0009D9A4 /* ODLogging.h.in in Headers */,
 				F6C232BB1E73899B0009D9A4 /* ODEnableLogging.h in Headers */,
 				F6C232BA1E73899B0009D9A4 /* ODDisableLogging.h in Headers */,
 			);

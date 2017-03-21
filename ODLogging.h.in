@@ -100,6 +100,18 @@
 /*! @brief Write the logging output to 'stderr' as well, if not logging to a file. */
 # define kODLoggingOptionWriteToStderr       16 /* bit mask, must be power of two */
 
+/*! @brief The major part of the version number. */
+# define ODL_VERSION_MAJOR_ @ODL_VERSION_MAJOR@
+
+/*! @brief The minor part of the version number. */
+# define ODL_VERSION_MINOR_ @ODL_VERSION_MINOR@
+
+/*! @brief The patch part of the version number. */
+# define ODL_VERSION_PATCH_ @ODL_VERSION_PATCH@
+
+/*! @brief The version number as a string. */
+# define ODL_VERSION_ "@ODL_VERSION@"
+
 # if defined(ODL_DISABLE_LOGGING_)
 #  undef ODL_ENABLE_LOGGING_
 # endif // defined(ODL_DISABLE_LOGGING_)

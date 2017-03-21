@@ -129,6 +129,7 @@ set(LIB_DEST "lib")
 set(INCLUDE_DEST "include")
 
 configure_file(ODLConfigVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake @ONLY)
+configure_file("${ODL_SOURCE_DIR}/ODLogging.h.in" "${ODL_SOURCE_DIR}/ODLogging.h")
 
 set(MAIN_TARGET odLogging)
 

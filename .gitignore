@@ -1,4 +1,5 @@
 Makefile
 ODLConfigVersion.cmake
+ODLogging.h
 libodLogging.dylib
 libodLoggingOC.dylib
