@@ -34,10 +34,10 @@ include(${SELF_DIR}/ODL.cmake)
 
 get_filename_component(PARENT_DIR "${SELF_DIR}" PATH)
 set(ODL_INCLUDE_DIRS "${PARENT_DIR}/include")
-if(WIN)
-    set(ODL_LIBRARY "${SELF_DIR}/odLogging.???")
+if(WIN32)
+    set(ODL_LIBRARY "${SELF_DIR}/odlC.lib")
 else()
-    set(ODL_LIBRARY "${SELF_DIR}/libodLogging.dylib")
+    set(ODL_LIBRARY "${SELF_DIR}/libodlC.dylib")
 endif()
 
 message(STATUS "ODL version: ${ODL_VERSION}")
