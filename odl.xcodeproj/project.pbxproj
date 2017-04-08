@@ -7,27 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F6C232BA1E73899B0009D9A4 /* ODDisableLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */; };
-		F6C232BB1E73899B0009D9A4 /* ODEnableLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */; };
-		F6C232BC1E73899B0009D9A4 /* ODLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B51E73899B0009D9A4 /* ODLogging.cpp */; };
-		F6C232BD1E73899B0009D9A4 /* ODLogging.h.in in Headers */ = {isa = PBXBuildFile; fileRef = F6C232B61E73899B0009D9A4 /* ODLogging.h.in */; };
-		F6C232BE1E73899B0009D9A4 /* ODLogging.inc.c in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */; };
-		F6C232BF1E73899B0009D9A4 /* ODLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B81E73899B0009D9A4 /* ODLogging.m */; };
+		F6BF68711E995099003DE16C /* odlConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686A1E995099003DE16C /* odlConfig.h */; };
+		F6BF68721E995099003DE16C /* odlDisable.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686B1E995099003DE16C /* odlDisable.h */; };
+		F6BF68731E995099003DE16C /* odlEnable.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686C1E995099003DE16C /* odlEnable.h */; };
+		F6BF68741E995099003DE16C /* odlInclude.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686D1E995099003DE16C /* odlInclude.h */; };
+		F6BF68751E995099003DE16C /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6BF686E1E995099003DE16C /* odlSupport.cpp */; };
+		F6BF68761E995099003DE16C /* odlSupport.inc.c in Sources */ = {isa = PBXBuildFile; fileRef = F6BF686F1E995099003DE16C /* odlSupport.inc.c */; };
+		F6BF68771E995099003DE16C /* odlSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BF68701E995099003DE16C /* odlSupport.m */; };
 		F6C232C01E73899B0009D9A4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B91E73899B0009D9A4 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfig.cmake; sourceTree = SOURCE_ROOT; };
 		F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfigVersion.cmake.in; sourceTree = SOURCE_ROOT; };
+		F6BF686A1E995099003DE16C /* odlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlConfig.h; sourceTree = "<group>"; };
+		F6BF686B1E995099003DE16C /* odlDisable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlDisable.h; sourceTree = "<group>"; };
+		F6BF686C1E995099003DE16C /* odlEnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlEnable.h; sourceTree = "<group>"; };
+		F6BF686D1E995099003DE16C /* odlInclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlInclude.h; sourceTree = "<group>"; };
+		F6BF686E1E995099003DE16C /* odlSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = odlSupport.cpp; sourceTree = "<group>"; };
+		F6BF686F1E995099003DE16C /* odlSupport.inc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = odlSupport.inc.c; sourceTree = "<group>"; };
+		F6BF68701E995099003DE16C /* odlSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = odlSupport.m; sourceTree = "<group>"; };
 		F6C232AA1E7389700009D9A4 /* libodl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libodl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C232B11E73899B0009D9A4 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 		F6C232B21E73899B0009D9A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
-		F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODDisableLogging.h; sourceTree = SOURCE_ROOT; };
-		F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEnableLogging.h; sourceTree = SOURCE_ROOT; };
-		F6C232B51E73899B0009D9A4 /* ODLogging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ODLogging.cpp; sourceTree = SOURCE_ROOT; };
-		F6C232B61E73899B0009D9A4 /* ODLogging.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLogging.h.in; sourceTree = SOURCE_ROOT; };
-		F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ODLogging.inc.c; sourceTree = SOURCE_ROOT; };
-		F6C232B81E73899B0009D9A4 /* ODLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLogging.m; sourceTree = SOURCE_ROOT; };
 		F6C232B91E73899B0009D9A4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -46,15 +48,16 @@
 			isa = PBXGroup;
 			children = (
 				F6C232B11E73899B0009D9A4 /* CMakeLists.txt */,
+				F6BF686A1E995099003DE16C /* odlConfig.h */,
+				F6BF686B1E995099003DE16C /* odlDisable.h */,
+				F6BF686C1E995099003DE16C /* odlEnable.h */,
+				F6BF686D1E995099003DE16C /* odlInclude.h */,
+				F6BF686E1E995099003DE16C /* odlSupport.cpp */,
+				F6BF686F1E995099003DE16C /* odlSupport.inc.c */,
+				F6BF68701E995099003DE16C /* odlSupport.m */,
 				F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */,
 				F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */,
 				F6C232B21E73899B0009D9A4 /* LICENSE */,
-				F6C232B31E73899B0009D9A4 /* ODDisableLogging.h */,
-				F6C232B41E73899B0009D9A4 /* ODEnableLogging.h */,
-				F6C232B51E73899B0009D9A4 /* ODLogging.cpp */,
-				F6C232B61E73899B0009D9A4 /* ODLogging.h.in */,
-				F6C232B71E73899B0009D9A4 /* ODLogging.inc.c */,
-				F6C232B81E73899B0009D9A4 /* ODLogging.m */,
 				F6C232B91E73899B0009D9A4 /* README.md */,
 				F6C232AB1E7389700009D9A4 /* Products */,
 			);
@@ -75,9 +78,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6C232BD1E73899B0009D9A4 /* ODLogging.h.in in Headers */,
-				F6C232BB1E73899B0009D9A4 /* ODEnableLogging.h in Headers */,
-				F6C232BA1E73899B0009D9A4 /* ODDisableLogging.h in Headers */,
+				F6BF68731E995099003DE16C /* odlEnable.h in Headers */,
+				F6BF68711E995099003DE16C /* odlConfig.h in Headers */,
+				F6BF68741E995099003DE16C /* odlInclude.h in Headers */,
+				F6BF68721E995099003DE16C /* odlDisable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,10 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6C232BF1E73899B0009D9A4 /* ODLogging.m in Sources */,
-				F6C232BE1E73899B0009D9A4 /* ODLogging.inc.c in Sources */,
+				F6BF68751E995099003DE16C /* odlSupport.cpp in Sources */,
+				F6BF68761E995099003DE16C /* odlSupport.inc.c in Sources */,
+				F6BF68771E995099003DE16C /* odlSupport.m in Sources */,
 				F6C232C01E73899B0009D9A4 /* README.md in Sources */,
-				F6C232BC1E73899B0009D9A4 /* ODLogging.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
