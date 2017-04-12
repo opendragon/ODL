@@ -138,14 +138,6 @@ else()
     set(DO_SHARED "")
 endif()
 
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-find_package(Threads REQUIRED)
-if(CMAKE_USE_PTHREADS_INIT)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-endif()
-
 add_library(${TARGET_ONE}
             ${DO_SHARED}
             ${ODL_SOURCE_DIR}/odlSupport.cpp)
