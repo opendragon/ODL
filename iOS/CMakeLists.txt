@@ -1,6 +1,6 @@
 #--------------------------------------------------------------------------------------------------
 #
-#  File:       odl/CMakeLists.txt
+#  File:       odl/non-iOS/CMakeLists.txt
 #
 #  Project:    odl
 #
@@ -53,7 +53,8 @@ set(ODL_VERSION_PATCH 0)
 set(ODL_VERSION "${ODL_VERSION_MAJOR}.${ODL_VERSION_MINOR}.${ODL_VERSION_PATCH}")
 set(ODL_COMPANY "OpenDragon")
 
-set(ODL_SOURCE_DIR "${PROJECT_SOURCE_DIR}")
+set(ODL_SOURCE_DIR "${PROJECT_SOURCE_DIR}/../src")
+set(ODL_CONFIG_DIR "${PROJECT_SOURCE_DIR}/..")
 
 # Make some flags to control the build flags visibilities
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS)
@@ -92,6 +93,7 @@ endif()
 
 if(APPLE)
     set(E_PATH "@executable_path")
+    set(IOS False)
     set(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for Mac OSX" FORCE)
     set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Deployment target for Mac OSX" FORCE)
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++11" CACHE STRING "Fixes linking error for odl"
@@ -128,10 +130,7 @@ list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 set(LIB_DEST "lib")
 set(INCLUDE_DEST "include")
 
-configure_file(ODLConfigVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake @ONLY)
-configure_file("${ODL_SOURCE_DIR}/odlConfig.h.in" "${ODL_SOURCE_DIR}/odlConfig.h")
-
-set(MAIN_TARGET odlC)
+set(TARGET_ONE odlC)
 
 if(APPLE)
     set(DO_SHARED "SHARED")
@@ -147,45 +146,84 @@ if(CMAKE_USE_PTHREADS_INIT)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 endif()
 
-add_library(${MAIN_TARGET}
+add_library(${TARGET_ONE}
             ${DO_SHARED}
-            odlSupport.cpp)
-target_include_directories(${MAIN_TARGET} PUBLIC
+            ${ODL_SOURCE_DIR}/odlSupport.cpp)
+target_include_directories(${TARGET_ONE} PUBLIC
                             $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
                             $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
                             )
 
-install(TARGETS ${MAIN_TARGET}
+install(TARGETS ${TARGET_ONE}
         EXPORT ${PROJECT_NAME}
         DESTINATION ${LIB_DEST}
         COMPONENT libraries)
 
-install(FILES
-        odlDisable.h
-        odlEnable.h
-        odlInclude.h
-	odlConfig.h
-        DESTINATION ${INCLUDE_DEST}
-        COMPONENT headers)
-
-install(FILES
-        ODLConfig.cmake
-        ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake
-        DESTINATION ${LIB_DEST}
-        COMPONENT scripts)
-
 if(APPLE)
-    set(SECONDARY_TARGET odlOC)
+    set(TARGET_TWO odlOC)
 
-    add_library(${SECONDARY_TARGET}
+    add_library(${TARGET_TWO}
                 ${DO_SHARED}
-                odlSupport.m)
-    add_framework(Foundation ${SECONDARY_TARGET})
-    target_include_directories(${SECONDARY_TARGET} PUBLIC
+                ${ODL_SOURCE_DIR}/odlSupport.m)
+    add_framework(Foundation ${TARGET_TWO})
+    target_include_directories(${TARGET_TWO} PUBLIC
                                 $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
                                 $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
                                 )
-    install(TARGETS ${SECONDARY_TARGET}
+    install(TARGETS ${TARGET_TWO}
+            EXPORT ${PROJECT_NAME}
+            DESTINATION ${LIB_DEST}
+            COMPONENT libraries)
+
+#    # Build for iOS
+#    set(IOS True)
+#    set(CMAKE_OSX_DEPLOYMENT_TARGET "" CACHE STRING "Force unset of the deployment target for iOS" FORCE)
+#
+#    if(NOT DEFINED IOS_PLATFORM)
+#        set(IOS_PLATFORM "OS")
+#    endif()
+#    set(IOS_PLATFORM "${IOS_PLATFORM}" CACHE STRING "Type of iOS platform")
+#
+#    if(${IOS_PLATFORM} STREQUAL "OS")
+#        set(IOS_PLATFORM_LOCATION "iPhoneOS.platform")
+#        set(CMAKE_XCODE_EFFECTIVE_PLATFORMS "-iphoneos")
+#        set(IOS_ARCH armv7 armv7s arm64)
+#    elseif(${IOS_PLATFORM} STREQUAL "SIMULATOR")
+#        set(IOS_PLATFORM_LOCATION "iPhoneSimulator.platform")
+#        set(CMAKE_XCODE_EFFECTIVE_PLATFORMS "-iphonesimulator")
+#        set(IOS_ARCH i386)
+#    elseif(${IOS_PLATFORM} STREQUAL "SIMULATOR64")
+#        set(IOS_PLATFORM_LOCATION "iPhoneSimulator.platform")
+#        set(CMAKE_XCODE_EFFECTIVE_PLATFORMS "-iphonesimulator")
+#        set(IOS_ARCH x86_64)
+#    else()
+#        message(FATAL_ERROR "Unsupported IOS_PLATFORM value selected. Please choose OS or SIMULATOR")
+#    endif()
+#
+#    set(CMAKE_OSX_ARCHITECTURES "${IOS_ARCH}" CACHE STRING "Build architectures for iOS")
+
+    set(TARGET_THREE odlCi)
+
+    add_library(${TARGET_THREE}
+                ${ODL_SOURCE_DIR}/odlSupport.cpp)
+    target_include_directories(${TARGET_THREE} PUBLIC
+                                $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                                $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
+                                )
+    install(TARGETS ${TARGET_THREE}
+            EXPORT ${PROJECT_NAME}
+            DESTINATION ${LIB_DEST}
+            COMPONENT libraries)
+
+    set(TARGET_FOUR odlOCi)
+
+    add_library(${TARGET_FOUR}
+                ${ODL_SOURCE_DIR}/odlSupport.m)
+    target_include_directories(${TARGET_FOUR} PUBLIC
+                                $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                                $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
+                                )
+    install(TARGETS ${TARGET_FOUR}
             EXPORT ${PROJECT_NAME}
             DESTINATION ${LIB_DEST}
             COMPONENT libraries)
