@@ -6,38 +6,115 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		F6F8A1381EA12180002C7228 /* odl-All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F6F8A1391EA12180002C7228 /* Build configuration list for PBXAggregateTarget "odl-All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				F6F8A1431EA12199002C7228 /* PBXTargetDependency */,
+				F6F8A1411EA12194002C7228 /* PBXTargetDependency */,
+				F6F8A13F1EA12190002C7228 /* PBXTargetDependency */,
+				F6F8A13D1EA1218C002C7228 /* PBXTargetDependency */,
+			);
+			name = "odl-All";
+			productName = All;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		F6BF68711E995099003DE16C /* odlConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686A1E995099003DE16C /* odlConfig.h */; };
-		F6BF68721E995099003DE16C /* odlDisable.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686B1E995099003DE16C /* odlDisable.h */; };
-		F6BF68731E995099003DE16C /* odlEnable.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686C1E995099003DE16C /* odlEnable.h */; };
-		F6BF68741E995099003DE16C /* odlInclude.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BF686D1E995099003DE16C /* odlInclude.h */; };
-		F6BF68751E995099003DE16C /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6BF686E1E995099003DE16C /* odlSupport.cpp */; };
-		F6BF68761E995099003DE16C /* odlSupport.inc.c in Sources */ = {isa = PBXBuildFile; fileRef = F6BF686F1E995099003DE16C /* odlSupport.inc.c */; };
-		F6BF68771E995099003DE16C /* odlSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BF68701E995099003DE16C /* odlSupport.m */; };
-		F6C232C01E73899B0009D9A4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F6C232B91E73899B0009D9A4 /* README.md */; };
+		F6F8A12E1EA11BD6002C7228 /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */; };
+		F6F8A12F1EA11BD7002C7228 /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */; };
+		F6F8A1301EA11BDB002C7228 /* odlSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F61EA11B07002C7228 /* odlSupport.m */; };
+		F6F8A1311EA11BDC002C7228 /* odlSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F61EA11B07002C7228 /* odlSupport.m */; };
+		F6F8A1361EA11C72002C7228 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F8A1351EA11C72002C7228 /* Foundation.framework */; };
+		F6F8A1371EA11C85002C7228 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F8A1331EA11C62002C7228 /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6F8A13C1EA1218C002C7228 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6C232A21E73896F0009D9A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6F8A1021EA11B60002C7228;
+			remoteInfo = odlC;
+		};
+		F6F8A13E1EA12190002C7228 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6C232A21E73896F0009D9A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6F8A10A1EA11B7E002C7228;
+			remoteInfo = odlOC;
+		};
+		F6F8A1401EA12194002C7228 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6C232A21E73896F0009D9A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6F8A1171EA11BA5002C7228;
+			remoteInfo = odlCi;
+		};
+		F6F8A1421EA12199002C7228 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6C232A21E73896F0009D9A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6F8A1241EA11BB9002C7228;
+			remoteInfo = odlOCi;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfig.cmake; sourceTree = SOURCE_ROOT; };
 		F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfigVersion.cmake.in; sourceTree = SOURCE_ROOT; };
-		F6BF686A1E995099003DE16C /* odlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlConfig.h; sourceTree = "<group>"; };
-		F6BF686B1E995099003DE16C /* odlDisable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlDisable.h; sourceTree = "<group>"; };
-		F6BF686C1E995099003DE16C /* odlEnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlEnable.h; sourceTree = "<group>"; };
-		F6BF686D1E995099003DE16C /* odlInclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odlInclude.h; sourceTree = "<group>"; };
-		F6BF686E1E995099003DE16C /* odlSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = odlSupport.cpp; sourceTree = "<group>"; };
-		F6BF686F1E995099003DE16C /* odlSupport.inc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = odlSupport.inc.c; sourceTree = "<group>"; };
-		F6BF68701E995099003DE16C /* odlSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = odlSupport.m; sourceTree = "<group>"; };
-		F6C232AA1E7389700009D9A4 /* libodl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libodl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6C232B11E73899B0009D9A4 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 		F6C232B21E73899B0009D9A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		F6C232B91E73899B0009D9A4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		F6F8A0F01EA11B07002C7228 /* odlConfig.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = odlConfig.h.in; path = src/odlConfig.h.in; sourceTree = SOURCE_ROOT; };
+		F6F8A0F11EA11B07002C7228 /* odlDisable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = odlDisable.h; path = src/odlDisable.h; sourceTree = SOURCE_ROOT; };
+		F6F8A0F21EA11B07002C7228 /* odlEnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = odlEnable.h; path = src/odlEnable.h; sourceTree = SOURCE_ROOT; };
+		F6F8A0F31EA11B07002C7228 /* odlInclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = odlInclude.h; path = src/odlInclude.h; sourceTree = SOURCE_ROOT; };
+		F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = odlSupport.cpp; path = src/odlSupport.cpp; sourceTree = SOURCE_ROOT; };
+		F6F8A0F51EA11B07002C7228 /* odlSupport.inc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = odlSupport.inc.c; path = src/odlSupport.inc.c; sourceTree = SOURCE_ROOT; };
+		F6F8A0F61EA11B07002C7228 /* odlSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = odlSupport.m; path = src/odlSupport.m; sourceTree = SOURCE_ROOT; };
+		F6F8A0FD1EA11B1F002C7228 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = iOS/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		F6F8A0FE1EA11B2D002C7228 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "non-iOS/CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+		F6F8A1031EA11B60002C7228 /* libodlC.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libodlC.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6F8A10B1EA11B7E002C7228 /* libodlOC.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libodlOC.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6F8A1181EA11BA5002C7228 /* libodlCi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libodlCi.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6F8A1251EA11BB9002C7228 /* libodlOCi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libodlOCi.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6F8A1331EA11C62002C7228 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F6F8A1351EA11C72002C7228 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F6F8A1441EA13ECE002C7228 /* odlCommonSettings.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = odlCommonSettings.cmake; sourceTree = SOURCE_ROOT; };
+		F6F8A1451EA160BC002C7228 /* iOS.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = iOS.cmake; path = iOS/iOS.cmake; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F6C232A71E73896F0009D9A4 /* Frameworks */ = {
+		F6F8A1001EA11B60002C7228 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6F8A1081EA11B7E002C7228 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6F8A1371EA11C85002C7228 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6F8A1151EA11BA5002C7228 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6F8A1221EA11BB9002C7228 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6F8A1361EA11C72002C7228 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,18 +124,15 @@
 		F6C232A11E73896F0009D9A4 = {
 			isa = PBXGroup;
 			children = (
-				F6C232B11E73899B0009D9A4 /* CMakeLists.txt */,
-				F6BF686A1E995099003DE16C /* odlConfig.h */,
-				F6BF686B1E995099003DE16C /* odlDisable.h */,
-				F6BF686C1E995099003DE16C /* odlEnable.h */,
-				F6BF686D1E995099003DE16C /* odlInclude.h */,
-				F6BF686E1E995099003DE16C /* odlSupport.cpp */,
-				F6BF686F1E995099003DE16C /* odlSupport.inc.c */,
-				F6BF68701E995099003DE16C /* odlSupport.m */,
+				F6F8A0EF1EA11AF1002C7228 /* non-iOS */,
+				F6F8A0EE1EA11AE9002C7228 /* iOS */,
+				F6F8A0ED1EA11AE2002C7228 /* src */,
+				F6F8A1441EA13ECE002C7228 /* odlCommonSettings.cmake */,
 				F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */,
 				F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */,
 				F6C232B21E73899B0009D9A4 /* LICENSE */,
 				F6C232B91E73899B0009D9A4 /* README.md */,
+				F6F8A1321EA11C3C002C7228 /* Frameworks */,
 				F6C232AB1E7389700009D9A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,44 +140,139 @@
 		F6C232AB1E7389700009D9A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F6C232AA1E7389700009D9A4 /* libodl.dylib */,
+				F6F8A1031EA11B60002C7228 /* libodlC.dylib */,
+				F6F8A10B1EA11B7E002C7228 /* libodlOC.dylib */,
+				F6F8A1181EA11BA5002C7228 /* libodlCi.a */,
+				F6F8A1251EA11BB9002C7228 /* libodlOCi.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F6F8A0ED1EA11AE2002C7228 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F6F8A0F01EA11B07002C7228 /* odlConfig.h.in */,
+				F6F8A0F11EA11B07002C7228 /* odlDisable.h */,
+				F6F8A0F21EA11B07002C7228 /* odlEnable.h */,
+				F6F8A0F31EA11B07002C7228 /* odlInclude.h */,
+				F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */,
+				F6F8A0F51EA11B07002C7228 /* odlSupport.inc.c */,
+				F6F8A0F61EA11B07002C7228 /* odlSupport.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		F6F8A0EE1EA11AE9002C7228 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F6F8A0FD1EA11B1F002C7228 /* CMakeLists.txt */,
+				F6F8A1451EA160BC002C7228 /* iOS.cmake */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		F6F8A0EF1EA11AF1002C7228 /* non-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F6F8A0FE1EA11B2D002C7228 /* CMakeLists.txt */,
+			);
+			name = "non-iOS";
+			sourceTree = "<group>";
+		};
+		F6F8A1321EA11C3C002C7228 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6F8A1351EA11C72002C7228 /* Foundation.framework */,
+				F6F8A1331EA11C62002C7228 /* Foundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		F6C232A81E73896F0009D9A4 /* Headers */ = {
+		F6F8A1011EA11B60002C7228 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6BF68731E995099003DE16C /* odlEnable.h in Headers */,
-				F6BF68711E995099003DE16C /* odlConfig.h in Headers */,
-				F6BF68741E995099003DE16C /* odlInclude.h in Headers */,
-				F6BF68721E995099003DE16C /* odlDisable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6F8A1091EA11B7E002C7228 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		F6C232A91E73896F0009D9A4 /* odl */ = {
+		F6F8A1021EA11B60002C7228 /* odlC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F6C232AE1E7389700009D9A4 /* Build configuration list for PBXNativeTarget "odl" */;
+			buildConfigurationList = F6F8A1041EA11B60002C7228 /* Build configuration list for PBXNativeTarget "odlC" */;
 			buildPhases = (
-				F6C232A61E73896F0009D9A4 /* Sources */,
-				F6C232A71E73896F0009D9A4 /* Frameworks */,
-				F6C232A81E73896F0009D9A4 /* Headers */,
+				F6F8A0FF1EA11B60002C7228 /* Sources */,
+				F6F8A1001EA11B60002C7228 /* Frameworks */,
+				F6F8A1011EA11B60002C7228 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = odl;
-			productName = odl;
-			productReference = F6C232AA1E7389700009D9A4 /* libodl.dylib */;
+			name = odlC;
+			productName = odlC;
+			productReference = F6F8A1031EA11B60002C7228 /* libodlC.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
+		};
+		F6F8A10A1EA11B7E002C7228 /* odlOC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6F8A1111EA11B7E002C7228 /* Build configuration list for PBXNativeTarget "odlOC" */;
+			buildPhases = (
+				F6F8A1071EA11B7E002C7228 /* Sources */,
+				F6F8A1081EA11B7E002C7228 /* Frameworks */,
+				F6F8A1091EA11B7E002C7228 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = odlOC;
+			productName = odlOC;
+			productReference = F6F8A10B1EA11B7E002C7228 /* libodlOC.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		F6F8A1171EA11BA5002C7228 /* odlCi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6F8A11E1EA11BA5002C7228 /* Build configuration list for PBXNativeTarget "odlCi" */;
+			buildPhases = (
+				F6F8A1141EA11BA5002C7228 /* Sources */,
+				F6F8A1151EA11BA5002C7228 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = odlCi;
+			productName = odlCi;
+			productReference = F6F8A1181EA11BA5002C7228 /* libodlCi.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F6F8A1241EA11BB9002C7228 /* odlOCi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6F8A12B1EA11BBA002C7228 /* Build configuration list for PBXNativeTarget "odlOCi" */;
+			buildPhases = (
+				F6F8A1211EA11BB9002C7228 /* Sources */,
+				F6F8A1221EA11BB9002C7228 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = odlOCi;
+			productName = odlOCi;
+			productReference = F6F8A1251EA11BB9002C7228 /* libodlOCi.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -114,7 +283,27 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Norman Jaffe";
 				TargetAttributes = {
-					F6C232A91E73896F0009D9A4 = {
+					F6F8A1021EA11B60002C7228 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = JCN44SXWSE;
+						ProvisioningStyle = Automatic;
+					};
+					F6F8A10A1EA11B7E002C7228 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = JCN44SXWSE;
+						ProvisioningStyle = Automatic;
+					};
+					F6F8A1171EA11BA5002C7228 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = JCN44SXWSE;
+						ProvisioningStyle = Automatic;
+					};
+					F6F8A1241EA11BB9002C7228 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = JCN44SXWSE;
+						ProvisioningStyle = Automatic;
+					};
+					F6F8A1381EA12180002C7228 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = JCN44SXWSE;
 						ProvisioningStyle = Automatic;
@@ -133,30 +322,78 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F6C232A91E73896F0009D9A4 /* odl */,
+				F6F8A1021EA11B60002C7228 /* odlC */,
+				F6F8A10A1EA11B7E002C7228 /* odlOC */,
+				F6F8A1171EA11BA5002C7228 /* odlCi */,
+				F6F8A1241EA11BB9002C7228 /* odlOCi */,
+				F6F8A1381EA12180002C7228 /* odl-All */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F6C232A61E73896F0009D9A4 /* Sources */ = {
+		F6F8A0FF1EA11B60002C7228 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6BF68751E995099003DE16C /* odlSupport.cpp in Sources */,
-				F6BF68761E995099003DE16C /* odlSupport.inc.c in Sources */,
-				F6BF68771E995099003DE16C /* odlSupport.m in Sources */,
-				F6C232C01E73899B0009D9A4 /* README.md in Sources */,
+				F6F8A12F1EA11BD7002C7228 /* odlSupport.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6F8A1071EA11B7E002C7228 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6F8A1301EA11BDB002C7228 /* odlSupport.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6F8A1141EA11BA5002C7228 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6F8A12E1EA11BD6002C7228 /* odlSupport.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6F8A1211EA11BB9002C7228 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6F8A1311EA11BDC002C7228 /* odlSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F6F8A13D1EA1218C002C7228 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6F8A1021EA11B60002C7228 /* odlC */;
+			targetProxy = F6F8A13C1EA1218C002C7228 /* PBXContainerItemProxy */;
+		};
+		F6F8A13F1EA12190002C7228 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6F8A10A1EA11B7E002C7228 /* odlOC */;
+			targetProxy = F6F8A13E1EA12190002C7228 /* PBXContainerItemProxy */;
+		};
+		F6F8A1411EA12194002C7228 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6F8A1171EA11BA5002C7228 /* odlCi */;
+			targetProxy = F6F8A1401EA12194002C7228 /* PBXContainerItemProxy */;
+		};
+		F6F8A1431EA12199002C7228 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6F8A1241EA11BB9002C7228 /* odlOCi */;
+			targetProxy = F6F8A1421EA12199002C7228 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		F6C232AC1E7389700009D9A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -193,7 +430,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				INSTALL_PATH = /opt/odl/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -203,7 +442,7 @@
 		F6C232AD1E7389700009D9A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -234,13 +473,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				INSTALL_PATH = /opt/odl/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		F6C232AF1E7389700009D9A4 /* Debug */ = {
+		F6F8A1051EA11B60002C7228 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = JCN44SXWSE;
@@ -251,13 +492,105 @@
 			};
 			name = Debug;
 		};
-		F6C232B01E7389700009D9A4 /* Release */ = {
+		F6F8A1061EA11B60002C7228 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = JCN44SXWSE;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F6F8A1121EA11B7E002C7228 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F6F8A1131EA11B7E002C7228 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F6F8A11F1EA11BA5002C7228 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F6F8A1201EA11BA5002C7228 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F6F8A12C1EA11BBA002C7228 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F6F8A12D1EA11BBA002C7228 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F6F8A13A1EA12180002C7228 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = JCN44SXWSE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F6F8A13B1EA12180002C7228 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = JCN44SXWSE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -274,14 +607,45 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F6C232AE1E7389700009D9A4 /* Build configuration list for PBXNativeTarget "odl" */ = {
+		F6F8A1041EA11B60002C7228 /* Build configuration list for PBXNativeTarget "odlC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F6C232AF1E7389700009D9A4 /* Debug */,
-				F6C232B01E7389700009D9A4 /* Release */,
+				F6F8A1051EA11B60002C7228 /* Debug */,
+				F6F8A1061EA11B60002C7228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		F6F8A1111EA11B7E002C7228 /* Build configuration list for PBXNativeTarget "odlOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6F8A1121EA11B7E002C7228 /* Debug */,
+				F6F8A1131EA11B7E002C7228 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F6F8A11E1EA11BA5002C7228 /* Build configuration list for PBXNativeTarget "odlCi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6F8A11F1EA11BA5002C7228 /* Debug */,
+				F6F8A1201EA11BA5002C7228 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F6F8A12B1EA11BBA002C7228 /* Build configuration list for PBXNativeTarget "odlOCi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6F8A12C1EA11BBA002C7228 /* Debug */,
+				F6F8A12D1EA11BBA002C7228 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F6F8A1391EA12180002C7228 /* Build configuration list for PBXAggregateTarget "odl-All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6F8A13A1EA12180002C7228 /* Debug */,
+				F6F8A13B1EA12180002C7228 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

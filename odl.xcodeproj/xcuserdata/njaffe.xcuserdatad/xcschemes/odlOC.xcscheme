@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F6C232A91E73896F0009D9A4"
-               BuildableName = "libodl.dylib"
-               BlueprintName = "odl"
+               BlueprintIdentifier = "F6F8A10A1EA11B7E002C7228"
+               BuildableName = "libodlOC.dylib"
+               BlueprintName = "odlOC"
                ReferencedContainer = "container:odl.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F6C232A91E73896F0009D9A4"
-            BuildableName = "libodl.dylib"
-            BlueprintName = "odl"
+            BlueprintIdentifier = "F6F8A10A1EA11B7E002C7228"
+            BuildableName = "libodlOC.dylib"
+            BlueprintName = "odlOC"
             ReferencedContainer = "container:odl.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F6C232A91E73896F0009D9A4"
-            BuildableName = "libodl.dylib"
-            BlueprintName = "odl"
+            BlueprintIdentifier = "F6F8A10A1EA11B7E002C7228"
+            BuildableName = "libodlOC.dylib"
+            BlueprintName = "odlOC"
             ReferencedContainer = "container:odl.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

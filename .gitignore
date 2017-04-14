@@ -3,6 +3,8 @@ ODLConfigVersion.cmake
 odlConfig.h
 libodlC.dylib
 libodlOC.dylib
+libodlCi.a
+libodlOCi.a
 CMakeFiles/
 x64/
 odLogging.dir/
