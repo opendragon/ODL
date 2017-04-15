@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\turin\Documents\git.repositories\ODL\non-iOS\CMakeFiles\8822bbfd127165abd14afff1c13a7804\PACKAGE_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5ABB4026-762D-3382-AD55-5E03AFCD4377}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

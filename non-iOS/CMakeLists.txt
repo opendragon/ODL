@@ -164,3 +164,4 @@ endif()
 install(EXPORT ${PROJECT_NAME}
         DESTINATION ${LIB_DEST})
 
+add_subdirectory(CPack)
