@@ -1,8 +1,8 @@
 #--------------------------------------------------------------------------------------------------
 #
-#  File:       odl/odlCommingSettings.cmake
+#  File:       odlCommonSettings.cmake
 #
-#  Project:    odl
+#  Project:    ODL
 #
 #  Contains:   The common CMAKE settings for the debugging library.
 #

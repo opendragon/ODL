@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------------------------------------
 #
-#  File:       odl/non-iOS/CMakeLists.txt
+#  File:       iOS/CMakeLists.txt
 #
-#  Project:    odl
+#  Project:    ODL
 #
-#  Contains:   The CMAKE definitions for the debugging library.
+#  Contains:   The iOS CMAKE definitions for the debugging library.
 #
 #  Written by: Norman Jaffe
 #
