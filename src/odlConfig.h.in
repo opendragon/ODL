@@ -59,15 +59,19 @@
 # endif // defined(__APPLE__)
 
 # if (! defined(MAC_OR_LINUX_))
-  /* @c TRUE if non-Windows, @c FALSE if Windows. */
-#  define MAC_OR_LINUX_ (defined(__APPLE__) || defined(__linux__))
+  /* defined if non-Windows, undefined if Windows. */
+#  if defined(__APPLE__)
+#   define MAC_OR_LINUX_ /* */
+#  elif defined(__linux__)
+#   define MAC_OR_LINUX_ /* */
+#  endif /* defined(__linux__) */
 # endif // ! defined(MAC_OR_LINUX_)
 
-# if MAC_OR_LINUX_
+# if defined(MAC_OR_LINUX_)
 #  define ODL_FUNC_NAME_ __func__
-# else // ! MAC_OR_LINUX_
+# else // ! defined(MAC_OR_LINUX_)
 #  define ODL_FUNC_NAME_ __FUNCTION__
-# endif // ! MAC_OR_LINUX_
+# endif // ! defined(MAC_OR_LINUX_)
 
 /*! @brief No special logging options. */
 # define kODLoggingOptionNone                0
@@ -1284,7 +1288,7 @@ extern "C"
            const int  len,
            const char *val);
 
-# if MAC_OR_LINUX_
+# if defined(MAC_OR_LINUX_)
     /*! @brief Write a time value to the log.
      @param[in] fileName The name of the source file containing the call to this function.
      @param[in] funcName The name of the calling function.
@@ -1297,7 +1301,7 @@ extern "C"
              const int            lineNumber,
              const char           *text1,
              const struct timeval *val1);
-# endif // MAC_OR_LINUX_
+# endif // defined(MAC_OR_LINUX_)
 
     /*! @brief Write a long hexadecimal value to the log.
      @param[in] fileName The name of the source file containing the call to this function.

@@ -708,13 +708,13 @@
 #  define ODL_Sp(text, len, val) \
         ODLSp_(__FILE__, ODL_FUNC_NAME_, __LINE__, text, (long) len, val)
 
-#  if MAC_OR_LINUX_
+#  if defined(MAC_OR_LINUX_)
 /*! @brief Write a time value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #   define ODL_TIME(text1, val1) \
         ODLTime_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1)
-#  endif // MAC_OR_LINUX_
+#  endif // defined(MAC_OR_LINUX_)
 
 /*! @brief Write a long hexadecimal value to the log.
  @param[in] text1 The caption for the value to be written.
@@ -1253,12 +1253,12 @@
  @param[in] val The value to be written. */
 #  define ODL_Sp(text, len, val) /* */
 
-#  if MAC_OR_LINUX_
+#  if defined(MAC_OR_LINUX_)
 /*! @brief Write a time value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #   define ODL_TIME(text1, val1) /* */
-#  endif // MAC_OR_LINUX_
+#  endif // defined(MAC_OR_LINUX_)
 
 /*! @brief Write a long hexadecimal value to the log.
  @param[in] text1 The caption for the value to be written.
