@@ -24,6 +24,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		F606FCE720D574D80069A88A /* odlConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F606FCE620D574D80069A88A /* odlConfig.h */; };
 		F6F8A12E1EA11BD6002C7228 /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */; };
 		F6F8A12F1EA11BD7002C7228 /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */; };
 		F6F8A1301EA11BDB002C7228 /* odlSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F61EA11B07002C7228 /* odlSupport.m */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F606FCE620D574D80069A88A /* odlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = odlConfig.h; path = src/odlConfig.h; sourceTree = "<group>"; };
 		F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfig.cmake; sourceTree = SOURCE_ROOT; };
 		F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfigVersion.cmake.in; sourceTree = SOURCE_ROOT; };
 		F6C232B21E73899B0009D9A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
@@ -151,6 +153,7 @@
 		F6F8A0ED1EA11AE2002C7228 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F606FCE620D574D80069A88A /* odlConfig.h */,
 				F6F8A0F01EA11B07002C7228 /* odlConfig.h.in */,
 				F6F8A0F11EA11B07002C7228 /* odlDisable.h */,
 				F6F8A0F21EA11B07002C7228 /* odlEnable.h */,
@@ -195,6 +198,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F606FCE720D574D80069A88A /* odlConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +618,7 @@
 				F6F8A1061EA11B60002C7228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6F8A1111EA11B7E002C7228 /* Build configuration list for PBXNativeTarget "odlOC" */ = {
 			isa = XCConfigurationList;
@@ -622,6 +627,7 @@
 				F6F8A1131EA11B7E002C7228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6F8A11E1EA11BA5002C7228 /* Build configuration list for PBXNativeTarget "odlCi" */ = {
 			isa = XCConfigurationList;
@@ -630,6 +636,7 @@
 				F6F8A1201EA11BA5002C7228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6F8A12B1EA11BBA002C7228 /* Build configuration list for PBXNativeTarget "odlOCi" */ = {
 			isa = XCConfigurationList;
@@ -638,6 +645,7 @@
 				F6F8A12D1EA11BBA002C7228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6F8A1391EA12180002C7228 /* Build configuration list for PBXAggregateTarget "odl-All" */ = {
 			isa = XCConfigurationList;
@@ -646,6 +654,7 @@
 				F6F8A13B1EA12180002C7228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
