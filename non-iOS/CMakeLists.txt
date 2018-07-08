@@ -75,6 +75,11 @@ if(APPLE)
 # 'rpath' warning
     cmake_policy(SET CMP0042 OLD)
 endif()
+if(LINUX)
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++11" CACHE STRING "Fixes linking error for odl"
+        FORCE)
+    set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)
+endif()
 
 set(CMAKE_USE_RELATIVE_PATHS ON CACHE BOOL "Always set file paths as relative")
 
@@ -112,7 +117,11 @@ set(TARGET_ONE odlC)
 if(APPLE)
     set(DO_SHARED "SHARED")
 else()
-    set(DO_SHARED "")
+    if(LINUX)
+        set(DO_SHARED "SHARED")
+    else()
+        set(DO_SHARED "")
+    endif()
 endif()
 
 add_library(${TARGET_ONE}
