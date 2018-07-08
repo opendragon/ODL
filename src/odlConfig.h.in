@@ -58,6 +58,14 @@
 #  pragma clang diagnostic pop
 # endif // defined(__APPLE__)
 
+// Make sure that a couple of critical macros are defined!
+# if (! defined(TRUE))
+#  define TRUE  1
+# endif // ! defined(TRUE)
+# if (! defined(FALSE))
+#  define FALSE 0
+# endif // ! defined(FALSE)
+
 # if (! defined(MAC_OR_LINUX_))
   /* TRUE if non-Windows, FALSE if Windows. */
 #  if defined(__APPLE__)
