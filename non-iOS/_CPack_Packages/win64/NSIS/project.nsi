@@ -603,7 +603,7 @@ SectionGroupEnd
 ;Pages
   !insertmacro MUI_PAGE_WELCOME
 
-  !insertmacro MUI_PAGE_LICENSE "C:/Users/turin/Documents/git.repositories/ODL/non-iOS/../src/../license"
+  !insertmacro MUI_PAGE_LICENSE "C:/Users/turin/Documents/git.repositories/ODL/non-iOS/../src/../LICENSE"
   Page custom InstallOptionsPage
   !insertmacro MUI_PAGE_DIRECTORY
 
