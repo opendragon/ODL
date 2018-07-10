@@ -5,6 +5,7 @@ libodlC.dylib
 libodlOC.dylib
 libodlCi.a
 libodlOCi.a
+libodlC.so
 CMakeFiles/
 x64/
 odLogging.dir/
@@ -23,3 +24,5 @@ odLogging.vcxproj
 odLogging.vcxproj.filters
 odlC.vcxproj
 odlC.vcxproj.filters
+CPackConfig.cmake
+CPackSourceConfig.cmake
