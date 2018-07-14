@@ -36,7 +36,7 @@
 #
 #--------------------------------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
 set(PROJECT_NAME "ODL")
 
@@ -52,6 +52,10 @@ include(../odlCommonSettings.cmake NO_POLICY_SCOPE)
 if(WIN32)
     set(CMAKE_CONFIGURATION_TYPES Debug Release CACHE INTERNAL "" FORCE)
 endif()
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Make some flags to control the build flags visibilities
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS)
@@ -69,15 +73,12 @@ else()
 endif()
 
 if(APPLE)
-    set(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++11" CACHE STRING "Fixes linking error for odl"
-        FORCE)
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for odl" FORCE)
     set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)
 # 'rpath' warning
     cmake_policy(SET CMP0042 OLD)
-endif()
-if(LINUX)
-    set(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++11" CACHE STRING "Fixes linking error for odl"
-        FORCE)
+elseif(LINUX)
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for odl" FORCE)
     set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)
 endif()
 
@@ -116,12 +117,10 @@ set(TARGET_ONE odlC)
 
 if(APPLE)
     set(DO_SHARED "SHARED")
+elseif(LINUX)
+    set(DO_SHARED "SHARED")
 else()
-    if(LINUX)
-        set(DO_SHARED "SHARED")
-    else()
-        set(DO_SHARED "")
-    endif()
+    set(DO_SHARED "")
 endif()
 
 add_library(${TARGET_ONE}

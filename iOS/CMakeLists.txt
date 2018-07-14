@@ -36,7 +36,7 @@
 #
 #--------------------------------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
 set(PROJECT_NAME "ODL")
 
@@ -46,13 +46,16 @@ project(${PROJECT_NAME})
 
 include(../odlCommonSettings.cmake NO_POLICY_SCOPE)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Make some flags to control the build flags visibilities
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS)
 
 set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 9.0)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++11" CACHE STRING "Fixes linking error for odl"
-    FORCE)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for odl" FORCE)
 set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)
 # 'rpath' warning
 cmake_policy(SET CMP0042 OLD)
