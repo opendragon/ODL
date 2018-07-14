@@ -7,7 +7,7 @@ libodlCi.a
 libodlOCi.a
 libodlC.so
 CMakeFiles/
-*.xcsheme
+*.xcscheme
 x64/
 odLogging.dir/
 odlC.dir/
