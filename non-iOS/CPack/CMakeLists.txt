@@ -38,6 +38,7 @@
 
 #General Packaging Stuff
 set(CPACK_DISPLAY_NAME "OpenDragon Debugging Library")
+set(CPACK_PACKAGE_CONTACT "turing@shaw.ca")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "ODL Package")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "odl")
 set(CPACK_PACKAGE_INSTALL_REGISTRY_KEY_ "odl")
@@ -103,7 +104,7 @@ elseif(APPLE)
     set(CPACK_TOPLEVEL_TAG "/opt")
 else()
     #Linux specific install step
-    set(CPACK_GENERATOR RPM)
+    set(CPACK_GENERATOR RPM DEB)
     set(CPACK_TOPLEVEL_TAG "/opt")
     set(CPACK_RPM_PACKAGE_LICENSE "BSD")
 endif()

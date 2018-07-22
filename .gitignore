@@ -31,3 +31,5 @@ CPackConfig.cmake
 CPackSourceConfig.cmake
 *.dmg
 _CPack_Packages
+*.deb
+*.rpm
