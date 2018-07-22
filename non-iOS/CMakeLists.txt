@@ -42,10 +42,11 @@ set(PROJECT_NAME "ODL")
 
 if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for Mac OSX" FORCE)
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.7" CACHE STRING "Deployment target for Mac OSX" FORCE)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Deployment target for Mac OSX" FORCE)
 endif()
 
-project(${PROJECT_NAME})
+project(${PROJECT_NAME}
+        HOMEPAGE_URL "https://github.com/opendragon/nImO")
 
 include(../odlCommonSettings.cmake NO_POLICY_SCOPE)
 
@@ -73,13 +74,13 @@ else()
 endif()
 
 if(APPLE)
-    set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for odl" FORCE)
-    set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for ODL" FORCE)
+    set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for ODL" FORCE)
 # 'rpath' warning
-    cmake_policy(SET CMP0042 OLD)
+#    cmake_policy(SET CMP0042 OLD)
 elseif(LINUX)
-    set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for odl" FORCE)
-    set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for ODL" FORCE)
+    set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for ODL" FORCE)
 endif()
 
 set(CMAKE_USE_RELATIVE_PATHS ON CACHE BOOL "Always set file paths as relative")

@@ -1,16 +1,54 @@
+#--------------------------------------------------------------------------------------------------
+#
+#  File:       non-iOS/CPack/CMakeLists.txt
+#
+#  Project:    ODL
+#
+#  Contains:   The non-iOS CPack CMAKE definitions for the debugging library.
+#
+#  Written by: Norman Jaffe
+#
+#  Copyright:  (c) 2017 by OpenDragon.
+#
+#              All rights reserved. Redistribution and use in source and binary forms, with or
+#              without modification, are permitted provided that the following conditions are met:
+#                * Redistributions of source code must retain the above copyright notice, this list
+#                  of conditions and the following disclaimer.
+#                * Redistributions in binary form must reproduce the above copyright notice, this
+#                  list of conditions and the following disclaimer in the documentation and / or
+#                  other materials provided with the distribution.
+#                * Neither the name of the copyright holders nor the names of its contributors may
+#                  be used to endorse or promote products derived from this software without
+#                  specific prior written permission.
+#
+#              THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+#              EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+#              OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+#              SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+#              INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+#              TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+#              BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#              CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+#              ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+#              DAMAGE.
+#
+#  Created:    2017-03-17
+#
+#--------------------------------------------------------------------------------------------------
+
 #General Packaging Stuff
 set(CPACK_DISPLAY_NAME "OpenDragon Debugging Library")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "ODL Package")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "ODL")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "odl")
 set(CPACK_PACKAGE_INSTALL_REGISTRY_KEY_ "odl")
 set(CPACK_PACKAGE_NAME "ODL")
-set(CPACK_PACKAGE_VERSION "${ODL_VERSION_STRING}")
+set(CPACK_PACKAGE_VENDOR "OpenDragon")
+set(CPACK_PACKAGE_VERSION "${ODL_VERSION}")
 set(CPACK_PACKAGE_VERSION_MAJOR "${ODL_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${ODL_VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${ODL_VERSION_PATCH}")
 set(CPACK_RESOURCE_FILE_LICENSE "${ODL_SOURCE_DIR}/../LICENSE")
 set(CPACK_RESOURCE_FILE_README "${ODL_SOURCE_DIR}/../README.md")
-set(CPACK_VENDOR "OpenDragon")
 
 #display name for our components
 set(CPACK_COMPONENT_HEADERS_DISPLAY_NAME "C++ Header Files")
@@ -38,17 +76,12 @@ set(CPACK_COMPONENTS_ALL headers libraries)
 
 #end General Packaging stuff
 
-# platform independent install step:
-#
-# NOTE: since we're not currently using CPack on mac, everything falls under WIN32 below:
-#
-
-#Windows specific install step
 if(WIN32)
-    set(CPACK_GENERATOR NSIS)
+    #Windows specific install step
+    set(CPACK_GENERATOR NSIS64)
 
     set(CPACK_NSIS_MODIFY_PATH ON)
-    set(CPACK_NSIS_URL_INFO_ABOUT "http://www.mplusm.ca")
+    set(CPACK_NSIS_URL_INFO_ABOUT "http://www.github/opendragon/ODL")
 
     #Finally, set some ODL Environment variables (WINDOWS ONLY!)
     set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
@@ -62,7 +95,17 @@ if(WIN32)
         "
         DeleteRegValue HKCU 'Environment' 'ODL_ROOT'
         ")
-
+elseif(APPLE)
+    #Macintosh specific install step
+    set(CPACK_GENERATOR DragNDrop)
+    set(CPACK_DMG_DISABLE_APPLICATIONS_SYMLINK ON)
+    set(CPACK_DMG_FORMAT UDRO)
+    set(CPACK_TOPLEVEL_TAG "/opt")
+else()
+    #Linux specific install step
+    set(CPACK_GENERATOR RPM)
+    set(CPACK_TOPLEVEL_TAG "/opt")
+    set(CPACK_RPM_PACKAGE_LICENSE "BSD")
 endif()
 
 include(CPack)

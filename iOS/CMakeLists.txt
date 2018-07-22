@@ -42,7 +42,8 @@ set(PROJECT_NAME "ODL")
 
 include(ios.cmake)
 
-project(${PROJECT_NAME})
+project(${PROJECT_NAME}
+        HOMEPAGE_URL "https://github.com/opendragon/nImO")
 
 include(../odlCommonSettings.cmake NO_POLICY_SCOPE)
 

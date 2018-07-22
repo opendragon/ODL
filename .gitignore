@@ -21,9 +21,13 @@ ZERO_CHECK.vcxproj
 ZERO_CHECK.vcxproj.filters
 cmake_install.cmake
 install_manifest.txt
+install_manifest_headers.txt
+install_manifest_libraries.txt
 odLogging.vcxproj
 odLogging.vcxproj.filters
 odlC.vcxproj
 odlC.vcxproj.filters
 CPackConfig.cmake
 CPackSourceConfig.cmake
+*.dmg
+_CPack_Packages

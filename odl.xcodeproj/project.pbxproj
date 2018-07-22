@@ -66,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		F606FCE620D574D80069A88A /* odlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = odlConfig.h; path = src/odlConfig.h; sourceTree = "<group>"; };
+		F60B49712104DD93009D2CDA /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "non-iOS/CPack/CMakeLists.txt"; sourceTree = "<group>"; };
 		F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfig.cmake; sourceTree = SOURCE_ROOT; };
 		F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfigVersion.cmake.in; sourceTree = SOURCE_ROOT; };
 		F6C232B21E73899B0009D9A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
@@ -123,6 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F60B49722104DD9B009D2CDA /* CPack */ = {
+			isa = PBXGroup;
+			children = (
+				F60B49712104DD93009D2CDA /* CMakeLists.txt */,
+			);
+			name = CPack;
+			sourceTree = "<group>";
+		};
 		F6C232A11E73896F0009D9A4 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +186,7 @@
 		F6F8A0EF1EA11AF1002C7228 /* non-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				F60B49722104DD9B009D2CDA /* CPack */,
 				F6F8A0FE1EA11B2D002C7228 /* CMakeLists.txt */,
 			);
 			name = "non-iOS";
