@@ -36,7 +36,7 @@
 #
 #--------------------------------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
 set(PROJECT_NAME "ODL")
 
