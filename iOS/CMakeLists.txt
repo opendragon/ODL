@@ -40,7 +40,7 @@ cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
 set(PROJECT_NAME "ODL")
 
-include(ios.cmake)
+include(iOS.cmake)
 
 project(${PROJECT_NAME}
         HOMEPAGE_URL "https://github.com/opendragon/ODL")
