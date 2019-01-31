@@ -37,7 +37,7 @@
 #--------------------------------------------------------------------------------------------------
 
 set(ODL_VERSION_MAJOR 1)
-set(ODL_VERSION_MINOR 0)
+set(ODL_VERSION_MINOR 1)
 set(ODL_VERSION_PATCH 0)
 set(ODL_VERSION "${ODL_VERSION_MAJOR}.${ODL_VERSION_MINOR}.${ODL_VERSION_PATCH}")
 set(ODL_COMPANY "OpenDragon")

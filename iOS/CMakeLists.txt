@@ -47,6 +47,10 @@ project(${PROJECT_NAME}
 
 include(../odlCommonSettings.cmake NO_POLICY_SCOPE)
 
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS OFF)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -55,6 +59,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS)
 
 set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 9.0)
+set(CMAKE_C_FLAGS "-miphoneos-version-min=9.0" CACHE STRING "Make sure version is supportable" FORCE)
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for odl" FORCE)
 set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)

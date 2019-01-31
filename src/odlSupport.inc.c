@@ -441,7 +441,7 @@ odWriteTime_(FILE *outFile)
 
 /*! @brief The format string to be used when exiting a function or method via @c throw of an
  integer. */
-#  define ODL_FORMAT_EXIT_T_L_  " throw(%d)"
+#  define ODL_FORMAT_EXIT_T_I_  " throw(%jd)"
 
 /*! @brief The format string to be used when exiting a function or method via @c throw of a
  string. */
@@ -449,22 +449,16 @@ odWriteTime_(FILE *outFile)
 
 /*! @brief The format string to be used when exiting a function or method via @c throw of an
  integer. */
-#  define ODL_FORMAT_EXIT_T_X_  " throw(%d(%#x))"
+#  define ODL_FORMAT_EXIT_T_X_  " throw(%jd(%#jx))"
+
+/*! @brief The format string to be used with a single integer value. */
+#  define ODL_FORMAT_I1_        " %s%jd"
+
+/*! @brief The format string to be used with a pair of integer values. */
+#  define ODL_FORMAT_I2_        " %s%jd, %s%jd"
 
 /*! @brief The format string to be used with an IP address and port value. */
 #  define ODL_FORMAT_IP_        " %s%d.%d.%d.%d:%d"
-
-/*! @brief The format string to be used with a single long value. */
-#  define ODL_FORMAT_L1_        " %s%d"
-
-/*! @brief The format string to be used with a pair of long values. */
-#  define ODL_FORMAT_L2_        " %s%d, %s%d"
-
-/*! @brief The format string to be used with a single int64_t value. */
-#  define ODL_FORMAT_LL1_      " %s%" PRId64
-
-/*! @brief The format string to be used with a pair of int64_t values. */
-#  define ODL_FORMAT_LL2_      " %s%" PRId64 ", %s%" PRId64
 
 /*! @brief The format string to be used with a message. */
 #  define ODL_FORMAT_LOG_       " %s"
@@ -508,17 +502,11 @@ odWriteTime_(FILE *outFile)
 /*! @brief The format string to be used with a time value. */
 #  define ODL_FORMAT_TI_        " %s%ld:%ld"
 
-/*! @brief The format string to be used with a single long hexadecimal value. */
-#  define ODL_FORMAT_X1_        " %s%d(%#x)"
+/*! @brief The format string to be used with a single integer hexadecimal value. */
+#  define ODL_FORMAT_X1_        " %s%jd(%#jx)"
 
-/*! @brief The format string to be used with a pair of long hexadecimal values. */
-#  define ODL_FORMAT_X2_        " %s%d(%#x), %s%d(%#x)"
-
-/*! @brief The format string to be used with a single int64_t hexadecimal value. */
-#  define ODL_FORMAT_XL1_      " %s%" PRId64 "(%" PRIx64 ")"
-
-/*! @brief The format string to be used with a pair of long long hexadecimal values. */
-#  define ODL_FORMAT_XL2_      " %s%" PRId64 "(%" PRIx64 "), %s%" PRId64 "(%" PRIx64 ")"
+/*! @brief The format string to be used with a pair of integer hexadecimal values. */
+#  define ODL_FORMAT_X2_        " %s%jd(%#jx), %s%jd(%#jx)"
 
 /*! @brief The message string to be used when setting up logging for the first time. */
 #  define ODL_INIT_FORMAT_      "* %s%s" ODL_FUNC_WHERE_ " started *"
@@ -1339,10 +1327,10 @@ ODLExitExit_(const char *fileName,
 } // ODLExitExit_
 
 EXTERN_C void
-ODLExitL_(const char    *fileName,
-          const char    *funcName,
-          const int     lineNumber,
-          const int32_t val)
+ODLExitI_(const char     *fileName,
+          const char     *funcName,
+          const int      lineNumber,
+          const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -1352,7 +1340,7 @@ ODLExitL_(const char    *fileName,
     if (lOdLogFile_)
     {
         odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_FUNC_PREFIX_(rootName),
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_FUNC_PREFIX_(rootName),
                 ODL_EXIT_VALUE_, val);
         fflush(lOdLogFile_);
     }
@@ -1360,14 +1348,14 @@ ODLExitL_(const char    *fileName,
     {
 #  if MAC_OR_LINUX_
 #   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_L1_, ODL_FUNC_PREFIX_(rootName), ODL_EXIT_VALUE_, val);
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_I1_, ODL_FUNC_PREFIX_(rootName), ODL_EXIT_VALUE_, val);
 #   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_, ODL_FUNC_PREFIX_(rootName),
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_, ODL_FUNC_PREFIX_(rootName),
                ODL_EXIT_VALUE_, val);
 #   endif // ! defined(__OBJC__)
 #  else // ! MAC_OR_LINUX_
         odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_FUNC_PREFIX_(rootName),
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_FUNC_PREFIX_(rootName),
                 ODL_EXIT_VALUE_, val);
         fflush(ODL_STREAM_);
 #  endif // ! MAC_OR_LINUX_
@@ -1375,44 +1363,6 @@ ODLExitL_(const char    *fileName,
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
 } // ODLExitL_
-
-EXTERN_C void
-ODLExitLL_(const char    *fileName,
-           const char    *funcName,
-           const int     lineNumber,
-           const int64_t val)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    odDecreaseIndent_();
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_, ODL_FUNC_PREFIX_(rootName), ODL_EXIT_VALUE_, val);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_, ODL_FUNC_PREFIX_(rootName),
-               ODL_EXIT_VALUE_, val);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLExitLL_
 
 #  if defined(__OBJC__)
 EXTERN_C void
@@ -1589,10 +1539,10 @@ ODLExitSize_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLExitThrowL_(const char    *fileName,
-               const char    *funcName,
-               const int     lineNumber,
-               const int32_t val)
+ODLExitThrowI_(const char     *fileName,
+               const char     *funcName,
+               const int      lineNumber,
+               const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -1602,7 +1552,7 @@ ODLExitThrowL_(const char    *fileName,
     if (lOdLogFile_)
     {
         odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_L_ "\n", ODL_FUNC_PREFIX_(rootName),
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_I_ "\n", ODL_FUNC_PREFIX_(rootName),
                 val);
         fflush(lOdLogFile_);
     }
@@ -1610,14 +1560,14 @@ ODLExitThrowL_(const char    *fileName,
     {
 #  if MAC_OR_LINUX_
 #   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_L_, ODL_FUNC_PREFIX_(rootName), val);
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_I_, ODL_FUNC_PREFIX_(rootName), val);
 #   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_L_, ODL_FUNC_PREFIX_(rootName),
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_I_, ODL_FUNC_PREFIX_(rootName),
                val);
 #   endif // ! defined(__OBJC__)
 #  else // ! MAC_OR_LINUX_
         odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_L_ "\n", ODL_FUNC_PREFIX_(rootName),
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_EXIT_T_I_ "\n", ODL_FUNC_PREFIX_(rootName),
                 val);
         fflush(ODL_STREAM_);
 #  endif // ! MAC_OR_LINUX_
@@ -1665,10 +1615,10 @@ ODLExitThrowS_(const char *fileName,
 } // ODLExitThrowS_
 
 EXTERN_C void
-ODLExitThrowX_(const char    *fileName,
-               const char    *funcName,
-               const int     lineNumber,
-               const int32_t val)
+ODLExitThrowX_(const char     *fileName,
+               const char     *funcName,
+               const int      lineNumber,
+               const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -1703,10 +1653,10 @@ ODLExitThrowX_(const char    *fileName,
 } // ODLExitThrowX_
 
 EXTERN_C void
-ODLExitX_(const char    *fileName,
-          const char    *funcName,
-          const int     lineNumber,
-          const int32_t val)
+ODLExitX_(const char     *fileName,
+          const char     *funcName,
+          const int      lineNumber,
+          const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -1741,42 +1691,186 @@ ODLExitX_(const char    *fileName,
 } // ODLExitX_
 
 EXTERN_C void
-ODLExitXL_(const char    *fileName,
-           const char    *funcName,
-           const int     lineNumber,
-           const int64_t val)
+ODLI1_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
-    odDecreaseIndent_();
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
     if (lOdLogFile_)
     {
         odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val, val);
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
+                val1);
         fflush(lOdLogFile_);
     }
     else
     {
 #  if MAC_OR_LINUX_
 #   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_, ODL_FUNC_PREFIX_(rootName), ODL_EXIT_VALUE_, val, val);
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_I1_, ODL_FUNC_PREFIX_(rootName), text1, val1);
 #   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_, ODL_FUNC_PREFIX_(rootName),
-               ODL_EXIT_VALUE_, val, val);
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_, ODL_FUNC_PREFIX_(rootName), text1,
+               val1);
 #   endif // ! defined(__OBJC__)
 #  else // ! MAC_OR_LINUX_
         odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val, val);
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text1, val1);
         fflush(ODL_STREAM_);
 #  endif // ! MAC_OR_LINUX_
     }
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
-} // ODLExitXL_
+} // ODLI1_
+
+EXTERN_C void
+ODLI2_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1,
+       const char     *text2,
+       const intmax_t val2)
+{
+    const char *rootName = odFileNameRoot_(fileName);
+
+    ODL_CREATE_INDENT_();
+    ODL_CREATE_PREFIX_();
+    if (lOdLogFile_)
+    {
+        odWriteTime_(lOdLogFile_);
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
+                val1, text2, val2);
+        fflush(lOdLogFile_);
+    }
+    else
+    {
+#  if MAC_OR_LINUX_
+#   if defined(__OBJC__)
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
+#   else // ! defined(__OBJC__)
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text1,
+               val1, text2, val2);
+#   endif // ! defined(__OBJC__)
+#  else // ! MAC_OR_LINUX_
+        odWriteTime_(ODL_STREAM_);
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text1, val1, text2, val2);
+        fflush(ODL_STREAM_);
+#  endif // ! MAC_OR_LINUX_
+    }
+    ODL_FREE_PREFIX_();
+    ODL_FREE_INDENT_();
+} // ODLI2_
+
+EXTERN_C void
+ODLI3_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1,
+       const char     *text2,
+       const intmax_t val2,
+       const char     *text3,
+       const intmax_t val3)
+{
+    const char *rootName = odFileNameRoot_(fileName);
+
+    ODL_CREATE_INDENT_();
+    ODL_CREATE_PREFIX_();
+    if (lOdLogFile_)
+    {
+        odWriteTime_(lOdLogFile_);
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
+                val1, text2, val2);
+        odWriteTime_(lOdLogFile_);
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
+                val3);
+        fflush(lOdLogFile_);
+    }
+    else
+    {
+#  if MAC_OR_LINUX_
+#   if defined(__OBJC__)
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_I1_, ODL_FUNC_PREFIX_(rootName), text3, val3);
+#   else // ! defined(__OBJC__)
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text1,
+               val1, text2, val2);
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_, ODL_FUNC_PREFIX_(rootName), text3,
+               val3);
+#   endif // ! defined(__OBJC__)
+#  else // ! MAC_OR_LINUX_
+        odWriteTime_(ODL_STREAM_);
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text1, val1, text2, val2);
+        odWriteTime_(ODL_STREAM_);
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text3, val3);
+        fflush(ODL_STREAM_);
+#  endif // ! MAC_OR_LINUX_
+    }
+    ODL_FREE_PREFIX_();
+    ODL_FREE_INDENT_();
+} // ODLI3_
+
+EXTERN_C void
+ODLI4_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1,
+       const char     *text2,
+       const intmax_t val2,
+       const char     *text3,
+       const intmax_t val3,
+       const char     *text4,
+       const intmax_t val4)
+{
+    const char *rootName = odFileNameRoot_(fileName);
+
+    ODL_CREATE_INDENT_();
+    ODL_CREATE_PREFIX_();
+    if (lOdLogFile_)
+    {
+        odWriteTime_(lOdLogFile_);
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
+                val1, text2, val2);
+        odWriteTime_(lOdLogFile_);
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
+                val3, text4, val4);
+        fflush(lOdLogFile_);
+    }
+    else
+    {
+#  if MAC_OR_LINUX_
+#   if defined(__OBJC__)
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text3, val3, text4, val4);
+#   else // ! defined(__OBJC__)
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text1,
+               val1, text2, val2);
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_, ODL_FUNC_PREFIX_(rootName), text3,
+               val3, text4, val4);
+#   endif // ! defined(__OBJC__)
+#  else // ! MAC_OR_LINUX_
+        odWriteTime_(ODL_STREAM_);
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text1, val1, text2, val2);
+        odWriteTime_(ODL_STREAM_);
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_I2_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text3, val3, text4, val4);
+        fflush(ODL_STREAM_);
+#  endif // ! MAC_OR_LINUX_
+    }
+    ODL_FREE_PREFIX_();
+    ODL_FREE_INDENT_();
+} // ODLI4_
 
 #  if (! MAC_OR_LINUX_)
 #   pragma warning(push)
@@ -1973,370 +2067,6 @@ ODLIP_(const char    *fileName,
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
 } // ODLIP_
-
-EXTERN_C void
-ODLL1_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_L1_, ODL_FUNC_PREFIX_(rootName), text1, val1);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLL1_
-
-EXTERN_C void
-ODLL2_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1,
-       const char    *text2,
-       const int32_t val2)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, text2, val2);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, text2, val2);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, text2, val2);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLL2_
-
-EXTERN_C void
-ODLL3_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1,
-       const char    *text2,
-       const int32_t val2,
-       const char    *text3,
-       const int32_t val3)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, text2, val2);
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
-                val3);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_L1_, ODL_FUNC_PREFIX_(rootName), text3, val3);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, text2, val2);
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_, ODL_FUNC_PREFIX_(rootName), text3,
-               val3);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, text2, val2);
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text3, val3);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLL3_
-
-EXTERN_C void
-ODLL4_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1,
-       const char    *text2,
-       const int32_t val2,
-       const char    *text3,
-       const int32_t val3,
-       const char    *text4,
-       const int32_t val4)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, text2, val2);
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
-                val3, text4, val4);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text3, val3, text4, val4);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, text2, val2);
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_, ODL_FUNC_PREFIX_(rootName), text3,
-               val3, text4, val4);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, text2, val2);
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_L2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text3, val3, text4, val4);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLL4_
-
-EXTERN_C void
-ODLLL1_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_, ODL_FUNC_PREFIX_(rootName), text1, val1);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLLL1_
-
-EXTERN_C void
-ODLLL2_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1,
-        const char    *text2,
-        const int64_t val2)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, text2, val2);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, text2, val2);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, text2, val2);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLLL2_
-
-EXTERN_C void
-ODLLL3_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1,
-        const char    *text2,
-        const int64_t val2,
-        const char    *text3,
-        const int64_t val3)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, text2, val2);
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
-                val3);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_, ODL_FUNC_PREFIX_(rootName), text3, val3);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, text2, val2);
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_, ODL_FUNC_PREFIX_(rootName), text3,
-               val3);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, text2, val2);
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text3, val3);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLLL3_
-
-EXTERN_C void
-ODLLL4_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1,
-        const char    *text2,
-        const int64_t val2,
-        const char    *text3,
-        const int64_t val3,
-        const char    *text4,
-        const int64_t val4)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, text2, val2);
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
-                val3, text4, val4);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text1, val1, text2, val2);
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text3, val3, text4, val4);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, text2, val2);
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_, ODL_FUNC_PREFIX_(rootName), text3,
-               val3, text4, val4);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, text2, val2);
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text3, val3, text4, val4);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLLL4_
 
 EXTERN_C void
 ODLLS_(const char *fileName,
@@ -2841,11 +2571,11 @@ ODLObjExitExit_(const char *fileName,
 } // ODLObjExitExit_
 
 EXTERN_C void
-ODLObjExitL_(const char    *fileName,
-             const char    *funcName,
-             const int     lineNumber,
-             const void    *objPtr,
-             const int32_t val)
+ODLObjExitI_(const char     *fileName,
+             const char     *funcName,
+             const int      lineNumber,
+             const void     *objPtr,
+             const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -2855,7 +2585,7 @@ ODLObjExitL_(const char    *fileName,
     if (lOdLogFile_)
     {
         odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_METHOD_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_METHOD_PREFIX_(rootName),
+        fprintf(lOdLogFile_, ODL_METHOD_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_METHOD_PREFIX_(rootName),
                 ODL_EXIT_VALUE_, val);
         fflush(lOdLogFile_);
     }
@@ -2863,60 +2593,21 @@ ODLObjExitL_(const char    *fileName,
     {
 #  if MAC_OR_LINUX_
 #   if defined(__OBJC__)
-        NSLog(@ODL_METHOD_FORMAT_ ODL_FORMAT_L1_, ODL_METHOD_PREFIX_(rootName), ODL_EXIT_VALUE_, val);
+        NSLog(@ODL_METHOD_FORMAT_ ODL_FORMAT_I1_, ODL_METHOD_PREFIX_(rootName), ODL_EXIT_VALUE_, val);
 #   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_METHOD_FORMAT_ ODL_FORMAT_L1_, ODL_METHOD_PREFIX_(rootName),
+        syslog(ODL_LEVEL_, ODL_METHOD_FORMAT_ ODL_FORMAT_I1_, ODL_METHOD_PREFIX_(rootName),
                ODL_EXIT_VALUE_, val);
 #   endif // ! defined(__OBJC__)
 #  else // ! MAC_OR_LINUX_
         odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_METHOD_FORMAT_ ODL_FORMAT_L1_ "\n", ODL_METHOD_PREFIX_(rootName),
+        fprintf(ODL_STREAM_, ODL_METHOD_FORMAT_ ODL_FORMAT_I1_ "\n", ODL_METHOD_PREFIX_(rootName),
                 ODL_EXIT_VALUE_, val);
         fflush(ODL_STREAM_);
 #  endif // ! MAC_OR_LINUX_
     }
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
-} // ODLObjExitL_
-
-EXTERN_C void
-ODLObjExitLL_(const char    *fileName,
-              const char    *funcName,
-              const int     lineNumber,
-              const void    *objPtr,
-              const int64_t val)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    odDecreaseIndent_();
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_METHOD_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_METHOD_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_METHOD_FORMAT_ ODL_FORMAT_LL1_, ODL_METHOD_PREFIX_(rootName), ODL_EXIT_VALUE_, val);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_METHOD_FORMAT_ ODL_FORMAT_LL1_, ODL_METHOD_PREFIX_(rootName),
-               ODL_EXIT_VALUE_, val);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_METHOD_FORMAT_ ODL_FORMAT_LL1_ "\n", ODL_METHOD_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLObjExitLL_
+} // ODLObjExitI_
 
 #  if defined(__OBJC__)
 EXTERN_C void
@@ -3099,11 +2790,11 @@ ODLObjExitSize_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLObjExitThrowL_(const char    *fileName,
-                  const char    *funcName,
-                  const int     lineNumber,
-                  const void    *objPtr,
-                  const int32_t val)
+ODLObjExitThrowI_(const char     *fileName,
+                  const char     *funcName,
+                  const int      lineNumber,
+                  const void     *objPtr,
+                  const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -3113,7 +2804,7 @@ ODLObjExitThrowL_(const char    *fileName,
     if (lOdLogFile_)
     {
         odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_L_ "\n",
+        fprintf(lOdLogFile_, ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_I_ "\n",
                 ODL_METHOD_PREFIX_(rootName), val);
         fflush(lOdLogFile_);
     }
@@ -3121,21 +2812,21 @@ ODLObjExitThrowL_(const char    *fileName,
     {
 #  if MAC_OR_LINUX_
 #   if defined(__OBJC__)
-        NSLog(@ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_L_, ODL_METHOD_PREFIX_(rootName), val);
+        NSLog(@ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_I_, ODL_METHOD_PREFIX_(rootName), val);
 #   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_L_,
+        syslog(ODL_LEVEL_, ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_I_,
                ODL_METHOD_PREFIX_(rootName), val);
 #   endif // ! defined(__OBJC__)
 #  else // ! MAC_OR_LINUX_
         odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_L_ "\n",
+        fprintf(ODL_STREAM_, ODL_METHOD_FORMAT_ ODL_FORMAT_EXIT_T_I_ "\n",
                 ODL_METHOD_PREFIX_(rootName), val);
         fflush(ODL_STREAM_);
 #  endif // ! MAC_OR_LINUX_
     }
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
-} // ODLObjExitThrowL_
+} // ODLObjExitThrowI_
 
 EXTERN_C void
 ODLObjExitThrowS_(const char *fileName,
@@ -3178,11 +2869,11 @@ ODLObjExitThrowS_(const char *fileName,
 } // ODLObjExitThrowS_
 
 EXTERN_C void
-ODLObjExitThrowX_(const char    *fileName,
-                  const char    *funcName,
-                  const int     lineNumber,
-                  const void    *objPtr,
-                  const int32_t val)
+ODLObjExitThrowX_(const char     *fileName,
+                  const char     *funcName,
+                  const int      lineNumber,
+                  const void     *objPtr,
+                  const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -3217,11 +2908,11 @@ ODLObjExitThrowX_(const char    *fileName,
 } // ODLObjExitThrowX_
 
 EXTERN_C void
-ODLObjExitX_(const char    *fileName,
-             const char    *funcName,
-             const int     lineNumber,
-             const void    *objPtr,
-             const int32_t val)
+ODLObjExitX_(const char     *fileName,
+             const char     *funcName,
+             const int      lineNumber,
+             const void     *objPtr,
+             const intmax_t val)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -3255,46 +2946,6 @@ ODLObjExitX_(const char    *fileName,
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
 } // ODLObjExitX_
-
-EXTERN_C void
-ODLObjExitXL_(const char    *fileName,
-              const char    *funcName,
-              const int     lineNumber,
-              const void    *objPtr,
-              const int64_t val)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    odDecreaseIndent_();
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_METHOD_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_METHOD_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val, val);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_METHOD_FORMAT_ ODL_FORMAT_XL1_, ODL_METHOD_PREFIX_(rootName), ODL_EXIT_VALUE_, val,
-              val);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_METHOD_FORMAT_ ODL_FORMAT_XL1_, ODL_METHOD_PREFIX_(rootName),
-               ODL_EXIT_VALUE_, val, val);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_METHOD_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_METHOD_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val, val);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLObjExitXL_
 
 EXTERN_C void
 ODLP1_(const char *fileName,
@@ -3910,11 +3561,11 @@ ODLTime_(const char           *fileName,
 #  endif // MAC_OR_LINUX_
 
 EXTERN_C void
-ODLX1_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1)
+ODLX1_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -3948,13 +3599,13 @@ ODLX1_(const char    *fileName,
 } // ODLX1_
 
 EXTERN_C void
-ODLX2_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1,
-       const char    *text2,
-       const int32_t val2)
+ODLX2_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1,
+       const char     *text2,
+       const intmax_t val2)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -3989,15 +3640,15 @@ ODLX2_(const char    *fileName,
 } // ODLX2_
 
 EXTERN_C void
-ODLX3_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1,
-       const char    *text2,
-       const int32_t val2,
-       const char    *text3,
-       const int32_t val3)
+ODLX3_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1,
+       const char     *text2,
+       const intmax_t val2,
+       const char     *text3,
+       const intmax_t val3)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -4041,17 +3692,17 @@ ODLX3_(const char    *fileName,
 } // ODLX3_
 
 EXTERN_C void
-ODLX4_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1,
-       const char    *text2,
-       const int32_t val2,
-       const char    *text3,
-       const int32_t val3,
-       const char    *text4,
-       const int32_t val4)
+ODLX4_(const char     *fileName,
+       const char     *funcName,
+       const int      lineNumber,
+       const char     *text1,
+       const intmax_t val1,
+       const char     *text2,
+       const intmax_t val2,
+       const char     *text3,
+       const intmax_t val3,
+       const char     *text4,
+       const intmax_t val4)
 {
     const char *rootName = odFileNameRoot_(fileName);
 
@@ -4094,192 +3745,6 @@ ODLX4_(const char    *fileName,
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
 } // ODLX4_
-
-EXTERN_C void
-ODLXL1_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, val1);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_, ODL_FUNC_PREFIX_(rootName), text1, val1, val1);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, val1);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, val1);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLXL1_
-
-EXTERN_C void
-ODLXL2_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1,
-        const char    *text2,
-        const int64_t val2)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, val1, text2, val2, val2);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text1, val1, val1, text2,
-              val2, val2);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, val1, text2, val2, val2);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, val1, text2, val2, val2);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLXL2_
-
-EXTERN_C void
-ODLXL3_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1,
-        const char    *text2,
-        const int64_t val2,
-        const char    *text3,
-        const int64_t val3)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, val1, text2, val2, val2);
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
-                val3, val3);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text1, val1, val1, text2,
-              val2, val2);
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_, ODL_FUNC_PREFIX_(rootName), text3, val3, val3);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, val1, text2, val2, val2);
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_, ODL_FUNC_PREFIX_(rootName), text3,
-               val3, val3);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, val1, text2, val2, val2);
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL1_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text3, val3, val3);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLXL3_
-
-EXTERN_C void
-ODLXL4_(const char    *fileName,
-        const char    *funcName,
-        const int     lineNumber,
-        const char    *text1,
-        const int64_t val1,
-        const char    *text2,
-        const int64_t val2,
-        const char    *text3,
-        const int64_t val3,
-        const char    *text4,
-        const int64_t val4)
-{
-    const char *rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1, val1, text2, val2, val2);
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName), text3,
-                val3, val3, text4, val4, val4);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#  if MAC_OR_LINUX_
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text1, val1, val1, text2,
-              val2, val2);
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text3, val3, val3, text4,
-              val4, val4);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1, val1, text2, val2, val2);
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_, ODL_FUNC_PREFIX_(rootName), text3,
-               val3, val3, text4, val4, val4);
-#   endif // ! defined(__OBJC__)
-#  else // ! MAC_OR_LINUX_
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text1, val1, val1, text2, val2, val2);
-        odWriteTime_(ODL_STREAM_);
-        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_XL2_ "\n", ODL_FUNC_PREFIX_(rootName),
-                text3, val3, val3, text4, val4, val4);
-        fflush(ODL_STREAM_);
-#  endif // ! MAC_OR_LINUX_
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLXL4_
 
 # endif // defined(ODL_ENABLE_LOGGING_)
 #endif // ! defined(ODL_SUPPORT_INC_C_)
