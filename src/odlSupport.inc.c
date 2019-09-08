@@ -118,11 +118,11 @@
 
 /*! @brief The standard variable used to hold the indentation string. */
 #  define ODL_CREATE_INDENT_() \
-        char *indentString_ = odBuildIndent_()
+        char *  indentString_ = odBuildIndent_()
 
 /*! @brief The standard variable used to hold the prefix string. */
 #  define ODL_CREATE_PREFIX_() \
-        char *prefixString_ = odBuildPrefix_()
+        char *  prefixString_ = odBuildPrefix_()
 
 /*! @brief The standard code to release the memory associated with the indentation string. */
 #  define ODL_FREE_INDENT_() \
@@ -156,7 +156,7 @@ static bool lOdIncludeThreadID_ = false;
 #  endif // MAC_OR_LINUX_
 
 /*! @brief The stream to be used when logging to a file. */
-static FILE *lOdLogFile_ = NULL;
+static FILE *   lOdLogFile_ = NULL;
 
 #  if MAC_OR_LINUX_
 /*! @brief The thread key to be used. */
@@ -176,7 +176,8 @@ static tOdThreadData lOdThreadData_ =
  @param[in] val The input value.
  @returns Either "true" or "false", depending on the input value. */
 inline static const char *
-odBoolToString_(const bool val)
+odBoolToString_
+    (const bool val)
 {
     return (val ? "true" : "false");
 } // odBoolToString_
@@ -186,9 +187,10 @@ odBoolToString_(const bool val)
  @param[in] value The input object.
  @returns The description of the object or "<>". */
 static const char *
-odNullOrDescription(id value)
+odNullOrDescription
+    (id value)
 {
-    const char *result;
+    const char *    result;
 
     if (value)
     {
@@ -206,9 +208,10 @@ odNullOrDescription(id value)
  @param[in] aString The input string.
  @returns The input string or "<>". */
 static const char *
-odNullOrString(const char *aString)
+odNullOrString
+    (const char *   aString)
 {
-    const char *result;
+    const char *    result;
 
     if (aString)
     {
@@ -225,9 +228,10 @@ odNullOrString(const char *aString)
 /*! @brief Release the data associated with a thread.
  @param[in] data A pointer to the data to be released. */
 static void
-odReleaseThreadSpecificData_(void *data)
+odReleaseThreadSpecificData_
+    (void * data)
 {
-    tOdThreadData *stuff = (tOdThreadData *) data;
+    tOdThreadData * stuff = (tOdThreadData *) data;
 
     pthread_setspecific(lOdThreadSpecificKey_, NULL);
     free(stuff);
@@ -237,12 +241,13 @@ odReleaseThreadSpecificData_(void *data)
 #  if MAC_OR_LINUX_
 /*! @brief Create the thread key and record the 'release' function for thread-specific data. */
 static void
-odSetUpThreadKey_(void)
+odSetUpThreadKey_
+    (void)
 {
     if (pthread_key_create(&lOdThreadSpecificKey_, odReleaseThreadSpecificData_))
     {
 #   if defined(__OBJC__)
-        NSLog(@ "problem creating thread-specific key => %d", errno);
+        NSLog(@"problem creating thread-specific key => %d", errno);
 #   else // ! defined(__OBJC__)
         syslog(ODL_LEVEL_, "problem creating thread-specific key => %d", errno);
 #   endif // ! defined(__OBJC__)
@@ -256,9 +261,10 @@ odSetUpThreadKey_(void)
  address of the shared thread data.
  @returns A pointer to the thread-specific data. */
 inline static tOdThreadData *
-odGetThreadData_(void)
+odGetThreadData_
+    (void)
 {
-    tOdThreadData *stuff;
+    tOdThreadData * stuff;
 
 #  if MAC_OR_LINUX_
     if (lOdEnableThreadSupport_)
@@ -284,9 +290,10 @@ odGetThreadData_(void)
  @param[in] fileName The input file path.
  @returns The file name part of a file path. */
 static const char *
-odFileNameRoot_(const char *fileName)
+odFileNameRoot_
+    (const char *   fileName)
 {
-    const char *result = strrchr(fileName, '/');
+    const char *    result = strrchr(fileName, '/');
 
     return (result ? (result + 1) : fileName);
 } // odFileNameRoot_
@@ -294,9 +301,10 @@ odFileNameRoot_(const char *fileName)
 /*! @brief Return the current indentation level for the active thread.
  @returns The current indentation level for the active thread. */
 inline static int
-odGetIndent_(void)
+odGetIndent_
+    (void)
 {
-    tOdThreadData *stuff = odGetThreadData_();
+    tOdThreadData * stuff = odGetThreadData_();
 
     return stuff->_indentLevel;
 } // odGetIndent_
@@ -304,9 +312,10 @@ odGetIndent_(void)
 /*! @brief Set the current indentation level for the active thread.
  @param[in] value The new indentation level. */
 inline static void
-odSetIndent_(const int value)
+odSetIndent_
+    (const int value)
 {
-    tOdThreadData *stuff = odGetThreadData_();
+    tOdThreadData * stuff = odGetThreadData_();
 
     stuff->_indentLevel = value;
 } // odSetIndent_
@@ -315,11 +324,12 @@ odSetIndent_(const int value)
  @returns A string of alternating spaces and periods that whose length matches the current
  indentation level for the active thread. */
 static char *
-odBuildIndent_(void)
+odBuildIndent_
+    (void)
 {
-    int  level = odGetIndent_();
-    int  length = ((level > 0) ? level : 1);
-    char *result = (char *) malloc((size_t) (length + 1));
+    int     level = odGetIndent_();
+    int     length = ((level > 0) ? level : 1);
+    char *  result = (char *) malloc((size_t) (length + 1));
 
     for (int ii = 0; ii < length; ++ii)
     {
@@ -333,9 +343,10 @@ odBuildIndent_(void)
  @returns A string containing the process identifier and / or the thread identifier, if they are
  enabled for logging. */
 static char *
-odBuildPrefix_(void)
+odBuildPrefix_
+    (void)
 {
-    char                *result;
+    char *              result;
     size_t              length;
 #  if MAC_OR_LINUX_
     static const size_t lengthHexString = 20; // Enough digits for an 8-byte value in hexadecimal,
@@ -377,21 +388,24 @@ odBuildPrefix_(void)
 
 /*! @brief Reduce the current indentation level for the active thread. */
 inline static void
-odDecreaseIndent_(void)
+odDecreaseIndent_
+    (void)
 {
     odSetIndent_(odGetIndent_() - 1);
 } // odDecreaseIndent_
 
 /*! @brief Increase the current indentation level for the active thread. */
 inline static void
-odIncreaseIndent_(void)
+odIncreaseIndent_
+    (void)
 {
     odSetIndent_(odGetIndent_() + 1);
 } // odIncreaseIndent_
 
 /*! @brief Write the date and time to a file stream. */
 static void
-odWriteTime_(FILE *outFile)
+odWriteTime_
+    (FILE * outFile)
 {
     char      buffer[80];
     time_t    rawtime;
@@ -512,12 +526,13 @@ odWriteTime_(FILE *outFile)
 #  define ODL_INIT_FORMAT_      "* %s%s" ODL_FUNC_WHERE_ " started *"
 
 EXTERN_C void
-ODL_(const char *fileName,
-     const char *funcName,
-     const int  lineNumber,
-     const char *text)
+ODL_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -549,13 +564,14 @@ ODL_(const char *fileName,
 } // ODL_
 
 EXTERN_C void
-ODLB1_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const bool val1)
+ODLB1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const bool     val1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -588,15 +604,16 @@ ODLB1_(const char *fileName,
 } // ODLB1_
 
 EXTERN_C void
-ODLB2_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const bool val1,
-       const char *text2,
-       const bool val2)
+ODLB2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const bool     val1,
+     const char *   text2,
+     const bool     val2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -630,17 +647,18 @@ ODLB2_(const char *fileName,
 } // ODLB2_
 
 EXTERN_C void
-ODLB3_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const bool val1,
-       const char *text2,
-       const bool val2,
-       const char *text3,
-       const bool val3)
+ODLB3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const bool     val1,
+     const char *   text2,
+     const bool     val2,
+     const char *   text3,
+     const bool     val3)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -683,19 +701,20 @@ ODLB3_(const char *fileName,
 } // ODLB3_
 
 EXTERN_C void
-ODLB4_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const bool val1,
-       const char *text2,
-       const bool val2,
-       const char *text3,
-       const bool val3,
-       const char *text4,
-       const bool val4)
+ODLB4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const bool     val1,
+     const char *   text2,
+     const bool     val2,
+     const char *   text3,
+     const bool     val3,
+     const char *   text4,
+     const bool     val4)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -738,13 +757,14 @@ ODLB4_(const char *fileName,
 } // ODLB4_
 
 EXTERN_C void
-ODLC1_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char val1)
+ODLC1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char     val1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -776,15 +796,16 @@ ODLC1_(const char *fileName,
 } // ODLC1_
 
 EXTERN_C void
-ODLC2_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char val1,
-       const char *text2,
-       const char val2)
+ODLC2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char     val1,
+     const char *   text2,
+     const char     val2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -817,17 +838,18 @@ ODLC2_(const char *fileName,
 } // ODLC2_
 
 EXTERN_C void
-ODLC3_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char val1,
-       const char *text2,
-       const char val2,
-       const char *text3,
-       const char val3)
+ODLC3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char     val1,
+     const char *   text2,
+     const char     val2,
+     const char *   text3,
+     const char     val3)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -869,19 +891,20 @@ ODLC3_(const char *fileName,
 } // ODLC3_
 
 EXTERN_C void
-ODLC4_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char val1,
-       const char *text2,
-       const char val2,
-       const char *text3,
-       const char val3,
-       const char *text4,
-       const char val4)
+ODLC4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char     val1,
+     const char *   text2,
+     const char     val2,
+     const char *   text3,
+     const char     val3,
+     const char *   text4,
+     const char     val4)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -924,13 +947,14 @@ ODLC4_(const char *fileName,
 } // ODLC4_
 
 EXTERN_C void
-ODLD1_(const char   *fileName,
-       const char   *funcName,
-       const int    lineNumber,
-       const char   *text1,
-       const double val1)
+ODLD1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const double   val1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -962,15 +986,16 @@ ODLD1_(const char   *fileName,
 } // ODLD1_
 
 EXTERN_C void
-ODLD2_(const char   *fileName,
-       const char   *funcName,
-       const int    lineNumber,
-       const char   *text1,
-       const double val1,
-       const char   *text2,
-       const double val2)
+ODLD2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const double   val1,
+     const char *   text2,
+     const double   val2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1002,17 +1027,18 @@ ODLD2_(const char   *fileName,
 } // ODLD2_
 
 EXTERN_C void
-ODLD3_(const char   *fileName,
-       const char   *funcName,
-       const int    lineNumber,
-       const char   *text1,
-       const double val1,
-       const char   *text2,
-       const double val2,
-       const char   *text3,
-       const double val3)
+ODLD3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const double   val1,
+     const char *   text2,
+     const double   val2,
+     const char *   text3,
+     const double   val3)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1053,19 +1079,20 @@ ODLD3_(const char   *fileName,
 } // ODLD3_
 
 EXTERN_C void
-ODLD4_(const char   *fileName,
-       const char   *funcName,
-       const int    lineNumber,
-       const char   *text1,
-       const double val1,
-       const char   *text2,
-       const double val2,
-       const char   *text3,
-       const double val3,
-       const char   *text4,
-       const double val4)
+ODLD4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const double   val1,
+     const char *   text2,
+     const double   val2,
+     const char *   text3,
+     const double   val3,
+     const char *   text4,
+     const double   val4)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1106,11 +1133,12 @@ ODLD4_(const char   *fileName,
 } // ODLD4_
 
 EXTERN_C void
-ODLEnter_(const char *fileName,
-          const char *funcName,
-          const int  lineNumber)
+ODLEnter_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1140,11 +1168,12 @@ ODLEnter_(const char *fileName,
 } // ODLEnter_
 
 EXTERN_C void
-ODLExit_(const char *fileName,
-         const char *funcName,
-         const int  lineNumber)
+ODLExit_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1174,12 +1203,13 @@ ODLExit_(const char *fileName,
 } // ODLExit_
 
 EXTERN_C void
-ODLExitB_(const char *fileName,
-          const char *funcName,
-          const int  lineNumber,
-          const bool val)
+ODLExitB_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const bool     val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1213,12 +1243,13 @@ ODLExitB_(const char *fileName,
 } // ODLExitB_
 
 EXTERN_C void
-ODLExitC_(const char *fileName,
-          const char *funcName,
-          const int  lineNumber,
-          const char val)
+ODLExitC_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char     val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1251,12 +1282,13 @@ ODLExitC_(const char *fileName,
 } // ODLExitC_
 
 EXTERN_C void
-ODLExitD_(const char   *fileName,
-          const char   *funcName,
-          const int    lineNumber,
-          const double val)
+ODLExitD_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const double   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1289,12 +1321,13 @@ ODLExitD_(const char   *fileName,
 } // ODLExitD_
 
 EXTERN_C void
-ODLExitExit_(const char *fileName,
-             const char *funcName,
-             const int  lineNumber,
-             const long val)
+ODLExitExit_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const long     val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1327,12 +1360,13 @@ ODLExitExit_(const char *fileName,
 } // ODLExitExit_
 
 EXTERN_C void
-ODLExitI_(const char     *fileName,
-          const char     *funcName,
-          const int      lineNumber,
-          const intmax_t val)
+ODLExitI_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1366,13 +1400,14 @@ ODLExitI_(const char     *fileName,
 
 #  if defined(__OBJC__)
 EXTERN_C void
-ODLExitO_(const char *fileName,
-          const char *funcName,
-          const int  lineNumber,
-          const id   val)
+ODLExitO_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const id       val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
-    const char *valString = odNullOrDescription(val);
+    const char *    rootName = odFileNameRoot_(fileName);
+    const char *    valString = odNullOrDescription(val);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1394,12 +1429,13 @@ ODLExitO_(const char *fileName,
 #  endif // defined(__OBJC__)
 
 EXTERN_C void
-ODLExitP_(const char *fileName,
-          const char *funcName,
-          const int  lineNumber,
-          const void *val)
+ODLExitP_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1433,12 +1469,13 @@ ODLExitP_(const char *fileName,
 
 #  if defined(__APPLE__)
 EXTERN_C void
-ODLExitRect_(const char   *fileName,
-             const char   *funcName,
-             const int    lineNumber,
-             const CGRect val)
+ODLExitRect_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const CGRect   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1466,12 +1503,13 @@ ODLExitRect_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLExitS_(const char *fileName,
-          const char *funcName,
-          const int  lineNumber,
-          const char *val)
+ODLExitS_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1506,12 +1544,13 @@ ODLExitS_(const char *fileName,
 
 #  if defined(__APPLE__)
 EXTERN_C void
-ODLExitSize_(const char   *fileName,
-             const char   *funcName,
-             const int    lineNumber,
-             const CGSize val)
+ODLExitSize_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const CGSize   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1539,12 +1578,13 @@ ODLExitSize_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLExitThrowI_(const char     *fileName,
-               const char     *funcName,
-               const int      lineNumber,
-               const intmax_t val)
+ODLExitThrowI_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1577,12 +1617,13 @@ ODLExitThrowI_(const char     *fileName,
 } // ODLExitThrowL_
 
 EXTERN_C void
-ODLExitThrowS_(const char *fileName,
-               const char *funcName,
-               const int  lineNumber,
-               const char *val)
+ODLExitThrowS_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1615,12 +1656,13 @@ ODLExitThrowS_(const char *fileName,
 } // ODLExitThrowS_
 
 EXTERN_C void
-ODLExitThrowX_(const char     *fileName,
-               const char     *funcName,
-               const int      lineNumber,
-               const intmax_t val)
+ODLExitThrowX_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1653,12 +1695,13 @@ ODLExitThrowX_(const char     *fileName,
 } // ODLExitThrowX_
 
 EXTERN_C void
-ODLExitX_(const char     *fileName,
-          const char     *funcName,
-          const int      lineNumber,
-          const intmax_t val)
+ODLExitX_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -1691,13 +1734,14 @@ ODLExitX_(const char     *fileName,
 } // ODLExitX_
 
 EXTERN_C void
-ODLI1_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1)
+ODLI1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1729,15 +1773,16 @@ ODLI1_(const char     *fileName,
 } // ODLI1_
 
 EXTERN_C void
-ODLI2_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1,
-       const char     *text2,
-       const intmax_t val2)
+ODLI2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1,
+     const char *   text2,
+     const intmax_t val2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1769,17 +1814,18 @@ ODLI2_(const char     *fileName,
 } // ODLI2_
 
 EXTERN_C void
-ODLI3_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1,
-       const char     *text2,
-       const intmax_t val2,
-       const char     *text3,
-       const intmax_t val3)
+ODLI3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1,
+     const char *   text2,
+     const intmax_t val2,
+     const char *   text3,
+     const intmax_t val3)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1820,19 +1866,20 @@ ODLI3_(const char     *fileName,
 } // ODLI3_
 
 EXTERN_C void
-ODLI4_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1,
-       const char     *text2,
-       const intmax_t val2,
-       const char     *text3,
-       const intmax_t val3,
-       const char     *text4,
-       const intmax_t val4)
+ODLI4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1,
+     const char *   text2,
+     const intmax_t val2,
+     const char *   text3,
+     const intmax_t val3,
+     const char *   text4,
+     const intmax_t val4)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -1877,23 +1924,24 @@ ODLI4_(const char     *fileName,
 #   pragma warning(disable: 4100)
 #  endif // ! MAC_OR_LINUX_
 EXTERN_C void
-ODLInit_(const char *prefix,
-         const int  options,
-         const char *fileName,
-         const char *funcName,
-         const int  lineNumber)
+ODLInit_
+    (const char *   prefix,
+     const int      options,
+     const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber)
 {
 #  if (defined(__OBJC__) || (! MAC_OR_LINUX_))
 #   if MAC_OR_LINUX_
 #    pragma unused(prefix)
 #   endif // MAC_OR_LINUX_
 #  endif // defined(__OBJC__) || (! MAC_OR_LINUX_)
-    bool       odWriteToFile = (options &kODLoggingOptionWriteToFile);
-    const char *rootName = odFileNameRoot_(fileName);
-    const char *suffixString;
-    char       *stars;
-    size_t     starsLength = strlen(rootName) + strlen(funcName) +
-                              (sizeof(ODL_INIT_FORMAT_) - 1) - 8; // 4 %s
+    bool            odWriteToFile = (options &kODLoggingOptionWriteToFile);
+    const char *    rootName = odFileNameRoot_(fileName);
+    const char *    suffixString;
+    char *          stars;
+    size_t          starsLength = strlen(rootName) + strlen(funcName) +
+                                    (sizeof(ODL_INIT_FORMAT_) - 1) - 8; // 4 %s
 
 #  if MAC_OR_LINUX_
     lOdEnableThreadSupport_ = (options & kODLoggingOptionEnableThreadSupport);
@@ -1901,7 +1949,7 @@ ODLInit_(const char *prefix,
     lOdIncludeThreadID_ = (options & kODLoggingOptionIncludeThreadID);
 #  endif // MAC_OR_LINUX_
     ODL_CREATE_PREFIX_();
-    size_t prefixLength = strlen(prefixString_);
+    size_t  prefixLength = strlen(prefixString_);
 
     if (prefixLength)
     {
@@ -1927,7 +1975,7 @@ ODLInit_(const char *prefix,
 #  endif // MAC_OR_LINUX_ && (! defined(__OBJC__))
     if (odWriteToFile)
     {
-        char pidString[100];
+        char    pidString[100];
 
 #  if MAC_OR_LINUX_
         snprintf(pidString, sizeof(pidString), "/var/log/pid-%lX.log", (long unsigned) getpid());
@@ -2019,14 +2067,15 @@ ODLInit_(const char *prefix,
 #  endif // ! MAC_OR_LINUX_
 
 EXTERN_C void
-ODLIP_(const char    *fileName,
-       const char    *funcName,
-       const int     lineNumber,
-       const char    *text1,
-       const int32_t val1,
-       const int     val2)
+ODLIP_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const int32_t  val1,
+     const int      val2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     union IP_TYPE_
     {
@@ -2069,19 +2118,20 @@ ODLIP_(const char    *fileName,
 } // ODLIP_
 
 EXTERN_C void
-ODLLS_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char *val1)
+ODLLS_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char *   val1)
 {
-    const char *heading = text1;
-    const char *rootName = odFileNameRoot_(fileName);
-    size_t     captionLength = strlen(text1);
-    int        size = (int) strlen(val1);
-    int        jj = 0;
-    char       lineBuffer[ODL_MAX_CHARS_IN_LINE_ + 1];
-    char       *blankCaption = (char *) malloc(captionLength + 1);
+    const char *    heading = text1;
+    const char *    rootName = odFileNameRoot_(fileName);
+    size_t          captionLength = strlen(text1);
+    int             size = (int) strlen(val1);
+    int             jj = 0;
+    char            lineBuffer[ODL_MAX_CHARS_IN_LINE_ + 1];
+    char *          blankCaption = (char *) malloc(captionLength + 1);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -2092,7 +2142,7 @@ ODLLS_(const char *fileName,
     lineBuffer[sizeof(lineBuffer) - 1] = '\0';
     for (int ii = 0; ii < size; )
     {
-        char bb = val1[ii++];
+        char    bb = val1[ii++];
 
         if (('\n' == bb) || ('\r' == bb) || ('\t' == bb))
         {
@@ -2198,14 +2248,15 @@ ODLLS_(const char *fileName,
 
 #  if defined(__OBJC__)
 EXTERN_C void
-ODLO1_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const id   obj1)
+ODLO1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const id       obj1)
 {
-    const char *obj1String = odNullOrDescription(obj1);
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    obj1String = odNullOrDescription(obj1);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -2227,17 +2278,18 @@ ODLO1_(const char *fileName,
 
 #  if defined(__OBJC__)
 EXTERN_C void
-ODLO2_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const id   obj1,
-       const char *text2,
-       const id   obj2)
+ODLO2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const id       obj1,
+     const char *   text2,
+     const id       obj2)
 {
-    const char *obj1String = odNullOrDescription(obj1);
-    const char *obj2String = odNullOrDescription(obj2);
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    obj1String = odNullOrDescription(obj1);
+    const char *    obj2String = odNullOrDescription(obj2);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -2260,20 +2312,21 @@ ODLO2_(const char *fileName,
 
 #  if defined(__OBJC__)
 EXTERN_C void
-ODLO3_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const id   obj1,
-       const char *text2,
-       const id   obj2,
-       const char *text3,
-       const id   obj3)
+ODLO3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const id       obj1,
+     const char *   text2,
+     const id       obj2,
+     const char *   text3,
+     const id       obj3)
 {
-    const char *obj1String = odNullOrDescription(obj1);
-    const char *obj2String = odNullOrDescription(obj2);
-    const char *obj3String = odNullOrDescription(obj3);
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    obj1String = odNullOrDescription(obj1);
+    const char *    obj2String = odNullOrDescription(obj2);
+    const char *    obj3String = odNullOrDescription(obj3);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -2299,23 +2352,24 @@ ODLO3_(const char *fileName,
 
 #  if defined(__OBJC__)
 EXTERN_C void
-ODLO4_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const id   obj1,
-       const char *text2,
-       const id   obj2,
-       const char *text3,
-       const id   obj3,
-       const char *text4,
-       const id   obj4)
+ODLO4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const id       obj1,
+     const char *   text2,
+     const id       obj2,
+     const char *   text3,
+     const id       obj3,
+     const char *   text4,
+     const id       obj4)
 {
-    const char *obj1String = odNullOrDescription(obj1);
-    const char *obj2String = odNullOrDescription(obj2);
-    const char *obj3String = odNullOrDescription(obj3);
-    const char *obj4String = odNullOrDescription(obj4);
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    obj1String = odNullOrDescription(obj1);
+    const char *    obj2String = odNullOrDescription(obj2);
+    const char *    obj3String = odNullOrDescription(obj3);
+    const char *    obj4String = odNullOrDescription(obj4);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -2341,12 +2395,13 @@ ODLO4_(const char *fileName,
 #  endif // defined(__OBJC__)
 
 EXTERN_C void
-ODLObjEnter_(const char *fileName,
-             const char *funcName,
-             const int  lineNumber,
-             const void *objPtr)
+ODLObjEnter_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -2377,12 +2432,13 @@ ODLObjEnter_(const char *fileName,
 } // ODLObjEnter_
 
 EXTERN_C void
-ODLObjExit_(const char *fileName,
-            const char *funcName,
-            const int  lineNumber,
-            const void *objPtr)
+ODLObjExit_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2413,13 +2469,14 @@ ODLObjExit_(const char *fileName,
 } // ODLObjExit_
 
 EXTERN_C void
-ODLObjExitB_(const char *fileName,
-             const char *funcName,
-             const int  lineNumber,
-             const void *objPtr,
-             const bool val)
+ODLObjExitB_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const bool     val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2453,13 +2510,14 @@ ODLObjExitB_(const char *fileName,
 } // ODLObjExitB_
 
 EXTERN_C void
-ODLObjExitC_(const char *fileName,
-             const char *funcName,
-             const int  lineNumber,
-             const void *objPtr,
-             const char val)
+ODLObjExitC_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const char     val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2493,13 +2551,14 @@ ODLObjExitC_(const char *fileName,
 } // ODLObjExitC_
 
 EXTERN_C void
-ODLObjExitD_(const char   *fileName,
-             const char   *funcName,
-             const int    lineNumber,
-             const void   *objPtr,
-             const double val)
+ODLObjExitD_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const double   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2532,13 +2591,14 @@ ODLObjExitD_(const char   *fileName,
 } // ODLObjExitD_
 
 EXTERN_C void
-ODLObjExitExit_(const char *fileName,
-                const char *funcName,
-                const int  lineNumber,
-                const void *objPtr,
-                const long val)
+ODLObjExitExit_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const long     val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2571,13 +2631,14 @@ ODLObjExitExit_(const char *fileName,
 } // ODLObjExitExit_
 
 EXTERN_C void
-ODLObjExitI_(const char     *fileName,
-             const char     *funcName,
-             const int      lineNumber,
-             const void     *objPtr,
-             const intmax_t val)
+ODLObjExitI_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2611,14 +2672,15 @@ ODLObjExitI_(const char     *fileName,
 
 #  if defined(__OBJC__)
 EXTERN_C void
-ODLObjExitO_(const char *fileName,
-             const char *funcName,
-             const int  lineNumber,
-             const void *objPtr,
-             const id   val)
+ODLObjExitO_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const id       val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
-    const char *valString = odNullOrDescription(val);
+    const char *    rootName = odFileNameRoot_(fileName);
+    const char *    valString = odNullOrDescription(val);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2641,13 +2703,14 @@ ODLObjExitO_(const char *fileName,
 #  endif // defined(__OBJC__)
 
 EXTERN_C void
-ODLObjExitP_(const char *fileName,
-             const char *funcName,
-             const int  lineNumber,
-             const void *objPtr,
-             const void *val)
+ODLObjExitP_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const void *   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2681,13 +2744,14 @@ ODLObjExitP_(const char *fileName,
 
 #  if defined(__APPLE__)
 EXTERN_C void
-ODLObjExitRect_(const char   *fileName,
-                const char   *funcName,
-                const int    lineNumber,
-                const void   *objPtr,
-                const CGRect val)
+ODLObjExitRect_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const CGRect   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2715,13 +2779,14 @@ ODLObjExitRect_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLObjExitS_(const char *fileName,
-             const char *funcName,
-             const int  lineNumber,
-             const void *objPtr,
-             const char *val)
+ODLObjExitS_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const char *   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2756,13 +2821,14 @@ ODLObjExitS_(const char *fileName,
 
 #  if defined(__APPLE__)
 EXTERN_C void
-ODLObjExitSize_(const char   *fileName,
-                const char   *funcName,
-                const int    lineNumber,
-                const void   *objPtr,
-                const CGSize val)
+ODLObjExitSize_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const CGSize   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2790,13 +2856,14 @@ ODLObjExitSize_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLObjExitThrowI_(const char     *fileName,
-                  const char     *funcName,
-                  const int      lineNumber,
-                  const void     *objPtr,
-                  const intmax_t val)
+ODLObjExitThrowI_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2829,13 +2896,14 @@ ODLObjExitThrowI_(const char     *fileName,
 } // ODLObjExitThrowI_
 
 EXTERN_C void
-ODLObjExitThrowS_(const char *fileName,
-                  const char *funcName,
-                  const int  lineNumber,
-                  const void *objPtr,
-                  const char *val)
+ODLObjExitThrowS_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const char *   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2869,13 +2937,14 @@ ODLObjExitThrowS_(const char *fileName,
 } // ODLObjExitThrowS_
 
 EXTERN_C void
-ODLObjExitThrowX_(const char     *fileName,
-                  const char     *funcName,
-                  const int      lineNumber,
-                  const void     *objPtr,
-                  const intmax_t val)
+ODLObjExitThrowX_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2908,13 +2977,14 @@ ODLObjExitThrowX_(const char     *fileName,
 } // ODLObjExitThrowX_
 
 EXTERN_C void
-ODLObjExitX_(const char     *fileName,
-             const char     *funcName,
-             const int      lineNumber,
-             const void     *objPtr,
-             const intmax_t val)
+ODLObjExitX_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const void *   objPtr,
+     const intmax_t val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     odDecreaseIndent_();
     ODL_CREATE_INDENT_();
@@ -2948,13 +3018,14 @@ ODLObjExitX_(const char     *fileName,
 } // ODLObjExitX_
 
 EXTERN_C void
-ODLP1_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const void *ptr1)
+ODLP1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const void *   ptr1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -2986,15 +3057,16 @@ ODLP1_(const char *fileName,
 } // ODLP1_
 
 EXTERN_C void
-ODLP2_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const void *ptr1,
-       const char *text2,
-       const void *ptr2)
+ODLP2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const void *   ptr1,
+     const char *   text2,
+     const void *   ptr2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3026,17 +3098,18 @@ ODLP2_(const char *fileName,
 } // ODLP2_
 
 EXTERN_C void
-ODLP3_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const void *ptr1,
-       const char *text2,
-       const void *ptr2,
-       const char *text3,
-       const void *ptr3)
+ODLP3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const void *   ptr1,
+     const char *   text2,
+     const void *   ptr2,
+     const char *   text3,
+     const void *   ptr3)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3077,19 +3150,20 @@ ODLP3_(const char *fileName,
 } // ODLP3_
 
 EXTERN_C void
-ODLP4_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const void *ptr1,
-       const char *text2,
-       const void *ptr2,
-       const char *text3,
-       const void *ptr3,
-       const char *text4,
-       const void *ptr4)
+ODLP4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const void *   ptr1,
+     const char *   text2,
+     const void *   ptr2,
+     const char *   text3,
+     const void *   ptr3,
+     const char *   text4,
+     const void *   ptr4)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3130,24 +3204,25 @@ ODLP4_(const char *fileName,
 } // ODLP4_
 
 EXTERN_C void
-ODLPacket_(const char *fileName,
-           const char *funcName,
-           const int  lineNumber,
-           const char *caption,
-           const void *buffer,
-           const int  size)
+ODLPacket_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   caption,
+     const void *   buffer,
+     const int      size)
 {
-    const char  *heading = caption;
-    const char  *rootName = odFileNameRoot_(fileName);
-    char        lineBuffer[(ODL_MAX_BYTES_IN_LINE_ * 3) + 1];
-    char        charBuffer[ODL_MAX_BYTES_IN_LINE_ + 1];
-    static char hexDigits[] = "0123456789ABCDEF";
-    size_t      captionLength = strlen(caption);
-    char        *blankCaption = (char *) malloc(captionLength + 1);
+    const char *    heading = caption;
+    const char *    rootName = odFileNameRoot_(fileName);
+    char            lineBuffer[(ODL_MAX_BYTES_IN_LINE_ * 3) + 1];
+    char            charBuffer[ODL_MAX_BYTES_IN_LINE_ + 1];
+    static char     hexDigits[] = "0123456789ABCDEF";
+    size_t          captionLength = strlen(caption);
+    char *          blankCaption = (char *) malloc(captionLength + 1);
 #if defined(__cplusplus)
-    const char  *walker = reinterpret_cast<const char *>(buffer);
+    const char  *   walker = reinterpret_cast<const char *>(buffer);
 #else // ! defined(__cplusplus)
-    const char  *walker = (const char *) buffer;
+    const char  *   walker = (const char *) buffer;
 #endif // ! defined(__cplusplus)
 
     ODL_CREATE_INDENT_();
@@ -3184,7 +3259,7 @@ ODLPacket_(const char *fileName,
 
         for (int jj = 0; jj < ww; ++jj)
         {
-            char bb = walker[ii + jj];
+            char    bb = walker[ii + jj];
 
             lineBuffer[jj * 3] = hexDigits[(bb >> 4) &0x0F];
             lineBuffer[(jj * 3) + 1] = hexDigits[bb &0x0F];
@@ -3233,13 +3308,14 @@ ODLPacket_(const char *fileName,
 
 #  if defined(__APPLE__)
 EXTERN_C void
-ODLRect_(const char   *fileName,
-         const char   *funcName,
-         const int    lineNumber,
-         const char   *caption,
-         const CGRect rect)
+ODLRect_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   caption,
+     const CGRect   rect)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3266,13 +3342,14 @@ ODLRect_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLS1_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char *val1)
+ODLS1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char *   val1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3305,15 +3382,16 @@ ODLS1_(const char *fileName,
 } // ODLS1_
 
 EXTERN_C void
-ODLS2_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char *val1,
-       const char *text2,
-       const char *val2)
+ODLS2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char *   val1,
+     const char *   text2,
+     const char *   val2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3346,17 +3424,18 @@ ODLS2_(const char *fileName,
 } // ODLS2_
 
 EXTERN_C void
-ODLS3_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char *val1,
-       const char *text2,
-       const char *val2,
-       const char *text3,
-       const char *val3)
+ODLS3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char *   val1,
+     const char *   text2,
+     const char *   val2,
+     const char *   text3,
+     const char *   val3)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3399,19 +3478,20 @@ ODLS3_(const char *fileName,
 } // ODLS3_
 
 EXTERN_C void
-ODLS4_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text1,
-       const char *val1,
-       const char *text2,
-       const char *val2,
-       const char *text3,
-       const char *val3,
-       const char *text4,
-       const char *val4)
+ODLS4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const char *   val1,
+     const char *   text2,
+     const char *   val2,
+     const char *   text3,
+     const char *   val3,
+     const char *   text4,
+     const char *   val4)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3455,13 +3535,14 @@ ODLS4_(const char *fileName,
 
 #  if defined(__APPLE__)
 EXTERN_C void
-ODLSize_(const char   *fileName,
-         const char   *funcName,
-         const int    lineNumber,
-         const char   *caption,
-         const CGSize size)
+ODLSize_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   caption,
+     const CGSize   size)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3488,14 +3569,15 @@ ODLSize_(const char   *fileName,
 #  endif // defined(__APPLE__)
 
 EXTERN_C void
-ODLSp_(const char *fileName,
-       const char *funcName,
-       const int  lineNumber,
-       const char *text,
-       const int  len,
-       const char *val)
+ODLSp_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text,
+     const int      len,
+     const char *   val)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3528,13 +3610,14 @@ ODLSp_(const char *fileName,
 
 #  if MAC_OR_LINUX_
 EXTERN_C void
-ODLTime_(const char           *fileName,
-         const char           *funcName,
-         const int            lineNumber,
-         const char           *text1,
-         const struct timeval *val1)
+ODLTime_
+    (const char *           fileName,
+     const char *           funcName,
+     const int              lineNumber,
+     const char *           text1,
+     const struct timeval * val1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3561,13 +3644,14 @@ ODLTime_(const char           *fileName,
 #  endif // MAC_OR_LINUX_
 
 EXTERN_C void
-ODLX1_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1)
+ODLX1_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3599,15 +3683,16 @@ ODLX1_(const char     *fileName,
 } // ODLX1_
 
 EXTERN_C void
-ODLX2_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1,
-       const char     *text2,
-       const intmax_t val2)
+ODLX2_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1,
+     const char *   text2,
+     const intmax_t val2)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3640,17 +3725,18 @@ ODLX2_(const char     *fileName,
 } // ODLX2_
 
 EXTERN_C void
-ODLX3_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1,
-       const char     *text2,
-       const intmax_t val2,
-       const char     *text3,
-       const intmax_t val3)
+ODLX3_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1,
+     const char *   text2,
+     const intmax_t val2,
+     const char *   text3,
+     const intmax_t val3)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
@@ -3692,19 +3778,20 @@ ODLX3_(const char     *fileName,
 } // ODLX3_
 
 EXTERN_C void
-ODLX4_(const char     *fileName,
-       const char     *funcName,
-       const int      lineNumber,
-       const char     *text1,
-       const intmax_t val1,
-       const char     *text2,
-       const intmax_t val2,
-       const char     *text3,
-       const intmax_t val3,
-       const char     *text4,
-       const intmax_t val4)
+ODLX4_
+    (const char *   fileName,
+     const char *   funcName,
+     const int      lineNumber,
+     const char *   text1,
+     const intmax_t val1,
+     const char *   text2,
+     const intmax_t val2,
+     const char *   text3,
+     const intmax_t val3,
+     const char *   text4,
+     const intmax_t val4)
 {
-    const char *rootName = odFileNameRoot_(fileName);
+    const char *    rootName = odFileNameRoot_(fileName);
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();

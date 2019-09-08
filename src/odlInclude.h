@@ -1185,6 +1185,6 @@
  @param[in] val4 The fourth value to be written. */
 # define ODL_S4s(text1, val1, text2, val2, text3, val3, text4, val4) \
         ODL_S4(text1, val1.c_str(), text2, val2.c_str(), text3, val3.c_str(), text4,\
-                    val4.c_str())
+                val4.c_str())
 
 #endif // ! defined(ODL_INCLUDE_H_)
