@@ -174,7 +174,7 @@ static tOdThreadData lOdThreadData_ =
 
 /*! @brief Return a string corresponding to each @c bool value.
  @param[in] val The input value.
- @returns Either "true" or "false", depending on the input value. */
+ @return Either "true" or "false", depending on the input value. */
 inline static const char *
 odBoolToString_
     (const bool val)
@@ -185,7 +185,7 @@ odBoolToString_
 #  if defined(__OBJC__)
 /*! @brief Return either the @c description string for an object or a fixed string.
  @param[in] value The input object.
- @returns The description of the object or "<>". */
+ @return The description of the object or "<>". */
 static const char *
 odNullOrDescription
     (id value)
@@ -206,7 +206,7 @@ odNullOrDescription
 
 /*! @brief Return either the input string or a fixed string, if the input is @c NULL.
  @param[in] aString The input string.
- @returns The input string or "<>". */
+ @return The input string or "<>". */
 static const char *
 odNullOrString
     (const char *   aString)
@@ -259,7 +259,7 @@ odSetUpThreadKey_
 
  If this is the first call for a thread, create the data. If threading is not supported, return the
  address of the shared thread data.
- @returns A pointer to the thread-specific data. */
+ @return A pointer to the thread-specific data. */
 inline static tOdThreadData *
 odGetThreadData_
     (void)
@@ -288,7 +288,7 @@ odGetThreadData_
 
 /*! @brief Return the portion of a file name that does not include the path to the file.
  @param[in] fileName The input file path.
- @returns The file name part of a file path. */
+ @return The file name part of a file path. */
 static const char *
 odFileNameRoot_
     (const char *   fileName)
@@ -299,7 +299,7 @@ odFileNameRoot_
 } // odFileNameRoot_
 
 /*! @brief Return the current indentation level for the active thread.
- @returns The current indentation level for the active thread. */
+ @return The current indentation level for the active thread. */
 inline static int
 odGetIndent_
     (void)
@@ -321,7 +321,7 @@ odSetIndent_
 } // odSetIndent_
 
 /*! @brief Generate an indentation string.
- @returns A string of alternating spaces and periods that whose length matches the current
+ @return A string of alternating spaces and periods that whose length matches the current
  indentation level for the active thread. */
 static char *
 odBuildIndent_
@@ -340,7 +340,7 @@ odBuildIndent_
 } // odBuildIndent_
 
 /*! @brief Generate a prefix string.
- @returns A string containing the process identifier and / or the thread identifier, if they are
+ @return A string containing the process identifier and / or the thread identifier, if they are
  enabled for logging. */
 static char *
 odBuildPrefix_
