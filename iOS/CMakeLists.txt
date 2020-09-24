@@ -61,14 +61,14 @@ mark_as_advanced(CLEAR BUILD_SHARED_LIBS)
 set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 9.0)
 set(CMAKE_C_FLAGS "-miphoneos-version-min=9.0" CACHE STRING "Make sure version is supportable" FORCE)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for odl" FORCE)
-set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for odl" FORCE)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra" CACHE STRING "Fixes linking error for ODL" FORCE)
+set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for ODL" FORCE)
 # 'rpath' warning
 cmake_policy(SET CMP0042 OLD)
 
 set(CMAKE_USE_RELATIVE_PATHS ON CACHE BOOL "Always set file paths as relative")
 
-# Add the ODL target path so that odl can be found
+# Add the ODL target path so that ODL can be found
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 
 macro(ADD_FRAMEWORK fwname appname)
