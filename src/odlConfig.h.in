@@ -83,6 +83,46 @@
 #  define ODL_FUNC_NAME_ __FUNCTION__
 # endif // ! MAC_OR_LINUX_
 
+# define __cpp_1997 199711L
+# define __cpp_2003 __cpp_1997
+# define __cpp_2011 201103L
+# define __cpp_2014 201402L
+# define __cpp_2017 201703L
+# define __cpp_2020 202002L
+
+# undef CPP_1997_
+# define CPP_1997_	TRUE	/* Minimum supported C++ version */
+# undef CPP_2003_
+# if (__cplusplus >= __cpp_2003)
+#  define CPP_2003_	TRUE
+# else /* __cplusplus < __cpp_2003 */
+#  define CPP_2003_	FALSE
+# endif /* __cplusplus < __cpp_2003 */
+# undef CPP_2011_
+# if (__cplusplus >= __cpp_2011)
+#  define CPP_2011_	TRUE
+# else /* __cplusplus < __cpp_2011 */
+#  define CPP_2011_	FALSE
+# endif /* __cplusplus < __cpp_2011 */
+# undef CPP_2014_
+# if (__cplusplus >= __cpp_2014)
+#  define CPP_2014_	TRUE
+# else /* __cplusplus < __cpp_2014 */
+#  define CPP_2014_	FALSE
+# endif /* __cplusplus < __cpp_2014 */
+# undef CPP_2017_
+# if (__cplusplus >= __cpp_2017)
+#  define CPP_2017_	TRUE
+# else /* __cplusplus < __cpp_2017 */
+#  define CPP_2017_	FALSE
+# endif /* __cplusplus < __cpp_2017 */
+# undef CPP_2020_
+# if (__cplusplus >= __cpp_2020)
+#  define CPP_2020_	TRUE
+# else /* __cplusplus < __cpp_2020 */
+#  define CPP_2020_	FALSE
+# endif /* __cplusplus < __cpp_2020 */
+
 /*! @brief The major part of the version number. */
 # define ODL_VERSION_MAJOR_ @ODL_VERSION_MAJOR@
 
