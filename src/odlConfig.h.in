@@ -135,6 +135,11 @@
 /*! @brief The version number as a string. */
 # define ODL_VERSION_ "@ODL_VERSION@"
 
+# if (! CPP_2011_)
+/*! @brief Alias for NULL. */
+#  define nullptr NULL
+# endif /* ! CPP_2011_ */
+
 /*! @brief The options available for logging. */
 enum ODLoption
 {
