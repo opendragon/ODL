@@ -1,14 +1,14 @@
 //--------------------------------------------------------------------------------------------------
 //
-//  File:       odlConfig.h
+//  File:       CppVersions.h
 //
 //  Project:    ODL
 //
-//  Contains:   The version macro definitions for the logging facility.
+//  Contains:   The macro definitions used to detect versions of C++.
 //
 //  Written by: Norman Jaffe
 //
-//  Copyright:  (c) 2013 by OpenDragon.
+//  Copyright:  (c) 2021 by OpenDragon.
 //
 //              All rights reserved. Redistribution and use in source and binary forms, with or
 //              without modification, are permitted provided that the following conditions are met:
@@ -32,22 +32,12 @@
 //              ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 //              DAMAGE.
 //
-//  Created:    2013-04-07
+//  Created:    2021-01-01
 //
 //--------------------------------------------------------------------------------------------------
 
-#if (! defined(ODL_CONFIG_H_))
-# define ODL_CONFIG_H_ /* Header guard */
-
-# include <CppVersions.h>
-
-# include <stdint.h>
-# if defined(__OBJC__)
-#  import <Foundation/Foundation.h>
-# endif // defined(__OBJC__)
-# if defined(__APPLE__)
-#  include <CoreGraphics/CGGeometry.h>
-# endif // defined(__APPLE__)
+#if (! defined(CPP_VERSIONS_H_))
+# define CPP_VERSIONS_H_ /* Header guard */
 
 # if defined(__APPLE__)
 #  pragma clang diagnostic push
@@ -55,26 +45,28 @@
 #  pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
 # endif // defined(__APPLE__)
 /*! @file
- @brief The version macro definitions for the logging facility. */
+ @brief The macro definitions used to detect versions of C++. */
 # if defined(__APPLE__)
 #  pragma clang diagnostic pop
 # endif // defined(__APPLE__)
 
-/*! @brief The major part of the version number. */
-# define ODL_VERSION_MAJOR_ @ODL_VERSION_MAJOR@
+# undef CPP_1997_
+# undef CPP_2003_
+# undef CPP_2011_
+# undef CPP_2014_
+# undef CPP_2017_
+# undef CPP_2020_
+/*! @brief @c TRUE if C++ features from pre-2003 are supported. */
+# define CPP_1997_	TRUE	/* Minimum supported C++ version */
+/*! @brief @c TRUE if C++ features from C++03 are supported. */
+# define CPP_2003_	(__cplusplus >= 199711L)
+/*! @brief @c TRUE if C++ features from C++11 are supported. */
+# define CPP_2011_	(__cplusplus >= 201103L)
+/*! @brief @c TRUE if C++ features from C++14 are supported. */
+# define CPP_2014_	(__cplusplus >= 201402L)
+/*! @brief @c TRUE if C++ features from C++17 are supported. */
+# define CPP_2017_	(__cplusplus >= 201703L)
+/*! @brief @c TRUE if C++ features from C++20 are supported. */
+# define CPP_2020_	(__cplusplus >= 202002L)
 
-/*! @brief The minor part of the version number. */
-# define ODL_VERSION_MINOR_ @ODL_VERSION_MINOR@
-
-/*! @brief The patch part of the version number. */
-# define ODL_VERSION_PATCH_ @ODL_VERSION_PATCH@
-
-/*! @brief The version number as a string. */
-# define ODL_VERSION_ "@ODL_VERSION@"
-
-# if (! CPP_2011_)
-/*! @brief Alias for NULL. */
-#  define nullptr NULL
-# endif /* ! CPP_2011_ */
-
-#endif // ! defined(ODL_CONFIG_H_)
+#endif // ! defined(CPP_VERSIONS_H_)

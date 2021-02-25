@@ -40,6 +40,7 @@
 # define ODL_INCLUDE_H_ /* Header guard */
 
 # include <odlConfig.h>
+# include <odlFunctions.h>
 
 # if defined(__APPLE__)
 #  pragma clang diagnostic push

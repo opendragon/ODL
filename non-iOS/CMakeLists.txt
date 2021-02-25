@@ -142,10 +142,12 @@ install(TARGETS ${TARGET_ONE}
         COMPONENT libraries)
 
 install(FILES
+        ${ODL_SOURCE_DIR}/CppVersions.h
+        ${ODL_SOURCE_DIR}/odlConfig.h
         ${ODL_SOURCE_DIR}/odlDisable.h
         ${ODL_SOURCE_DIR}/odlEnable.h
+        ${ODL_SOURCE_DIR}/odlFunctions.h
         ${ODL_SOURCE_DIR}/odlInclude.h
-        ${ODL_SOURCE_DIR}/odlConfig.h
         DESTINATION ${INCLUDE_DEST}
         COMPONENT headers)
 
