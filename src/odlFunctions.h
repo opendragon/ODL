@@ -72,10 +72,13 @@
   /* TRUE if non-Windows, FALSE if Windows. */
 #  if defined(__APPLE__)
 #   define MAC_OR_LINUX_ TRUE
+#   define LINUX_ FALSE
 #  elif defined(__linux__)
 #   define MAC_OR_LINUX_ TRUE
+#   define LINUX_ TRUE
 #  else // ! defined(__linux__)
 #   define MAC_OR_LINUX_ FALSE
+#   define LINUX_ FALSE
 #  endif // ! defined(__linux__)
 # endif // ! defined(MAC_OR_LINUX_)
 
