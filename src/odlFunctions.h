@@ -68,6 +68,21 @@
 #  define FALSE 0
 # endif // ! defined(FALSE)
 
+# undef BSD_
+# if defined(__FreeBSD__)
+#  define BSD_	TRUE
+# elif defined(__NetBSD__)
+#  define BSD_	TRUE
+# elif defined(__OpenBSD__)
+#  define BSD_	TRUE
+# elif defined(__bsdi__)
+#  define BSD_	TRUE
+# elif defined(__Dragonfly__)
+#  define BSD_	TRUE
+# else // ! defined(__Dragonfly__)
+#  define BSD_	FALSE
+# endif // ! defined(__Dragonfly__)
+
 # if (! defined(MAC_OR_LINUX_))
   /* TRUE if non-Windows, FALSE if Windows. */
 #  if defined(__APPLE__)
@@ -77,7 +92,7 @@
 #   define MAC_OR_LINUX_ TRUE
 #   define LINUX_ TRUE
 #  else // ! defined(__linux__)
-#   define MAC_OR_LINUX_ FALSE
+#   define MAC_OR_LINUX_ BSD_
 #   define LINUX_ FALSE
 #  endif // ! defined(__linux__)
 # endif // ! defined(MAC_OR_LINUX_)

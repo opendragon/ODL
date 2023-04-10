@@ -54,9 +54,9 @@
 # include <inttypes.h>
 # if defined(__OBJC__)
 #  import "Foundation/NSObjCRuntime.h"
-# elif (defined(__APPLE__) || defined(__linux))
+# elif MAC_OR_LINUX_
 #  include <syslog.h>
-# endif // defined(__APPLE__) || defined(__linux)
+# endif // MAC_OR_LINUX_
 
 # if defined(__APPLE__)
 #  pragma clang diagnostic push
