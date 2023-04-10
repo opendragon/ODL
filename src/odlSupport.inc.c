@@ -41,12 +41,13 @@
 
 # include <odlInclude.h>
 
-# if (defined(__APPLE__) || defined(__linux))
+# if MAC_OR_LINUX_
 #  include <pthread.h>
 #  include <unistd.h>
-# endif // defined(__APPLE__) || defined(__linux)
+# endif // MAC_OR_LINUX_
 # include <stdlib.h>
 # include <string.h>
+# include <sys/time.h>
 # include <time.h>
 # include <ctype.h>
 # include <errno.h>
@@ -514,7 +515,7 @@ odWriteTime_
 #  define ODL_FORMAT_SP_        " %s'%.*s'"
 
 /*! @brief The format string to be used with a time value. */
-#  define ODL_FORMAT_TI_        " %s%ld:%ld"
+#  define ODL_FORMAT_TI_        " %s%lld:%ld"
 
 /*! @brief The format string to be used with a single integer hexadecimal value. */
 #  define ODL_FORMAT_X1_        " %s%jd(%#jx)"
