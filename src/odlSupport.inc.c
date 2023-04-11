@@ -515,7 +515,7 @@ odWriteTime_
 #  define ODL_FORMAT_SP_        " %s'%.*s'"
 
 /*! @brief The format string to be used with a time value. */
-#  define ODL_FORMAT_TI_        " %s%lld:%ld"
+#  define ODL_FORMAT_TI_        " %s%ld:%ld"
 
 /*! @brief The format string to be used with a single integer hexadecimal value. */
 #  define ODL_FORMAT_X1_        " %s%jd(%#jx)"
@@ -3626,17 +3626,17 @@ ODLTime_
     {
         odWriteTime_(lOdLogFile_);
         fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_TI_ "\n", ODL_FUNC_PREFIX_(rootName), text1,
-                val1->tv_sec, (long) val1->tv_usec);
+                (long) val1->tv_sec, (long) val1->tv_usec);
         fflush(lOdLogFile_);
     }
     else
     {
 #   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_TI_, ODL_FUNC_PREFIX_(rootName), text1, val1->tv_sec,
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_TI_, ODL_FUNC_PREFIX_(rootName), text1, (long) val1->tv_sec,
               (long) val1->tv_usec);
 #   else // ! defined(__OBJC__)
         syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_TI_, ODL_FUNC_PREFIX_(rootName), text1,
-               val1->tv_sec, (long) val1->tv_usec);
+               (long) val1->tv_sec, (long) val1->tv_usec);
 #   endif // ! defined(__OBJC__)
     }
     ODL_FREE_PREFIX_();
