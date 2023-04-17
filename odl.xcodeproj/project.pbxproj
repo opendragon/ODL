@@ -25,6 +25,7 @@
 
 /* Begin PBXBuildFile section */
 		F606FCE720D574D80069A88A /* odlConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F606FCE620D574D80069A88A /* odlConfig.h */; };
+		F6B63F3529E994E800127BE6 /* CppVersions.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B63F3429E994E800127BE6 /* CppVersions.h */; };
 		F6CF2A0429E47A640064AB5C /* odlFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = F6CF2A0329E47A640064AB5C /* odlFunctions.h */; };
 		F6F8A12E1EA11BD6002C7228 /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */; };
 		F6F8A12F1EA11BD7002C7228 /* odlSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6F8A0F41EA11B07002C7228 /* odlSupport.cpp */; };
@@ -70,6 +71,7 @@
 		F60B49712104DD93009D2CDA /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "non-iOS/CPack/CMakeLists.txt"; sourceTree = "<group>"; };
 		F62CE86B1E7EF03700CE4B0F /* ODLConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfig.cmake; sourceTree = SOURCE_ROOT; };
 		F62CE86C1E7EF1B300CE4B0F /* ODLConfigVersion.cmake.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ODLConfigVersion.cmake.in; sourceTree = SOURCE_ROOT; };
+		F6B63F3429E994E800127BE6 /* CppVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CppVersions.h; path = src/CppVersions.h; sourceTree = "<group>"; };
 		F6C232B21E73899B0009D9A4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		F6C232B91E73899B0009D9A4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		F6CF2A0329E47A640064AB5C /* odlFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = odlFunctions.h; path = src/odlFunctions.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		F6F8A0ED1EA11AE2002C7228 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F6B63F3429E994E800127BE6 /* CppVersions.h */,
 				F606FCE620D574D80069A88A /* odlConfig.h */,
 				F6F8A0F01EA11B07002C7228 /* odlConfig.h.in */,
 				F6F8A0F11EA11B07002C7228 /* odlDisable.h */,
@@ -211,6 +214,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B63F3529E994E800127BE6 /* CppVersions.h in Headers */,
 				F6CF2A0429E47A640064AB5C /* odlFunctions.h in Headers */,
 				F606FCE720D574D80069A88A /* odlConfig.h in Headers */,
 			);
