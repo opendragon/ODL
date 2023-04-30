@@ -138,9 +138,7 @@ extern "C"
      @param[in] text The string to be written. */
     void
     ODL_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text);
 
     /*! @brief Write a boolean value to the log.
@@ -151,9 +149,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLB1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const bool     val1);
 
@@ -167,9 +163,7 @@ extern "C"
      @param[in] val2 The second value to be written. */
     void
     ODLB2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const bool     val1,
          const char *   text2,
@@ -187,9 +181,7 @@ extern "C"
      @param[in] val3 The third value to be written. */
     void
     ODLB3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const bool     val1,
          const char *   text2,
@@ -211,9 +203,7 @@ extern "C"
      @param[in] val4 The fourth value to be written. */
     void
     ODLB4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const bool     val1,
          const char *   text2,
@@ -231,9 +221,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLC1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char     val1);
 
@@ -247,9 +235,7 @@ extern "C"
      @param[in] val2 The second value to be written. */
     void
     ODLC2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char     val1,
          const char *   text2,
@@ -267,9 +253,7 @@ extern "C"
      @param[in] val3 The third value to be written. */
     void
     ODLC3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char     val1,
          const char *   text2,
@@ -291,9 +275,7 @@ extern "C"
      @param[in] val4 The fourth value to be written. */
     void
     ODLC4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char     val1,
          const char *   text2,
@@ -311,9 +293,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLD1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const double   val1);
 
@@ -327,9 +307,7 @@ extern "C"
      @param[in] val2 The second value to be written. */
     void
     ODLD2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const double   val1,
          const char *   text2,
@@ -347,9 +325,7 @@ extern "C"
      @param[in] val3 The third value to be written. */
     void
     ODLD3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const double   val1,
          const char *   text2,
@@ -371,9 +347,7 @@ extern "C"
      @param[in] val4 The fourth value to be written. */
     void
     ODLD4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const double   val1,
          const char *   text2,
@@ -389,9 +363,7 @@ extern "C"
      @param[in] lineNumber The line number in the source file where the call occurs. */
     void
     ODLEnter_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber);
+        (ODL_Std_Params);
 
     /*! @brief Write a void function exit string to the log.
      @param[in] fileName The name of the source file containing the call to this function.
@@ -399,9 +371,7 @@ extern "C"
      @param[in] lineNumber The line number in the source file where the call occurs. */
     void
     ODLExit_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber);
+        (ODL_Std_Params);
 
     /*! @brief Write a boolean function exit string to the log.
      @param[in] fileName The name of the source file containing the call to this function.
@@ -410,9 +380,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitB_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const bool     val);
 
     /*! @brief Write a character function exit string to the log.
@@ -422,9 +390,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitC_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char     val);
 
     /*! @brief Write a double function exit string to the log.
@@ -434,9 +400,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitD_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const double   val);
 
     /*! @brief Write an exit function string to the log.
@@ -446,9 +410,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitExit_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const long     val);
 
     /*! @brief Write an integer function exit string to the log.
@@ -458,9 +420,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitI_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const intmax_t val);
 
 # if defined(__OBJC__)
@@ -471,9 +431,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitO_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const id       val);
 # endif // defined(__OBJC__)
 
@@ -484,9 +442,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitP_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   val);
 
 # if defined(__APPLE__)
@@ -497,9 +453,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitRect_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const CGRect   val);
 # endif // defined(__APPLE__)
 
@@ -510,9 +464,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitS_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   val);
 
 # if defined(__APPLE__)
@@ -523,9 +475,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitSize_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const CGSize   val);
 # endif // defined(__APPLE__)
 
@@ -536,9 +486,7 @@ extern "C"
      @param[in] val The value being thrown by the function. */
     void
     ODLExitThrowI_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const intmax_t val);
 
     /*! @brief Write a throw/string function exit string to the log.
@@ -548,9 +496,7 @@ extern "C"
      @param[in] val The value being thrown by the function. */
     void
     ODLExitThrowS_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   val);
 
     /*! @brief Write a throw/integer hexadecimal function exit string to the log.
@@ -560,9 +506,7 @@ extern "C"
      @param[in] val The value being thrown by the function. */
     void
     ODLExitThrowX_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const intmax_t val);
 
     /*! @brief Write an integer hexadecimal function exit string to the log.
@@ -572,9 +516,7 @@ extern "C"
      @param[in] val The value being returned by the function. */
     void
     ODLExitX_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const intmax_t val);
 
     /*! @brief Write an integer value to the log.
@@ -585,9 +527,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLI1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1);
 
@@ -601,9 +541,7 @@ extern "C"
      @param[in] val2 The second value to be written. */
     void
     ODLI2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1,
          const char *   text2,
@@ -621,9 +559,7 @@ extern "C"
      @param[in] val3 The third value to be written. */
     void
     ODLI3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1,
          const char *   text2,
@@ -645,9 +581,7 @@ extern "C"
      @param[in] val4 The fourth value to be written. */
     void
     ODLI4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1,
          const char *   text2,
@@ -667,9 +601,7 @@ extern "C"
     ODLInit_
         (const char *   prefix,
          const int      options,
-         const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber);
+         ODL_Std_Params);
 
     /*! @brief Write an IP address to the log.
      @param[in] fileName The name of the source file containing the call to this function.
@@ -680,9 +612,7 @@ extern "C"
      @param[in] val2 The port value to be written. */
     void
     ODLIP_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const int32_t  val1,
          const int      val2);
@@ -695,9 +625,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLLS_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char *   val1);
 
@@ -710,9 +638,7 @@ extern "C"
      @param[in] obj1 The value to be written. */
     void
     ODLO1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const id       obj1);
 
@@ -726,9 +652,7 @@ extern "C"
      @param[in] obj2 The second value to be written. */
     void
     ODLO2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const id       obj1,
          const char *   text2,
@@ -746,9 +670,7 @@ extern "C"
      @param[in] obj3 The third value to be written. */
     void
     ODLO3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const id       obj1,
          const char *   text2,
@@ -770,9 +692,7 @@ extern "C"
      @param[in] obj4 The fourth value to be written. */
     void
     ODLO4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const id       obj1,
          const char *   text2,
@@ -790,9 +710,7 @@ extern "C"
      @param[in] objPtr The this/self pointer for the caller.*/
     void
     ODLObjEnter_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr);
 
     /*! @brief Write a void method exit string to the log.
@@ -802,9 +720,7 @@ extern "C"
      @param[in] objPtr The this/self pointer for the caller.*/
     void
     ODLObjExit_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr);
 
     /*! @brief Write a boolean method exit string to the log.
@@ -815,9 +731,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitB_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const bool     val);
 
@@ -829,9 +743,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitC_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const char     val);
 
@@ -843,9 +755,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitD_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const double   val);
 
@@ -857,9 +767,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitExit_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const long     val);
 
@@ -871,9 +779,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitI_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const intmax_t val);
 
@@ -886,9 +792,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitO_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const id       val);
 # endif // defined(__OBJC__)
@@ -901,9 +805,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitP_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const void *   val);
 
@@ -916,9 +818,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitRect_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const CGRect   val);
 # endif // defined(__APPLE__)
@@ -931,9 +831,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitS_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const char *   val);
 
@@ -946,9 +844,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitSize_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const CGSize   val);
 # endif // defined(__APPLE__)
@@ -961,9 +857,7 @@ extern "C"
      @param[in] val The value being thrown by the method. */
     void
     ODLObjExitThrowI_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const intmax_t val);
 
@@ -975,9 +869,7 @@ extern "C"
      @param[in] val The value being thrown by the method. */
     void
     ODLObjExitThrowS_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const char *   val);
 
@@ -989,9 +881,7 @@ extern "C"
      @param[in] val The value being thrown by the method. */
     void
     ODLObjExitThrowX_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const intmax_t val);
 
@@ -1003,9 +893,7 @@ extern "C"
      @param[in] val The value being returned by the method. */
     void
     ODLObjExitX_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const void *   objPtr,
          const intmax_t val);
 
@@ -1017,9 +905,7 @@ extern "C"
      @param[in] ptr1 The value to be written. */
     void
     ODLP1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const void *   ptr1);
 
@@ -1033,9 +919,7 @@ extern "C"
      @param[in] ptr2 The second value to be written. */
     void
     ODLP2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const void *   ptr1,
          const char *   text2,
@@ -1053,9 +937,7 @@ extern "C"
      @param[in] ptr3 The third value to be written. */
     void
     ODLP3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const void *   ptr1,
          const char *   text2,
@@ -1077,9 +959,7 @@ extern "C"
      @param[in] ptr4 The fourth value to be written. */
     void
     ODLP4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const void *   ptr1,
          const char *   text2,
@@ -1098,9 +978,7 @@ extern "C"
      @param[in] size The number of bytes to be written. */
     void
     ODLPacket_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   caption,
          const void *   buffer,
          const int      size);
@@ -1114,9 +992,7 @@ extern "C"
      @param[in] rect The value to be written. */
     void
     ODLRect_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   caption,
          const CGRect   rect);
 # endif // defined(__APPLE__)
@@ -1129,9 +1005,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLS1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char *   val1);
 
@@ -1145,9 +1019,7 @@ extern "C"
      @param[in] val2 The second value to be written. */
     void
     ODLS2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char *   val1,
          const char *   text2,
@@ -1165,9 +1037,7 @@ extern "C"
      @param[in] val3 The third value to be written. */
     void
     ODLS3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char *   val1,
          const char *   text2,
@@ -1189,9 +1059,7 @@ extern "C"
      @param[in] val4 The fourth value to be written. */
     void
     ODLS4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const char *   val1,
          const char *   text2,
@@ -1210,9 +1078,7 @@ extern "C"
      @param[in] size The value to be written. */
     void
     ODLSize_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   caption,
          const CGSize   size);
 # endif // defined(__APPLE__)
@@ -1226,9 +1092,7 @@ extern "C"
      @param[in] val The value to be written. */
     void
     ODLSp_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text,
          const int      len,
          const char *   val);
@@ -1242,9 +1106,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLTime_
-        (const char *           fileName,
-         const char *           funcName,
-         const int              lineNumber,
+        (ODL_Std_Params,
          const char *           text1,
          const struct timeval * val1);
 # endif // MAC_OR_LINUX_
@@ -1257,9 +1119,7 @@ extern "C"
      @param[in] val1 The value to be written. */
     void
     ODLX1_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1);
 
@@ -1273,9 +1133,7 @@ extern "C"
      @param[in] val2 The second value to be written. */
     void
     ODLX2_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1,
          const char *   text2,
@@ -1293,9 +1151,7 @@ extern "C"
      @param[in] val3 The third value to be written. */
     void
     ODLX3_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1,
          const char *   text2,
@@ -1317,9 +1173,7 @@ extern "C"
      @param[in] val4 The fourth value to be written. */
     void
     ODLX4_
-        (const char *   fileName,
-         const char *   funcName,
-         const int      lineNumber,
+        (ODL_Std_Params,
          const char *   text1,
          const intmax_t val1,
          const char *   text2,

@@ -77,4 +77,10 @@
 #  define nullptr NULL
 # endif /* ! CPP_2011_ */
 
+# undef ODL_Std_Args
+# undef ODL_Std_Params
+
+# define ODL_Std_Params const char * fileName, const char * funcName, const int lineNumber
+# define ODL_Std_Args  __FILE__, ODL_FUNC_NAME_, __LINE__
+
 #endif // ! defined(ODL_CONFIG_H_)

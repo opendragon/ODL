@@ -157,13 +157,13 @@
 /*! @brief Write a string to the log.
  @param[in] text The string to be written. */
 #  define ODL_LOG(text) \
-        ODL_(__FILE__, ODL_FUNC_NAME_,  __LINE__, text)
+        ODL_(ODL_Std_Args, text)
 
 /*! @brief Write a boolean value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #  define ODL_B1(text1, val1) \
-        ODLB1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (long) (val1))
+        ODLB1_(ODL_Std_Args, text1, (long) (val1))
 
 /*! @brief Write two boolean values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -171,7 +171,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
 #  define ODL_B2(text1, val1, text2, val2) \
-        ODLB2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (long) (val1), text2, (long) (val2))
+        ODLB2_(ODL_Std_Args, text1, (long) (val1), text2, (long) (val2))
 
 /*! @brief Write three boolean values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -181,8 +181,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
 #  define ODL_B3(text1, val1, text2, val2, text3, val3) \
-        ODLB3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (long) (val1), text2, (long) (val2),\
-               text3, (long) (val3))
+        ODLB3_(ODL_Std_Args, text1, (long) (val1), text2, (long) (val2), text3, (long) (val3))
 
 /*! @brief Write four boolean values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -194,14 +193,13 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
 #  define ODL_B4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLB4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (long) (val1), text2, (long) (val2),\
-               text3, (long) (val3), text4, (long) (val4))
+        ODLB4_(ODL_Std_Args, text1, (long) (val1), text2, (long) (val2), text3, (long) (val3), text4, (long) (val4))
 
 /*! @brief Write a character value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #  define ODL_C1(text1, val1) \
-        ODLC1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (char) (val1))
+        ODLC1_(ODL_Std_Args, text1, (char) (val1))
 
 /*! @brief Write two character values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -209,7 +207,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
 #  define ODL_C2(text1, val1, text2, val2) \
-        ODLC2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (char) (val1), text2, (char) (val2))
+        ODLC2_(ODL_Std_Args, text1, (char) (val1), text2, (char) (val2))
 
 /*! @brief Write three character values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -219,8 +217,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
 #  define ODL_C3(text1, val1, text2, val2, text3, val3) \
-        ODLC3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (char) (val1), text2, (char) (val2),\
-               text3, (char) (val3))
+        ODLC3_(ODL_Std_Args, text1, (char) (val1), text2, (char) (val2), text3, (char) (val3))
 
 /*! @brief Write four character values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -232,14 +229,13 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
 #  define ODL_C4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLC4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (char) (val1), text2, (char) (val2),\
-               text3, (char) (val3), text4, (char) (val4))
+        ODLC4_(ODL_Std_Args, text1, (char) (val1), text2, (char) (val2), text3, (char) (val3), text4, (char) (val4))
 
 /*! @brief Write a double value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #  define ODL_D1(text1, val1) \
-        ODLD1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1)
+        ODLD1_(ODL_Std_Args, text1, val1)
 
 /*! @brief Write two double values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -247,7 +243,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
 #  define ODL_D2(text1, val1, text2, val2) \
-        ODLD2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1, text2, val2)
+        ODLD2_(ODL_Std_Args, text1, val1, text2, val2)
 
 /*! @brief Write three double values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -257,7 +253,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
 #  define ODL_D3(text1, val1, text2, val2, text3, val3) \
-        ODLD3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1, text2, val2, text3, val3)
+        ODLD3_(ODL_Std_Args, text1, val1, text2, val2, text3, val3)
 
 /*! @brief Write four double values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -269,98 +265,97 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
 #  define ODL_D4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLD4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1, text2, val2, text3, val3, text4,\
-               val4)
+        ODLD4_(ODL_Std_Args, text1, val1, text2, val2, text3, val3, text4, val4)
 
 /*! @brief Write a function entry string to the log. */
 #  define ODL_ENTER() \
-        ODLEnter_(__FILE__, ODL_FUNC_NAME_, __LINE__)
+        ODLEnter_(ODL_Std_Args)
 
 /*! @brief Write a void function exit string to the log. */
 #  define ODL_EXIT() \
-        ODLExit_(__FILE__, ODL_FUNC_NAME_, __LINE__)
+        ODLExit_(ODL_Std_Args)
 
 /*! @brief Write a boolean function exit string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_B(val) \
-        ODLExitB_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitB_(ODL_Std_Args, val)
 
 /*! @brief Write a character function exit string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_C(val) \
-        ODLExitC_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitC_(ODL_Std_Args, val)
 
 /*! @brief Write a double function exit string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_D(val) \
-        ODLExitD_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitD_(ODL_Std_Args, val)
 
 /*! @brief Write an exit function string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_EXIT(val) \
-        ODLExitExit_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitExit_(ODL_Std_Args, val)
 
 /*! @brief Write an integer function exit string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_I(val) \
-        ODLExitI_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitI_(ODL_Std_Args, val)
 
 #  if defined(__OBJC__)
 /*! @brief Write an object function exit string to the log.
  @param[in] val The value being returned by the function. */
 #   define ODL_EXIT_O(val) \
-        ODLExitO_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitO_(ODL_Std_Args, val)
 #  endif // defined(__OBJC__)
 
 /*! @brief Write a pointer function exit string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_P(val) \
-        ODLExitP_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitP_(ODL_Std_Args, val)
 
 #  if defined(__APPLE__)
 /*! @brief Write a rectangle function exit string to the log.
  @param[in] val The value being returned by the function. */
 #   define ODL_EXIT_RECT(val) \
-        ODLExitRect_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitRect_(ODL_Std_Args, val)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a string function exit string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_S(val) \
-        ODLExitS_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitS_(ODL_Std_Args, val)
 
 #  if defined(__APPLE__)
 /*! @brief Write a size function exit string to the log.
  @param[in] val The value being returned by the function. */
 #   define ODL_EXIT_SIZE(val) \
-        ODLExitSize_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitSize_(ODL_Std_Args, val)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a throw/integer function exit string to the log.
  @param[in] val The value being thrown by the function. */
 #  define ODL_EXIT_THROW_I(val) \
-        ODLExitThrowI_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitThrowI_(ODL_Std_Args, val)
 
 /*! @brief Write a throw/string function exit string to the log.
  @param[in] val The value being thrown by the function. */
 #  define ODL_EXIT_THROW_S(val) \
-        ODLExitThrowS_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitThrowS_(ODL_Std_Args, val)
 
 /*! @brief Write a throw/integer hexadecimal function exit string to the log.
  @param[in] val The value being thrown by the function. */
 #  define ODL_EXIT_THROW_X(val) \
-        ODLExitThrowX_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitThrowX_(ODL_Std_Args, val)
 
 /*! @brief Write an integer hexadecimal function exit string to the log.
  @param[in] val The value being returned by the function. */
 #  define ODL_EXIT_X(val) \
-        ODLExitX_(__FILE__, ODL_FUNC_NAME_, __LINE__, val)
+        ODLExitX_(ODL_Std_Args, val)
 
 /*! @brief Write an integer value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #  define ODL_I1(text1, val1) \
-        ODLI1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1))
+        ODLI1_(ODL_Std_Args, text1, (intmax_t) (val1))
 
 /*! @brief Write two integer values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -368,7 +363,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
 #  define ODL_I2(text1, val1, text2, val2) \
-        ODLI2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1), text2, (intmax_t) (val2))
+        ODLI2_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2))
 
 /*! @brief Write three integer values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -378,8 +373,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
 #  define ODL_I3(text1, val1, text2, val2, text3, val3) \
-        ODLI3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1), text2, (intmax_t) (val2),\
-               text3, (intmax_t) (val3))
+        ODLI3_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3))
 
 /*! @brief Write four integer values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -391,34 +385,33 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
 #  define ODL_I4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLI4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1), text2, (intmax_t) (val2),\
-               text3, (intmax_t) (val3), text4, (intmax_t) (val4))
+        ODLI4_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3), text4, (intmax_t) (val4))
 
 /*! @brief Set up the logging state.
  @param[in] prefix The output prefix string to be applied.
  @param[in] options The logging options to be applied. */
 #  define ODL_INIT(prefix, options) \
-        ODLInit_(prefix, options, __FILE__, ODL_FUNC_NAME_, __LINE__)
+        ODLInit_(prefix, options, ODL_Std_Args)
 
 /*! @brief Write an IP address to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The IP address value to be written.
  @param[in] val2 The port value to be written. */
 #  define ODL_IP(text1, val1, val2) \
-        ODLIP_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (long) (val1), (long) (val2))
+        ODLIP_(ODL_Std_Args, text1, (long) (val1), (long) (val2))
 
 /*! @brief Write a long string value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #  define ODL_LS(text1, val1) \
-        ODLLS_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1)
+        ODLLS_(ODL_Std_Args, text1, val1)
 
 #  if defined(__OBJC__)
 /*! @brief Write an object value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] obj1 The value to be written. */
 #   define ODL_O1(text1, obj1) \
-        ODLO1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, obj1)
+        ODLO1_(ODL_Std_Args, text1, obj1)
 
 /*! @brief Write two object values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -426,7 +419,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] obj2 The second value to be written. */
 #   define ODL_O2(text1, obj1, text2, obj2) \
-        ODLO2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, obj1, text2, obj2)
+        ODLO2_(ODL_Std_Args, text1, obj1, text2, obj2)
 
 /*! @brief Write three object values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -436,7 +429,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] obj3 The third value to be written. */
 #   define ODL_O3(text1, obj1, text2, obj2, text3, obj3) \
-        ODLO3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, obj1, text2, obj2, text3, obj3)
+        ODLO3_(ODL_Std_Args, text1, obj1, text2, obj2, text3, obj3)
 
 /*! @brief Write four object values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -448,99 +441,98 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] obj4 The fourth value to be written. */
 #   define ODL_O4(text1, obj1, text2, obj2, text3, obj3, text4, obj4) \
-        ODLO4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, obj1, text2, obj2, text3, obj3, text4,\
-               obj4)
+        ODLO4_(ODL_Std_Args, text1, obj1, text2, obj2, text3, obj3, text4, obj4)
 #  endif // defined(__OBJC__)
 
 /*! @brief Write a method entry string to the log. */
 #  define ODL_OBJENTER() \
-        ODLObjEnter_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_)
+        ODLObjEnter_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_)
 
 /*! @brief Write a void method exit string to the log. */
 #  define ODL_OBJEXIT() \
-        ODLObjExit_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_)
+        ODLObjExit_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_)
 
 /*! @brief Write a boolean method exit string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_B(val) \
-        ODLObjExitB_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitB_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write a character method exit string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_C(val) \
-        ODLObjExitC_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitC_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write a double method exit string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_D(val) \
-        ODLObjExitD_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitD_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write an exit method string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_EXIT(val) \
-        ODLObjExitExit_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitExit_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write an integer method exit string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_I(val) \
-        ODLObjExitI_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitI_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 #  if defined(__OBJC__)
 /*! @brief Write an object method exit string to the log.
  @param[in] val The value being returned by the method. */
 #   define ODL_OBJEXIT_O(val) \
-        ODLObjExitO_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitO_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 #  endif // defined(__OBJC__)
 
 /*! @brief Write a pointer method exit string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_P(val) \
-        ODLObjExitP_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitP_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 #  if defined(__APPLE__)
 /*! @brief Write a rectangle method exit string to the log.
  @param[in] val The value being returned by the method. */
 #   define ODL_OBJEXIT_RECT(val) \
-        ODLObjExitRect_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitRect_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a string method exit string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_S(val) \
-        ODLObjExitS_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitS_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 #  if defined(__APPLE__)
 /*! @brief Write a size method exit string to the log.
  @param[in] val The value being returned by the method. */
 #   define ODL_OBJEXIT_SIZE(val) \
-        ODLObjExitSize_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitSize_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a throw/integer method exit string to the log.
  @param[in] val The value being thrown by the method. */
 #  define ODL_OBJEXIT_THROW_I(val) \
-        ODLObjExitThrowI_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitThrowI_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write a throw/string method exit string to the log.
  @param[in] val The value being thrown by the method. */
 #  define ODL_OBJEXIT_THROW_S(val) \
-        ODLObjExitThrowS_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitThrowS_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write a throw/integer hexadecimal method exit string to the log.
  @param[in] val The value being thrown by the method. */
 #  define ODL_OBJEXIT_THROW_X(val) \
-        ODLObjExitThrowX_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitThrowX_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write an integer hexadecimal method exit string to the log.
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_X(val) \
-        ODLObjExitX_(__FILE__, ODL_FUNC_NAME_, __LINE__, ODL_SELF_OR_THIS_OR_NULL_, val)
+        ODLObjExitX_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write a pointer value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] ptr1 The value to be written. */
 #  define ODL_P1(text1, ptr1) \
-        ODLP1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, ptr1)
+        ODLP1_(ODL_Std_Args, text1, ptr1)
 
 /*! @brief Write two pointer values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -548,7 +540,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] ptr2 The second value to be written. */
 #  define ODL_P2(text1, ptr1, text2, ptr2) \
-        ODLP2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, ptr1, text2, ptr2)
+        ODLP2_(ODL_Std_Args, text1, ptr1, text2, ptr2)
 
 /*! @brief Write three pointer values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -558,7 +550,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] ptr3 The third value to be written. */
 #  define ODL_P3(text1, ptr1, text2, ptr2, text3, ptr3) \
-        ODLP3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, ptr1, text2, ptr2, text3, ptr3)
+        ODLP3_(ODL_Std_Args, text1, ptr1, text2, ptr2, text3, ptr3)
 
 /*! @brief Write four pointer values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -570,29 +562,28 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] ptr4 The fourth value to be written. */
 #  define ODL_P4(text1, ptr1, text2, ptr2, text3, ptr3, text4, ptr4) \
-        ODLP4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, ptr1, text2, ptr2, text3, ptr3, text4,\
-               ptr4)
+        ODLP4_(ODL_Std_Args, text1, ptr1, text2, ptr2, text3, ptr3, text4, ptr4)
 
 /*! @brief Write a region of memory to the log.
  @param[in] caption The caption for the region to be written.
  @param[in] buffer The starting address of the region.
  @param[in] size The number of bytes to be written. */
 #  define ODL_PACKET(caption, buffer, size) \
-        ODLPacket_(__FILE__, ODL_FUNC_NAME_,  __LINE__, caption, buffer, size)
+        ODLPacket_(ODL_Std_Args, caption, buffer, size)
 
 #  if defined(__APPLE__)
 /*! @brief Write a rectangle to the log.
  @param[in] caption The caption for the value to be written.
  @param[in] rect The value to be written. */
 #   define ODL_RECT(caption, rect) \
-        ODLRect_(__FILE__, ODL_FUNC_NAME_,  __LINE__, caption, rect)
+        ODLRect_(ODL_Std_Args, caption, rect)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a string value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #  define ODL_S1(text1, val1) \
-        ODLS1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1)
+        ODLS1_(ODL_Std_Args, text1, val1)
 
 /*! @brief Write two string values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -600,7 +591,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
 #  define ODL_S2(text1, val1, text2, val2) \
-        ODLS2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1, text2, val2)
+        ODLS2_(ODL_Std_Args, text1, val1, text2, val2)
 
 /*! @brief Write three string values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -610,7 +601,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
 #  define ODL_S3(text1, val1, text2, val2, text3, val3) \
-        ODLS3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1, text2, val2, text3, val3)
+        ODLS3_(ODL_Std_Args, text1, val1, text2, val2, text3, val3)
 
 /*! @brief Write four string values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -622,15 +613,14 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
 #  define ODL_S4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLS4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1, text2, val2, text3, val3, text4,\
-               val4)
+        ODLS4_(ODL_Std_Args, text1, val1, text2, val2, text3, val3, text4, val4)
 
 #  if defined(__APPLE__)
 /*! @brief Write a size to the log.
  @param[in] caption The caption for the value to be written.
  @param[in] size The value to be written. */
 #   define ODL_SIZE(caption, size) \
-        ODLSize_(__FILE__, ODL_FUNC_NAME_,  __LINE__, caption, size)
+        ODLSize_(ODL_Std_Args, caption, size)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a (possibly unterminated) string to the log.
@@ -638,21 +628,21 @@
  @param[in] len The number of bytes to be written.
  @param[in] val The value to be written. */
 #  define ODL_Sp(text, len, val) \
-        ODLSp_(__FILE__, ODL_FUNC_NAME_, __LINE__, text, (long) len, val)
+        ODLSp_(ODL_Std_Args, text, (long) len, val)
 
 #  if MAC_OR_LINUX_
 /*! @brief Write a time value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #   define ODL_TIME(text1, val1) \
-        ODLTime_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, val1)
+        ODLTime_(ODL_Std_Args, text1, val1)
 #  endif // MAC_OR_LINUX_
 
 /*! @brief Write an integer hexadecimal value to the log.
  @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
 #  define ODL_X1(text1, val1) \
-        ODLX1_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1))
+        ODLX1_(ODL_Std_Args, text1, (intmax_t) (val1))
 
 /*! @brief Write two integer hexadecimal values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -660,7 +650,7 @@
  @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
 #  define ODL_X2(text1, val1, text2, val2) \
-        ODLX2_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1), text2, (intmax_t) (val2))
+        ODLX2_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2))
 
 /*! @brief Write three integer hexadecimal values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -670,8 +660,7 @@
  @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
 #  define ODL_X3(text1, val1, text2, val2, text3, val3) \
-        ODLX3_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1), text2, (intmax_t) (val2),\
-               text3, (intmax_t) (val3))
+        ODLX3_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3))
 
 /*! @brief Write four integer hexadecimal values to the log.
  @param[in] text1 The caption for the first value to be written.
@@ -683,8 +672,7 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
 #  define ODL_X4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLX4_(__FILE__, ODL_FUNC_NAME_, __LINE__, text1, (intmax_t) (val1), text2, (intmax_t) (val2),\
-               text3, (intmax_t) (val3), text4, (intmax_t) (val4))
+        ODLX4_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3), text4, (intmax_t) (val4))
 
 # else // ! defined(ODL_ENABLE_LOGGING_)
 #  if defined(__OBJC__)
@@ -1185,7 +1173,6 @@
  @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
 # define ODL_S4s(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODL_S4(text1, val1.c_str(), text2, val2.c_str(), text3, val3.c_str(), text4,\
-                val4.c_str())
+        ODL_S4(text1, val1.c_str(), text2, val2.c_str(), text3, val3.c_str(), text4, val4.c_str())
 
 #endif // ! defined(ODL_INCLUDE_H_)
