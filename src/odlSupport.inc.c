@@ -82,7 +82,7 @@
 #  define ODL_MAX_BYTES_IN_LINE_ 16
 
 /*! @brief The maximum size of the output displayed per line when logging a memory region. */
-#  define ODL_MAX_CHARS_IN_LINE_ (ODL_MAX_BYTES_IN_LINE_ *4)
+#  define ODL_MAX_CHARS_IN_LINE_ (ODL_MAX_BYTES_IN_LINE_ * 4)
 
 /*! @brief The initial indentation level. */
 #  define ODL_INIT_VALUE_ 1
