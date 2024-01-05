@@ -1424,39 +1424,6 @@ ODLExitP_
     ODL_FREE_INDENT_();
 } // ODLExitP_
 
-#  if defined(__APPLE__)
-EXTERN_C void
-ODLExitRect_
-    (ODL_Std_Params,
-     const CGRect   val)
-{
-    const char *    rootName = odFileNameRoot_(fileName);
-
-    odDecreaseIndent_();
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_RECT_ "\n", ODL_FUNC_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val.origin.x, val.origin.y, val.size.height, val.size.width);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_RECT_, ODL_FUNC_PREFIX_(rootName), ODL_EXIT_VALUE_,
-              val.origin.x, val.origin.y, val.size.height, val.size.width);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_RECT_, ODL_FUNC_PREFIX_(rootName),
-               ODL_EXIT_VALUE_, val.origin.x, val.origin.y, val.size.height, val.size.width);
-#   endif // ! defined(__OBJC__)
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLExitRect_
-#  endif // defined(__APPLE__)
-
 EXTERN_C void
 ODLExitS_
     (ODL_Std_Params,
@@ -2645,40 +2612,6 @@ ODLObjExitP_
     ODL_FREE_INDENT_();
 } // ODLObjExitP_
 
-#  if defined(__APPLE__)
-EXTERN_C void
-ODLObjExitRect_
-    (ODL_Std_Params,
-     const void *   objPtr,
-     const CGRect   val)
-{
-    const char *    rootName = odFileNameRoot_(fileName);
-
-    odDecreaseIndent_();
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_METHOD_FORMAT_ ODL_FORMAT_RECT_ "\n", ODL_METHOD_PREFIX_(rootName),
-                ODL_EXIT_VALUE_, val.origin.x, val.origin.y, val.size.height, val.size.width);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#   if defined(__OBJC__)
-        NSLog(@ODL_METHOD_FORMAT_ ODL_FORMAT_RECT_, ODL_METHOD_PREFIX_(rootName), ODL_EXIT_VALUE_,
-              val.origin.x, val.origin.y, val.size.height, val.size.width);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_METHOD_FORMAT_ ODL_FORMAT_RECT_, ODL_METHOD_PREFIX_(rootName),
-               ODL_EXIT_VALUE_, val.origin.x, val.origin.y, val.size.height, val.size.width);
-#   endif // ! defined(__OBJC__)
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLObjExitRect_
-#  endif // defined(__APPLE__)
-
 EXTERN_C void
 ODLObjExitS_
     (ODL_Std_Params,
@@ -3184,39 +3117,6 @@ ODLPacket_
     ODL_FREE_PREFIX_();
     ODL_FREE_INDENT_();
 } // ODLPacket_
-
-#  if defined(__APPLE__)
-EXTERN_C void
-ODLRect_
-    (ODL_Std_Params,
-     const char *   caption,
-     const CGRect   rect)
-{
-    const char *    rootName = odFileNameRoot_(fileName);
-
-    ODL_CREATE_INDENT_();
-    ODL_CREATE_PREFIX_();
-    if (lOdLogFile_)
-    {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_RECT_ "\n", ODL_FUNC_PREFIX_(rootName),
-                caption, rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
-        fflush(lOdLogFile_);
-    }
-    else
-    {
-#   if defined(__OBJC__)
-        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_RECT_, ODL_FUNC_PREFIX_(rootName), caption, rect.origin.x,
-              rect.origin.y, rect.size.height, rect.size.width);
-#   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_RECT_, ODL_FUNC_PREFIX_(rootName),
-               caption, rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
-#   endif // ! defined(__OBJC__)
-    }
-    ODL_FREE_PREFIX_();
-    ODL_FREE_INDENT_();
-} // ODLRect_
-#  endif // defined(__APPLE__)
 
 EXTERN_C void
 ODLS1_

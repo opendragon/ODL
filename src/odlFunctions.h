@@ -445,18 +445,6 @@ extern "C"
         (ODL_Std_Params,
          const void *   val);
 
-# if defined(__APPLE__)
-    /*! @brief Write a rectangle function exit string to the log.
-     @param[in] fileName The name of the source file containing the call to this function.
-     @param[in] funcName The name of the calling function.
-     @param[in] lineNumber The line number in the source file where the call occurs.
-     @param[in] val The value being returned by the function. */
-    void
-    ODLExitRect_
-        (ODL_Std_Params,
-         const CGRect   val);
-# endif // defined(__APPLE__)
-
     /*! @brief Write a string function exit string to the log.
      @param[in] fileName The name of the source file containing the call to this function.
      @param[in] funcName The name of the calling function.
@@ -809,20 +797,6 @@ extern "C"
          const void *   objPtr,
          const void *   val);
 
-# if defined(__APPLE__)
-    /*! @brief Write a rectangle method exit string to the log.
-     @param[in] fileName The name of the source file containing the call to this function.
-     @param[in] funcName The name of the calling function.
-     @param[in] lineNumber The line number in the source file where the call occurs.
-     @param[in] objPtr The this/self pointer for the caller.
-     @param[in] val The value being returned by the method. */
-    void
-    ODLObjExitRect_
-        (ODL_Std_Params,
-         const void *   objPtr,
-         const CGRect   val);
-# endif // defined(__APPLE__)
-
     /*! @brief Write a string method exit string to the log.
      @param[in] fileName The name of the source file containing the call to this function.
      @param[in] funcName The name of the calling function.
@@ -982,20 +956,6 @@ extern "C"
          const char *   caption,
          const void *   buffer,
          const int      size);
-
-# if defined(__APPLE__)
-    /*! @brief Write a rectangle to the log.
-     @param[in] fileName The name of the source file containing the call to this function.
-     @param[in] funcName The name of the calling function.
-     @param[in] lineNumber The line number in the source file where the call occurs.
-     @param[in] caption The caption for the value to be written.
-     @param[in] rect The value to be written. */
-    void
-    ODLRect_
-        (ODL_Std_Params,
-         const char *   caption,
-         const CGRect   rect);
-# endif // defined(__APPLE__)
 
     /*! @brief Write a string value to the log.
      @param[in] fileName The name of the source file containing the call to this function.

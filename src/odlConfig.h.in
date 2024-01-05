@@ -45,9 +45,6 @@
 # if defined(__OBJC__)
 #  import <Foundation/Foundation.h>
 # endif // defined(__OBJC__)
-# if defined(__APPLE__)
-#  include <CoreGraphics/CGGeometry.h>
-# endif // defined(__APPLE__)
 
 # if defined(__APPLE__)
 #  pragma clang diagnostic push
