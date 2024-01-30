@@ -49,6 +49,10 @@
 #  include <CoreGraphics/CGGeometry.h>
 # endif // defined(__APPLE__)
 
+# if defined(__cplusplus)
+#  include <string>
+# endif // defined(__cplusplus)
+
 # if defined(__APPLE__)
 #  pragma clang diagnostic push
 #  pragma clang diagnostic ignored "-Wunknown-pragmas"
@@ -125,6 +129,19 @@ enum ODLoption
     kODLoggingOptionWriteToStderr = 0x10
 
 }; // ODLoption
+
+# if defined(__cplusplus)
+
+/*! @brief Write a string to the log.
+ @param[in] fileName The name of the source file containing the call to this function.
+ @param[in] funcName The name of the calling function.
+ @param[in] lineNumber The line number in the source file where the call occurs.
+ @param[in] text The string to be written. */
+void
+ODL_
+    (ODL_Std_Params,
+     const std::string &    text);
+# endif // defined(__cplusplus)
 
 # if defined(__cplusplus)
 extern "C"

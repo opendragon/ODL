@@ -526,6 +526,50 @@ odWriteTime_
 /*! @brief The message string to be used when setting up logging for the first time. */
 #  define ODL_INIT_FORMAT_      "* %s%s" ODL_FUNC_WHERE_ " started *"
 
+#  if defined(__cplusplus)
+
+/*! @brief Write a string to the log.
+ @param[in] fileName The name of the source file containing the call to this function.
+ @param[in] funcName The name of the calling function.
+ @param[in] lineNumber The line number in the source file where the call occurs.
+ @param[in] text The string to be written. */
+void
+ODL_
+    (ODL_Std_Params,
+     const std::string &    text)
+{
+    const char *    rootName = odFileNameRoot_(fileName);
+
+    ODL_CREATE_INDENT_();
+    ODL_CREATE_PREFIX_();
+    if (lOdLogFile_)
+    {
+        odWriteTime_(lOdLogFile_);
+        fprintf(lOdLogFile_, ODL_FUNC_FORMAT_ ODL_FORMAT_LOG_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text.c_str());
+        fflush(lOdLogFile_);
+    }
+    else
+    {
+#   if MAC_OR_LINUX_
+#    if defined(__OBJC__)
+        NSLog(@ODL_FUNC_FORMAT_ ODL_FORMAT_LOG_, ODL_FUNC_PREFIX_(rootName), text.c_str());
+#    else // ! defined(__OBJC__)
+        syslog(ODL_LEVEL_, ODL_FUNC_FORMAT_ ODL_FORMAT_LOG_, ODL_FUNC_PREFIX_(rootName),
+               text.c_str());
+#    endif // ! defined(__OBJC__)
+#   else // ! MAC_OR_LINUX_
+        odWriteTime_(ODL_STREAM_);
+        fprintf(ODL_STREAM_, ODL_FUNC_FORMAT_ ODL_FORMAT_LOG_ "\n", ODL_FUNC_PREFIX_(rootName),
+                text.c_str());
+        fflush(ODL_STREAM_);
+#   endif // ! MAC_OR_LINUX_
+    }
+    ODL_FREE_PREFIX_();
+    ODL_FREE_INDENT_();
+} // ODL_
+#  endif // defined(__cplusplus)
+
 EXTERN_C void
 ODL_
     (ODL_Std_Params,
