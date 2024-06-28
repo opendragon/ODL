@@ -56,6 +56,7 @@
 # undef CPP_2014_
 # undef CPP_2017_
 # undef CPP_2020_
+# undef CPP_2023_
 /*! @brief @c TRUE if C++ features from pre-2003 are supported. */
 # define CPP_1997_	TRUE	/* Minimum supported C++ version */
 /*! @brief @c TRUE if C++ features from C++03 are supported. */
@@ -68,5 +69,7 @@
 # define CPP_2017_	(__cplusplus >= 201703L)
 /*! @brief @c TRUE if C++ features from C++20 are supported. */
 # define CPP_2020_	(__cplusplus >= 202002L)
+/*! @brief @c TRUE if C++ features from C++23 are supported. */
+# define CPP_2023_    (__cplusplus >= 202302L)
 
 #endif // ! defined(CPP_VERSIONS_H_)
