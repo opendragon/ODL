@@ -57,7 +57,7 @@
 #  undef ODL_ENABLE_LOGGING_
 # endif // defined(ODL_DISABLE_LOGGING_)
 
-# undef ODL_OBJPRINTABLE_STRING
+# undef ODL_OBJ_PRINTABLE_STRING
 # undef ODL_SELF_OR_THIS_OR_NULL_
 
 # undef ODL_LOG
@@ -145,7 +145,7 @@
 /*! @brief The pointer to the calling object for a method. */
 #   define ODL_SELF_OR_THIS_OR_NULL_   (__bridge const void *) self
 /*! @brief Return the string description for an Objective-C object. */
-#   define ODL_OBJPRINTABLE_STRING(xx) (xx ? [[xx description] UTF8String] : "<>")
+#   define ODL_OBJ_PRINTABLE_STRING(xx) (xx ? [[xx description] UTF8String] : "<>")
 #  elif defined(__cplusplus)
 /*! @brief The pointer to the calling object for a method. */
 #   define ODL_SELF_OR_THIS_OR_NULL_   (const void *) this
@@ -160,112 +160,82 @@
         ODL_(ODL_Std_Args, text)
 
 /*! @brief Write a boolean value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_B1(text1, val1) \
-        ODLB1_(ODL_Std_Args, text1, (long) (val1))
+#  define ODL_B1(val1) \
+        ODLB1_(ODL_Std_Args, #val1 ": ", (long) (val1))
 
 /*! @brief Write two boolean values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_B2(text1, val1, text2, val2) \
-        ODLB2_(ODL_Std_Args, text1, (long) (val1), text2, (long) (val2))
+#  define ODL_B2(val1, val2) \
+        ODLB2_(ODL_Std_Args, #val1 ": ", (long) (val1), #val2 ": ", (long) (val2))
 
 /*! @brief Write three boolean values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_B3(text1, val1, text2, val2, text3, val3) \
-        ODLB3_(ODL_Std_Args, text1, (long) (val1), text2, (long) (val2), text3, (long) (val3))
+#  define ODL_B3(val1, val2, val3) \
+        ODLB3_(ODL_Std_Args, #val1 ": ", (long) (val1), #val2 ": ", (long) (val2), #val3 ": ", (long) (val3))
 
 /*! @brief Write four boolean values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_B4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLB4_(ODL_Std_Args, text1, (long) (val1), text2, (long) (val2), text3, (long) (val3), text4, (long) (val4))
+#  define ODL_B4(val1, val2, val3, val4) \
+        ODLB4_(ODL_Std_Args, #val1 ": ", (long) (val1), #val2 ": ", (long) (val2), #val3 ": ", (long) (val3), #val4 ": ", (long) (val4))
 
 /*! @brief Write a character value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_C1(text1, val1) \
-        ODLC1_(ODL_Std_Args, text1, (char) (val1))
+#  define ODL_C1(val1) \
+        ODLC1_(ODL_Std_Args, #val1 ": ", (char) (val1))
 
 /*! @brief Write two character values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_C2(text1, val1, text2, val2) \
-        ODLC2_(ODL_Std_Args, text1, (char) (val1), text2, (char) (val2))
+#  define ODL_C2(val1, val2) \
+        ODLC2_(ODL_Std_Args, #val1 ": ", (char) (val1), #val2 ": ", (char) (val2))
 
 /*! @brief Write three character values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_C3(text1, val1, text2, val2, text3, val3) \
-        ODLC3_(ODL_Std_Args, text1, (char) (val1), text2, (char) (val2), text3, (char) (val3))
+#  define ODL_C3(val1, val2, val3) \
+        ODLC3_(ODL_Std_Args, #val1 ": ", (char) (val1), #val2 ": ", (char) (val2), #val3 ": ", (char) (val3))
 
 /*! @brief Write four character values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_C4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLC4_(ODL_Std_Args, text1, (char) (val1), text2, (char) (val2), text3, (char) (val3), text4, (char) (val4))
+#  define ODL_C4(val1, val2, val3, val4) \
+        ODLC4_(ODL_Std_Args, #val1 ": ", (char) (val1), #val2 ": ", (char) (val2), #val3 ": ", (char) (val3), #val4 ": ", (char) (val4))
 
 /*! @brief Write a double value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_D1(text1, val1) \
-        ODLD1_(ODL_Std_Args, text1, val1)
+#  define ODL_D1(val1) \
+        ODLD1_(ODL_Std_Args, #val1 ": ", val1)
 
 /*! @brief Write two double values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_D2(text1, val1, text2, val2) \
-        ODLD2_(ODL_Std_Args, text1, val1, text2, val2)
+#  define ODL_D2(val1, val2) \
+        ODLD2_(ODL_Std_Args, #val1 ": ", val1, #val2 ": ", val2)
 
 /*! @brief Write three double values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_D3(text1, val1, text2, val2, text3, val3) \
-        ODLD3_(ODL_Std_Args, text1, val1, text2, val2, text3, val3)
+#  define ODL_D3(val1, val2, val3) \
+        ODLD3_(ODL_Std_Args, #val1 ": ", val1, #val2 ": ", val2, #val3 ": ", val3)
 
 /*! @brief Write four double values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_D4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLD4_(ODL_Std_Args, text1, val1, text2, val2, text3, val3, text4, val4)
+#  define ODL_D4(val1, val2, val3, val4) \
+        ODLD4_(ODL_Std_Args, #val1 ": ", val1, #val2 ": ", val2, #val3 ": ", val3, #val4 ": ", val4)
 
 /*! @brief Write a function entry string to the log. */
 #  define ODL_ENTER() \
@@ -352,40 +322,30 @@
         ODLExitX_(ODL_Std_Args, val)
 
 /*! @brief Write an integer value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_I1(text1, val1) \
-        ODLI1_(ODL_Std_Args, text1, (intmax_t) (val1))
+#  define ODL_I1(val1) \
+        ODLI1_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1))
 
 /*! @brief Write two integer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_I2(text1, val1, text2, val2) \
-        ODLI2_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2))
+#  define ODL_I2(val1, val2) \
+        ODLI2_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1), #val2 ": ", (intmax_t) (val2))
 
 /*! @brief Write three integer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_I3(text1, val1, text2, val2, text3, val3) \
-        ODLI3_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3))
+#  define ODL_I3(val1, val2, val3) \
+        ODLI3_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1), #val2 ": ", (intmax_t) (val2), #val3 ": ", (intmax_t) (val3))
 
 /*! @brief Write four integer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_I4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLI4_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3), text4, (intmax_t) (val4))
+#  define ODL_I4(val1, val2, val3, val4) \
+        ODLI4_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1), #val2 ": ", (intmax_t) (val2), #val3 ": ", (intmax_t) (val3), #val4 ": ", (intmax_t) (val4))
 
 /*! @brief Set up the logging state.
  @param[in] prefix The output prefix string to be applied.
@@ -401,47 +361,36 @@
         ODLIP_(ODL_Std_Args, text1, (long) (val1), (long) (val2))
 
 /*! @brief Write a long string value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_LS(text1, val1) \
-        ODLLS_(ODL_Std_Args, text1, val1)
+#  define ODL_LS(val1) \
+        ODLLS_(ODL_Std_Args, #val1 ": ", val1)
 
 #  if defined(__OBJC__)
 /*! @brief Write an object value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] obj1 The value to be written. */
-#   define ODL_O1(text1, obj1) \
-        ODLO1_(ODL_Std_Args, text1, obj1)
+#   define ODL_O1(obj1) \
+        ODLO1_(ODL_Std_Args, #obj1 ": ", obj1)
 
 /*! @brief Write two object values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] obj1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] obj2 The second value to be written. */
-#   define ODL_O2(text1, obj1, text2, obj2) \
-        ODLO2_(ODL_Std_Args, text1, obj1, text2, obj2)
+#   define ODL_O2(obj1, obj2) \
+        ODLO2_(ODL_Std_Args, #obj1 ": ", obj1, #obj2 ": ", obj2)
 
 /*! @brief Write three object values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] obj1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] obj2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] obj3 The third value to be written. */
-#   define ODL_O3(text1, obj1, text2, obj2, text3, obj3) \
-        ODLO3_(ODL_Std_Args, text1, obj1, text2, obj2, text3, obj3)
+#   define ODL_O3(obj1, obj2, obj3) \
+        ODLO3_(ODL_Std_Args, #obj1 ": ", obj1, #obj2 ": ", obj2, #obj3 ": ", obj3)
 
 /*! @brief Write four object values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] obj1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] obj2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] obj3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] obj4 The fourth value to be written. */
-#   define ODL_O4(text1, obj1, text2, obj2, text3, obj3, text4, obj4) \
-        ODLO4_(ODL_Std_Args, text1, obj1, text2, obj2, text3, obj3, text4, obj4)
+#   define ODL_O4(obj1, obj2, obj3, obj4) \
+        ODLO4_(ODL_Std_Args, #obj1 ": ", obj1, #obj2 ": ", obj2, #obj3 ": ", obj3, #obj4 ": ", obj4)
 #  endif // defined(__OBJC__)
 
 /*! @brief Write a method entry string to the log. */
@@ -529,40 +478,30 @@
         ODLObjExitX_(ODL_Std_Args, ODL_SELF_OR_THIS_OR_NULL_, val)
 
 /*! @brief Write a pointer value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] ptr1 The value to be written. */
-#  define ODL_P1(text1, ptr1) \
-        ODLP1_(ODL_Std_Args, text1, ptr1)
+#  define ODL_P1(ptr1) \
+        ODLP1_(ODL_Std_Args, #ptr1 ": ", ptr1)
 
 /*! @brief Write two pointer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] ptr1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] ptr2 The second value to be written. */
-#  define ODL_P2(text1, ptr1, text2, ptr2) \
-        ODLP2_(ODL_Std_Args, text1, ptr1, text2, ptr2)
+#  define ODL_P2(ptr1, ptr2) \
+        ODLP2_(ODL_Std_Args, #ptr1 ": ", ptr1, #ptr2 ": ", ptr2)
 
 /*! @brief Write three pointer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] ptr1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] ptr2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] ptr3 The third value to be written. */
-#  define ODL_P3(text1, ptr1, text2, ptr2, text3, ptr3) \
-        ODLP3_(ODL_Std_Args, text1, ptr1, text2, ptr2, text3, ptr3)
+#  define ODL_P3(ptr1, ptr2, ptr3) \
+        ODLP3_(ODL_Std_Args, #ptr1 ": ", ptr1, #ptr2 ": ", ptr2, #ptr3 ": ", ptr3)
 
 /*! @brief Write four pointer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] ptr1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] ptr2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] ptr3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] ptr4 The fourth value to be written. */
-#  define ODL_P4(text1, ptr1, text2, ptr2, text3, ptr3, text4, ptr4) \
-        ODLP4_(ODL_Std_Args, text1, ptr1, text2, ptr2, text3, ptr3, text4, ptr4)
+#  define ODL_P4(ptr1, ptr2, ptr3, ptr4) \
+        ODLP4_(ODL_Std_Args, #ptr1 ": ", ptr1, #ptr2 ": ", ptr2, #ptr3 ": ", ptr3, #ptr4 ": ", ptr4)
 
 /*! @brief Write a region of memory to the log.
  @param[in] caption The caption for the region to be written.
@@ -573,54 +512,68 @@
 
 #  if defined(__APPLE__)
 /*! @brief Write a rectangle to the log.
- @param[in] caption The caption for the value to be written.
  @param[in] rect The value to be written. */
-#   define ODL_RECT(caption, rect) \
-        ODLRect_(ODL_Std_Args, caption, rect)
+#   define ODL_RECT(rect) \
+ODLRect_(ODL_Std_Args, #rect ": ", rect)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a string value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_S1(text1, val1) \
-        ODLS1_(ODL_Std_Args, text1, val1)
+#  define ODL_S1(val1) \
+        ODLS1_(ODL_Std_Args, #val1 ": ", val1)
 
 /*! @brief Write two string values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_S2(text1, val1, text2, val2) \
-        ODLS2_(ODL_Std_Args, text1, val1, text2, val2)
+#  define ODL_S2(val1, val2) \
+        ODLS2_(ODL_Std_Args, #val1 ": ", val1, #val2 ": ", val2)
 
 /*! @brief Write three string values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_S3(text1, val1, text2, val2, text3, val3) \
-        ODLS3_(ODL_Std_Args, text1, val1, text2, val2, text3, val3)
+#  define ODL_S3(val1, val2, val3) \
+        ODLS3_(ODL_Std_Args, #val1 ": ", val1, #val2 ": ", val2, #val3 ": ", val3)
 
 /*! @brief Write four string values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_S4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLS4_(ODL_Std_Args, text1, val1, text2, val2, text3, val3, text4, val4)
+#  define ODL_S4(val1, val2, val3, val4) \
+        ODLS4_(ODL_Std_Args, #val1 ": ", val1, #val2 ": ", val2, #val3 ": ", val3, #val4 ": ", val4)
+
+/*! @brief Write a string value to the log.
+ @param[in] val1 The value to be written. */
+# define ODL_S1s(val1) \
+        ODLS1_(ODL_Std_Args, #val1 ": ", val1.c_str())
+
+/*! @brief Write two string values to the log.
+ @param[in] val1 The first value to be written.
+ @param[in] val2 The second value to be written. */
+# define ODL_S2s(val1, val2) \
+        ODLS2_(ODL_Std_Args, #val1 ": ", val1.c_str(), #val2 ": ", val2.c_str())
+
+/*! @brief Write three string values to the log.
+ @param[in] val1 The first value to be written.
+ @param[in] val2 The second value to be written.
+ @param[in] val3 The third value to be written. */
+# define ODL_S3s(val1, val2, val3) \
+        ODLS3_(ODL_Std_Args, #val1 ": ", val1.c_str(), #val2 ": ", val2.c_str(), #val3 ": ", val3.c_str())
+
+/*! @brief Write four string values to the log.
+ @param[in] val1 The first value to be written.
+ @param[in] val2 The second value to be written.
+ @param[in] val3 The third value to be written.
+ @param[in] val4 The fourth value to be written. */
+# define ODL_S4s(val1, val2, val3, val4) \
+        ODLS4_(ODL_Std_Args, #val1 ": ", val1.c_str(), #val2 ": ", val2.c_str(), #val3 ": ", val3.c_str(), #val4 ": ", val4.c_str())
 
 #  if defined(__APPLE__)
 /*! @brief Write a size to the log.
- @param[in] caption The caption for the value to be written.
  @param[in] size The value to be written. */
-#   define ODL_SIZE(caption, size) \
-        ODLSize_(ODL_Std_Args, caption, size)
+#   define ODL_SIZE(size) \
+        ODLSize_(ODL_Std_Args, #size ": ", size)
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a (possibly unterminated) string to the log.
@@ -632,52 +585,41 @@
 
 #  if MAC_OR_LINUX_
 /*! @brief Write a time value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#   define ODL_TIME(text1, val1) \
-        ODLTime_(ODL_Std_Args, text1, val1)
+#   define ODL_TIME(val1) \
+        ODLTime_(ODL_Std_Args, #val1 ": ", val1)
 #  endif // MAC_OR_LINUX_
 
 /*! @brief Write an integer hexadecimal value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_X1(text1, val1) \
-        ODLX1_(ODL_Std_Args, text1, (intmax_t) (val1))
+#  define ODL_X1(val1) \
+        ODLX1_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1))
 
 /*! @brief Write two integer hexadecimal values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_X2(text1, val1, text2, val2) \
-        ODLX2_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2))
+#  define ODL_X2(val1, val2) \
+        ODLX2_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1), #val2 ": ", (intmax_t) (val2))
 
 /*! @brief Write three integer hexadecimal values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_X3(text1, val1, text2, val2, text3, val3) \
-        ODLX3_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3))
+#  define ODL_X3(val1, val2, val3) \
+        ODLX3_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1), #val2 ": ", (intmax_t) (val2), #val3 ": ", (intmax_t) (val3))
 
 /*! @brief Write four integer hexadecimal values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_X4(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODLX4_(ODL_Std_Args, text1, (intmax_t) (val1), text2, (intmax_t) (val2), text3, (intmax_t) (val3), text4, (intmax_t) (val4))
+#  define ODL_X4(val1, val2, val3, val4) \
+        ODLX4_(ODL_Std_Args, #val1 ": ", (intmax_t) (val1), #val2 ": ", (intmax_t) (val2), #val3 ": ", (intmax_t) (val3), #val4 ": ", (intmax_t) (val4))
 
 # else // ! defined(ODL_ENABLE_LOGGING_)
 #  if defined(__OBJC__)
  /* Return the string description of an Objective-C object. */
-#   define ODL_OBJPRINTABLE_STRING(xx) ""
+#   define ODL_OBJ_PRINTABLE_STRING(xx) ""
 #  endif // defined(__OBJC__)
 
 /*! @brief Write a string to the log.
@@ -685,100 +627,70 @@
 #  define ODL_LOG(text) /* */
 
 /*! @brief Write a boolean value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_B1(text1, val1) /* */
+#  define ODL_B1(val1) /* */
 
 /*! @brief Write two boolean values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_B2(text1, val1, text2, val2) /* */
+#  define ODL_B2(val1, val2) /* */
 
 /*! @brief Write three boolean values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_B3(text1, val1, text2, val2, text3, val3) /* */
+#  define ODL_B3(val1, val2, val3) /* */
 
 /*! @brief Write four boolean values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_B4(text1, val1, text2, val2, text3, val3, text4, val4) /* */
+#  define ODL_B4(val1, val2, val3, val4) /* */
 
 /*! @brief Write a character value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_C1(text1, val1) /* */
+#  define ODL_C1(val1) /* */
 
 /*! @brief Write two character values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_C2(text1, val1, text2, val2) /* */
+#  define ODL_C2(val1, val2) /* */
 
 /*! @brief Write three character values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_C3(text1, val1, text2, val2, text3, val3) /* */
+#  define ODL_C3(val1, val2, val3) /* */
 
 /*! @brief Write four character values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_C4(text1, val1, text2, val2, text3, val3, text4, val4) /* */
+#  define ODL_C4(val1, val2, val3, val4) /* */
 
 /*! @brief Write a double value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_D1(text1, val1) /* */
+#  define ODL_D1(val1) /* */
 
 /*! @brief Write two double values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_D2(text1, val1, text2, val2) /* */
+#  define ODL_D2(val1, val2) /* */
 
 /*! @brief Write three double values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_D3(text1, val1, text2, val2, text3, val3) /* */
+#  define ODL_D3(val1, val2, val3) /* */
 
 /*! @brief Write four double values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_D4(text1, val1, text2, val2, text3, val3, text4, val4) /* */
+#  define ODL_D4(val1, val2, val3, val4) /* */
 
 /*! @brief Write a function entry string to the log. */
 #  define ODL_ENTER() /* */
@@ -849,36 +761,26 @@
 #  define ODL_EXIT_X(val) /* */
 
 /*! @brief Write an integer value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_I1(text1, val1) /* */
+#  define ODL_I1(val1) /* */
 
 /*! @brief Write two integer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_I2(text1, val1, text2, val2) /* */
+#  define ODL_I2(val1, val2) /* */
 
 /*! @brief Write three integer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_I3(text1, val1, text2, val2, text3, val3) /* */
+#  define ODL_I3(val1, val2, val3) /* */
 
 /*! @brief Write four integer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_I4(text1, val1, text2, val2, text3, val3, text4, val4) /* */
+#  define ODL_I4(val1, val2, val3, val4) /* */
 
 /*! @brief Set up the logging state.
  @param[in] prefix The output prefix string to be applied.
@@ -892,42 +794,31 @@
 #  define ODL_IP(text1, val1, val2) /* */
 
 /*! @brief Write a long string value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_LS(text1, val1) /* */
+#  define ODL_LS(val1) /* */
 
 #  if defined(__OBJC__)
 /*! @brief Write an object value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] obj1 The value to be written. */
-#   define ODL_O1(text1, obj1) /* */
+#   define ODL_O1(obj1) /* */
 
 /*! @brief Write two object values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] obj1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] obj2 The second value to be written. */
-#   define ODL_O2(text1, obj1, text2, obj2) /* */
+#   define ODL_O2(obj1, obj2) /* */
 
 /*! @brief Write three object values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] obj1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] obj2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] obj3 The third value to be written. */
-#   define ODL_O3(text1, obj1, text2, obj2, text3, obj3) /* */
+#   define ODL_O3(obj1, obj2, obj3) /* */
 
 /*! @brief Write four object values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] obj1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] obj2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] obj3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] obj4 The fourth value to be written. */
-#   define ODL_O4(text1, obj1, text2, obj2, text3, obj3, text4, obj4) /* */
+#   define ODL_O4(obj1, obj2, obj3, obj4) /* */
 #  endif // defined(__OBJC__)
 
 /*! @brief Write a method entry string to the log. */
@@ -999,36 +890,26 @@
 #  define ODL_OBJEXIT_X(val) /* */
 
 /*! @brief Write a pointer value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] ptr1 The value to be written. */
-#  define ODL_P1(text1, ptr1) /* */
+#  define ODL_P1(ptr1) /* */
 
 /*! @brief Write two pointer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] ptr1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] ptr2 The second value to be written. */
-#  define ODL_P2(text1, ptr1, text2, ptr2) /* */
+#  define ODL_P2(ptr1, ptr2) /* */
 
 /*! @brief Write three pointer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] ptr1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] ptr2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] ptr3 The third value to be written. */
-#  define ODL_P3(text1, ptr1, text2, ptr2, text3, ptr3) /* */
+#  define ODL_P3(ptr1, ptr2, ptr3) /* */
 
 /*! @brief Write four pointer values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] ptr1 The value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] ptr2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] ptr3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] ptr4 The fourth value to be written. */
-#  define ODL_P4(text1, ptr1, text2, ptr2, text3, ptr3, text4, ptr4) /* */
+#  define ODL_P4(ptr1, ptr2, ptr3, ptr4) /* */
 
 /*! @brief Write a region of memory to the log.
  @param[in] caption The caption for the region to be written.
@@ -1038,48 +919,58 @@
 
 #  if defined(__APPLE__)
 /*! @brief Write a rectangle to the log.
- @param[in] caption The caption for the value to be written.
  @param[in] rect The value to be written. */
-#   define ODL_RECT(caption, rect) /* */
+#   define ODL_RECT(rect) /* */
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a string value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_S1(text1, val1) /* */
+#  define ODL_S1(val1) /* */
 
 /*! @brief Write two string values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_S2(text1, val1, text2, val2) /* */
+#  define ODL_S2(val1, val2) /* */
 
 /*! @brief Write three string values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_S3(text1, val1, text2, val2, text3, val3) /* */
+#  define ODL_S3(val1, val2, val3) /* */
 
 /*! @brief Write four string values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_S4(text1, val1, text2, val2, text3, val3, text4, val4) /* */
+#  define ODL_S4(val1, val2, val3, val4) /* */
+
+/*! @brief Write a string value to the log.
+ @param[in] val1 The value to be written. */
+# define ODL_S1s(val1) /* */
+
+/*! @brief Write two string values to the log.
+ @param[in] val1 The first value to be written.
+ @param[in] val2 The second value to be written. */
+# define ODL_S2s(val1, val2) /* */
+
+/*! @brief Write three string values to the log.
+ @param[in] val1 The first value to be written.
+ @param[in] val2 The second value to be written.
+ @param[in] val3 The third value to be written. */
+# define ODL_S3s(val1, val2, val3) /* */
+
+/*! @brief Write four string values to the log.
+ @param[in] val1 The first value to be written.
+ @param[in] val2 The second value to be written.
+ @param[in] val3 The third value to be written.
+ @param[in] val4 The fourth value to be written. */
+# define ODL_S4s(val1, val2, val3, val4) /* */
 
 #  if defined(__APPLE__)
 /*! @brief Write a size to the log.
- @param[in] caption The caption for the value to be written.
  @param[in] size The value to be written. */
-#   define ODL_SIZE(caption, size) /* */
+#   define ODL_SIZE(size) /* */
 #  endif // defined(__APPLE__)
 
 /*! @brief Write a (possibly unterminated) string to the log.
@@ -1090,42 +981,31 @@
 
 #  if MAC_OR_LINUX_
 /*! @brief Write a time value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#   define ODL_TIME(text1, val1) /* */
+#   define ODL_TIME(val1) /* */
 #  endif // MAC_OR_LINUX_
 
 /*! @brief Write an integer hexadecimal value to the log.
- @param[in] text1 The caption for the value to be written.
  @param[in] val1 The value to be written. */
-#  define ODL_X1(text1, val1) /* */
+#  define ODL_X1(val1) /* */
 
 /*! @brief Write two integer hexadecimal values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written. */
-#  define ODL_X2(text1, val1, text2, val2) /* */
+#  define ODL_X2(val1, val2) /* */
 
 /*! @brief Write three integer hexadecimal values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written. */
-#  define ODL_X3(text1, val1, text2, val2, text3, val3) /* */
+#  define ODL_X3(val1, val2, val3) /* */
 
 /*! @brief Write four integer hexadecimal values to the log.
- @param[in] text1 The caption for the first value to be written.
  @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
  @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
  @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
  @param[in] val4 The fourth value to be written. */
-#  define ODL_X4(text1, val1, text2, val2, text3, val3, text4, val4) /* */
+#  define ODL_X4(val1, val2, val3, val4) /* */
 
 # endif // ! defined(ODL_ENABLE_LOGGING_)
 
@@ -1138,41 +1018,5 @@
  @param[in] val The value being returned by the method. */
 #  define ODL_OBJEXIT_s(val) \
         ODL_OBJEXIT_S(val.c_str())
-
-/*! @brief Write a string value to the log.
- @param[in] text1 The caption for the value to be written.
- @param[in] val1 The value to be written. */
-# define ODL_S1s(text1, val1) \
-        ODL_S1(text1, val1.c_str())
-
-/*! @brief Write two string values to the log.
- @param[in] text1 The caption for the first value to be written.
- @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
- @param[in] val2 The second value to be written. */
-# define ODL_S2s(text1, val1, text2, val2) \
-        ODL_S2(text1, val1.c_str(), text2, val2.c_str())
-
-/*! @brief Write three string values to the log.
- @param[in] text1 The caption for the first value to be written.
- @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
- @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
- @param[in] val3 The third value to be written. */
-# define ODL_S3s(text1, val1, text2, val2, text3, val3) \
-        ODL_S3(text1, val1.c_str(), text2, val2.c_str(), text3, val3.c_str())
-
-/*! @brief Write four string values to the log.
- @param[in] text1 The caption for the first value to be written.
- @param[in] val1 The first value to be written.
- @param[in] text2 The caption for the second value to be written.
- @param[in] val2 The second value to be written.
- @param[in] text3 The caption for the third value to be written.
- @param[in] val3 The third value to be written.
- @param[in] text4 The caption for the fourth value to be written.
- @param[in] val4 The fourth value to be written. */
-# define ODL_S4s(text1, val1, text2, val2, text3, val3, text4, val4) \
-        ODL_S4(text1, val1.c_str(), text2, val2.c_str(), text3, val3.c_str(), text4, val4.c_str())
 
 #endif // ! defined(ODL_INCLUDE_H_)
