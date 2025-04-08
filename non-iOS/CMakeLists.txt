@@ -86,10 +86,6 @@ endif()
 
 set(CMAKE_CXX_FLAGS "-fPIC -Wall -Wextra" CACHE STRING "Fixes linking error for ODL" FORCE)
 set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for ODL" FORCE)
-if(APPLE)
-# 'rpath' warning
-#    cmake_policy(SET CMP0042 OLD)
-endif()
 set(CMAKE_USE_RELATIVE_PATHS ON CACHE BOOL "Always set file paths as relative")
 
 if(WIN32)
