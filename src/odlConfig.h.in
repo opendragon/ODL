@@ -39,7 +39,7 @@
 #if (! defined(ODL_CONFIG_H_))
 # define ODL_CONFIG_H_ /* Header guard */
 
-# include <CppVersions.h>
+# include "CppVersions.h"
 
 # include <stdint.h>
 # if defined(__OBJC__)
