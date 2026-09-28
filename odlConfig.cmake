@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------------------------------------
 #
-#  File:       ODLConfigVersion.cmake
+#  File:       odlConfig.cmake
 #
 #  Project:    ODL
 #
-#  Contains:   The configuration version CMAKE settings for the debugging library.
+#  Contains:   The configuration CMAKE settings for the debugging library.
 #
 #  Written by: Norman Jaffe
 #
@@ -36,16 +36,22 @@
 #
 #--------------------------------------------------------------------------------------------------
 
-set(PACKAGE_VERSION @ODL_VERSION@)
+get_filename_component(SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include(${SELF_DIR}/odl.cmake)
 
-if("${PACKAGE_FIND_VERSION_MAJOR}" EQUAL "@ODL_VERSION_MAJOR@")
-    if("${PACKAGE_FIND_VERSION_MINOR}" EQUAL "@ODL_VERSION_MINOR@")
-        set(PACKAGE_VERSION_EXACT TRUE)
-    elseif("${PACKAGE_FIND_VERSION_MINOR}" LESS "@ODL_VERSION_MINOR@")
-        set(PACKAGE_VERSION_COMPATIBLE TRUE)
-    else()
-        set(PACKAGE_VERSION_UNSUITABLE TRUE)
-    endif()
+get_filename_component(PARENT_DIR "${SELF_DIR}" PATH)
+set(ODL_INCLUDE_DIRS "${PARENT_DIR}/include")
+if(WIN32)
+    set(ODL_LIBRARY "${SELF_DIR}/odlC.lib")
+elseif(APPLE)
+    set(ODL_LIBRARY "${SELF_DIR}/libodlC.dylib")
+    set(ODL_LIBRARY_OC "{SELF_DIR}/libodlOC.dylib")
+    set(ODL_LIBRARY_ROOT "libodlC.dylib")
+    set(ODL_LIBRARY_ROOT_OC "libodlOC.dylib")
+elseif(UNIX)
+    set(ODL_LIBRARY "${SELF_DIR}/libodlC.so")
 else()
-    set(PACKAGE_VERSION_UNSUITABLE TRUE)
+    set(ODL_LIBRARY "${SELF_DIR}/libodlC.a")
 endif()
+
+message(STATUS "ODL version: ${ODL_VERSION}")

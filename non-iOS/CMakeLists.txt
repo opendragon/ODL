@@ -101,8 +101,8 @@ endif()
 # Add the ODL target path so that odl can be found
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 
-configure_file(${ODL_CONFIG_DIR}/ODLConfigVersion.cmake.in
-               ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake @ONLY)
+configure_file(${ODL_CONFIG_DIR}/odlConfigVersion.cmake.in
+               ${CMAKE_CURRENT_BINARY_DIR}/odlConfigVersion.cmake @ONLY)
 configure_file("${ODL_SOURCE_DIR}/odlConfig.h.in" "${ODL_SOURCE_DIR}/odlConfig.h")
 
 if(APPLE)
@@ -157,8 +157,8 @@ install(FILES
         COMPONENT headers)
 
 install(FILES
-        ${ODL_CONFIG_DIR}/ODLConfig.cmake
-        ${CMAKE_CURRENT_BINARY_DIR}/ODLConfigVersion.cmake
+        ${ODL_CONFIG_DIR}/odlConfig.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/odlConfigVersion.cmake
         DESTINATION ${LIB_DEST}
         COMPONENT scripts)
 
