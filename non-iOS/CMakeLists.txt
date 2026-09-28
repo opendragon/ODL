@@ -53,7 +53,8 @@ if(APPLE)
 endif()
 
 project(${PROJECT_NAME}
-        HOMEPAGE_URL "https://github.com/opendragon/ODL")
+        HOMEPAGE_URL "https://github.com/opendragon/ODL"
+        LANGUAGES CXX OBJC)
 
 include(../odlCommonSettings.cmake NO_POLICY_SCOPE)
 
