@@ -43,11 +43,11 @@ set(PROJECT_NAME "odl")
 if(APPLE)
     project(${PROJECT_NAME}
             HOMEPAGE_URL "https://github.com/opendragon/ODL"
-            LANGUAGES CXX OBJC)
+            LANGUAGES C CXX OBJC)
 else()
     project(${PROJECT_NAME}
             HOMEPAGE_URL "https://github.com/opendragon/ODL"
-            LANGUAGES CXX)
+            LANGUAGES C CXX)
 endif()
 
 if(APPLE)
