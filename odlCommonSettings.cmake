@@ -36,14 +36,14 @@
 #
 #--------------------------------------------------------------------------------------------------
 
-set(ODL_VERSION_MAJOR 1)
-set(ODL_VERSION_MINOR 5)
-set(ODL_VERSION_PATCH 0)
-set(ODL_VERSION "${ODL_VERSION_MAJOR}.${ODL_VERSION_MINOR}.${ODL_VERSION_PATCH}")
-set(ODL_COMPANY "OpenDragon")
+set(odl_VERSION_MAJOR 1)
+set(odl_VERSION_MINOR 5)
+set(odl_VERSION_PATCH 0)
+set(odl_VERSION "${odl_VERSION_MAJOR}.${odl_VERSION_MINOR}.${odl_VERSION_PATCH}")
+set(odl_COMPANY "OpenDragon")
 
-set(ODL_SOURCE_DIR "${PROJECT_SOURCE_DIR}/../src")
-set(ODL_CONFIG_DIR "${PROJECT_SOURCE_DIR}/..")
+set(odl_SOURCE_DIR "${PROJECT_SOURCE_DIR}/../src")
+set(odl_CONFIG_DIR "${PROJECT_SOURCE_DIR}/..")
 
 set(LIB_DEST "lib")
 set(INCLUDE_DEST "include")

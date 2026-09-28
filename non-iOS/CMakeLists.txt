@@ -101,9 +101,9 @@ endif()
 # Add the ODL target path so that odl can be found
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 
-configure_file(${ODL_CONFIG_DIR}/odlConfigVersion.cmake.in
+configure_file(${odl_CONFIG_DIR}/odlConfigVersion.cmake.in
                ${CMAKE_CURRENT_BINARY_DIR}/odlConfigVersion.cmake @ONLY)
-configure_file("${ODL_SOURCE_DIR}/odlConfig.h.in" "${ODL_SOURCE_DIR}/odlConfig.h")
+configure_file("${odl_SOURCE_DIR}/odlConfig.h.in" "${odl_SOURCE_DIR}/odlConfig.h")
 
 if(APPLE)
     macro(ADD_FRAMEWORK fwname appname)
@@ -135,9 +135,9 @@ endif()
 
 add_library(${TARGET_ONE}
             ${DO_SHARED}
-            ${ODL_SOURCE_DIR}/odlSupport.cpp)
+            ${odl_SOURCE_DIR}/odlSupport.cpp)
 target_include_directories(${TARGET_ONE} PUBLIC
-                            $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                            $<BUILD_INTERFACE:${odl_SOURCE_DIR}> # for headers when building
                             $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
                             )
 
@@ -147,17 +147,17 @@ install(TARGETS ${TARGET_ONE}
         COMPONENT libraries)
 
 install(FILES
-        ${ODL_SOURCE_DIR}/CppVersions.h
-        ${ODL_SOURCE_DIR}/odlConfig.h
-        ${ODL_SOURCE_DIR}/odlDisable.h
-        ${ODL_SOURCE_DIR}/odlEnable.h
-        ${ODL_SOURCE_DIR}/odlFunctions.h
-        ${ODL_SOURCE_DIR}/odlInclude.h
+        ${odl_SOURCE_DIR}/CppVersions.h
+        ${odl_SOURCE_DIR}/odlConfig.h
+        ${odl_SOURCE_DIR}/odlDisable.h
+        ${odl_SOURCE_DIR}/odlEnable.h
+        ${odl_SOURCE_DIR}/odlFunctions.h
+        ${odl_SOURCE_DIR}/odlInclude.h
         DESTINATION ${INCLUDE_DEST}
         COMPONENT headers)
 
 install(FILES
-        ${ODL_CONFIG_DIR}/odlConfig.cmake
+        ${odl_CONFIG_DIR}/odlConfig.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/odlConfigVersion.cmake
         DESTINATION ${LIB_DEST}
         COMPONENT scripts)
@@ -167,10 +167,10 @@ if(APPLE)
 
     add_library(${TARGET_TWO}
                 ${DO_SHARED}
-                ${ODL_SOURCE_DIR}/odlSupport.m)
+                ${odl_SOURCE_DIR}/odlSupport.m)
     add_framework(Foundation ${TARGET_TWO})
     target_include_directories(${TARGET_TWO} PUBLIC
-                                $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                                $<BUILD_INTERFACE:${odl_SOURCE_DIR}> # for headers when building
                                 $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
                                 )
     install(TARGETS ${TARGET_TWO}

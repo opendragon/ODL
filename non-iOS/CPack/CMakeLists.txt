@@ -44,12 +44,12 @@ set(CPACK_PACKAGE_INSTALL_DIRECTORY "odl")
 set(CPACK_PACKAGE_INSTALL_REGISTRY_KEY_ "odl")
 set(CPACK_PACKAGE_NAME "ODL")
 set(CPACK_PACKAGE_VENDOR "OpenDragon")
-set(CPACK_PACKAGE_VERSION "${ODL_VERSION}")
-set(CPACK_PACKAGE_VERSION_MAJOR "${ODL_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${ODL_VERSION_MINOR}")
-set(CPACK_PACKAGE_VERSION_PATCH "${ODL_VERSION_PATCH}")
-set(CPACK_RESOURCE_FILE_LICENSE "${ODL_SOURCE_DIR}/../LICENSE")
-set(CPACK_RESOURCE_FILE_README "${ODL_SOURCE_DIR}/../README.md")
+set(CPACK_PACKAGE_VERSION "${odl_VERSION}")
+set(CPACK_PACKAGE_VERSION_MAJOR "${odl_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${odl_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${odl_VERSION_PATCH}")
+set(CPACK_RESOURCE_FILE_LICENSE "${odl_SOURCE_DIR}/../LICENSE")
+set(CPACK_RESOURCE_FILE_README "${odl_SOURCE_DIR}/../README.md")
 
 #display name for our components
 set(CPACK_COMPONENT_HEADERS_DISPLAY_NAME "C++ Header Files")
@@ -88,13 +88,13 @@ if(WIN32)
     set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
         "
         CreateDirectory 'C:\\\\Users\\\\Public\\\\Documents\\\\m+m'
-        WriteRegStr HKCU 'Environment' 'ODL_ROOT' '$INSTDIR'
+        WriteRegStr HKCU 'Environment' 'odl_ROOT' '$INSTDIR'
         ")
 
     #And, unset them when we uninstall!
     set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS
         "
-        DeleteRegValue HKCU 'Environment' 'ODL_ROOT'
+        DeleteRegValue HKCU 'Environment' 'odl_ROOT'
         ")
 elseif(APPLE)
     #Macintosh specific install step

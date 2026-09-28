@@ -89,9 +89,9 @@ set(TARGET_ONE odlCi)
 
 add_library(${TARGET_ONE}
             STATIC
-            ${ODL_SOURCE_DIR}/odlSupport.cpp)
+            ${odl_SOURCE_DIR}/odlSupport.cpp)
 target_include_directories(${TARGET_ONE} PUBLIC
-                            $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                            $<BUILD_INTERFACE:${odl_SOURCE_DIR}> # for headers when building
                             $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
                             )
 
@@ -104,10 +104,10 @@ set(TARGET_TWO odlOCi)
 
 add_library(${TARGET_TWO}
             STATIC
-            ${ODL_SOURCE_DIR}/odlSupport.m)
+            ${odl_SOURCE_DIR}/odlSupport.m)
 add_framework(Foundation ${TARGET_TWO})
 target_include_directories(${TARGET_TWO} PUBLIC
-                            $<BUILD_INTERFACE:${ODL_SOURCE_DIR}> # for headers when building
+                            $<BUILD_INTERFACE:${odl_SOURCE_DIR}> # for headers when building
                             $<INSTALL_INTERFACE:${INCLUDE_DEST}> # for client in install mode
                             )
 install(TARGETS ${TARGET_TWO}

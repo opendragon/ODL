@@ -36,10 +36,10 @@
 //
 //--------------------------------------------------------------------------------------------------
 
-#if (! defined(ODL_CONFIG_H_))
-# define ODL_CONFIG_H_ /* Header guard */
+#if (! defined(odlConfig_H_))
+# define odlConfig_H_ /* Header guard */
 
-# include "CppVersions.h"
+# include <CppVersions.h>
 
 # include <stdint.h>
 # if defined(__OBJC__)
@@ -58,16 +58,16 @@
 # endif // defined(__APPLE__)
 
 /*! @brief The major part of the version number. */
-# define ODL_VERSION_MAJOR_ @ODL_VERSION_MAJOR@
+# define odl_VERSION_MAJOR_ @odl_VERSION_MAJOR@
 
 /*! @brief The minor part of the version number. */
-# define ODL_VERSION_MINOR_ @ODL_VERSION_MINOR@
+# define odl_VERSION_MINOR_ @odl_VERSION_MINOR@
 
 /*! @brief The patch part of the version number. */
-# define ODL_VERSION_PATCH_ @ODL_VERSION_PATCH@
+# define odl_VERSION_PATCH_ @odl_VERSION_PATCH@
 
 /*! @brief The version number as a string. */
-# define ODL_VERSION_ "@ODL_VERSION@"
+# define odl_VERSION_ "@odl_VERSION@"
 
 # if (! CPP_2011_)
 /*! @brief Alias for NULL. */
@@ -80,4 +80,4 @@
 # define ODL_Std_Params const char * fileName, const char * funcName, const int lineNumber
 # define ODL_Std_Args  __FILE__, ODL_FUNC_NAME_, __LINE__
 
-#endif // ! defined(ODL_CONFIG_H_)
+#endif // ! defined(odlConfig_H_)
