@@ -38,7 +38,7 @@
 
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
-set(PROJECT_NAME "ODL")
+set(PROJECT_NAME "odl")
 
 if(APPLE)
     execute_process(COMMAND uname -m
