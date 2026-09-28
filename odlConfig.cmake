@@ -54,4 +54,4 @@ else()
     set(ODL_LIBRARY "${SELF_DIR}/libodlC.a")
 endif()
 
-message(STATUS "ODL version: ${ODL_VERSION}")
+message(STATUS "odl version: ${ODL_VERSION}")
