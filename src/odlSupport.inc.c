@@ -332,11 +332,14 @@ odBuildIndent_
     int     length = ((level > 0) ? level : 1);
     char *  result = (char *) malloc((size_t) (length + 1));
 
-    for (int ii = 0; ii < length; ++ii)
+    if (nullptr != result)
     {
-        result[ii] = ((ii &1) ? '.' : ' ');
+        for (int ii = 0; ii < length; ++ii)
+        {
+            result[ii] = ((ii &1) ? '.' : ' ');
+        }
+        result[length] = '\0';
     }
-    result[length] = '\0';
     return result;
 } // odBuildIndent_
 
@@ -368,14 +371,20 @@ odBuildPrefix_
         {
             length = lengthHexString + 2; // '<', '>'
             result = (char *) malloc(length + 1);
-            snprintf(result, length, "<%#lx>", (long unsigned) getpid());
+            if (nullptr != result)
+            {
+                snprintf(result, length, "<%#lx>", (long unsigned) getpid());
+            }
         }
     }
     else if (lOdIncludeThreadID_)
     {
         length = lengthHexString + 2; // '<', '>'
         result = (char *) malloc(length + 1);
-        snprintf(result, length, "<%#lx>", (long unsigned) pthread_self());
+        if (nullptr != result)
+        {
+            snprintf(result, length, "<%#lx>", (long unsigned) pthread_self());
+        }
     }
     else
 #  endif // MAC_OR_LINUX_
@@ -383,7 +392,10 @@ odBuildPrefix_
         length = 0;
         result = (char *) malloc(length + 1);
     }
-    result[length] = '\0';
+    if (nullptr != result)
+    {
+        result[length] = '\0';
+    }
     return result;
 } // odBuildPrefix_
 
@@ -418,6 +430,7 @@ odWriteTime_
 #  if MAC_OR_LINUX_
     strftime(buffer, sizeof(buffer), "%F %T ", localtime(&rawtime));
 #  else // ! MAC_OR_LINUX_
+    memset(&aTm, 0, sizeof(aTm));
     localtime_s(&aTm, &rawtime);
     strftime(buffer, sizeof(buffer), "%x %X ", &aTm);
 #  endif // ! MAC_OR_LINUX_
@@ -1905,8 +1918,11 @@ ODLInit_
     }
     starsLength += prefixLength + strlen(suffixString);
     stars = (char *) malloc(starsLength + 1);
-    memset(stars, '*', starsLength);
-    stars[starsLength] = '\0';
+    if (nullptr != stars)
+    {
+        memset(stars, '*', starsLength);
+        stars[starsLength] = '\0';
+    }
 #  if (MAC_OR_LINUX_ && (! defined(__OBJC__)))
     if (options & kODLoggingOptionWriteToStderr)
     {
@@ -1933,8 +1949,11 @@ ODLInit_
 #  endif // ! MAC_OR_LINUX_
         if (lOdLogFile_)
         {
-            odWriteTime_(lOdLogFile_);
-            fprintf(lOdLogFile_, "%s\n", stars);
+            if (nullptr != stars)
+            {
+                odWriteTime_(lOdLogFile_);
+                fprintf(lOdLogFile_, "%s\n", stars);
+            }
         }
         else
         {
@@ -1951,15 +1970,18 @@ ODLInit_
     }
     else
     {
+        if (nullptr != stars)
+        {
 #  if MAC_OR_LINUX_
 #   if defined(__OBJC__)
-        NSLog(@ "%s", stars);
+            NSLog(@ "%s", stars);
 #   else // ! defined(__OBJC__)
-        syslog(ODL_LEVEL_, "%s", stars);
+            syslog(ODL_LEVEL_, "%s", stars);
 #   endif // ! defined(__OBJC__)
 #  else // ! MAC_OR_LINUX_
-        fprintf(ODL_STREAM_, "%s\n", stars);
+            fprintf(ODL_STREAM_, "%s\n", stars);
 #  endif // ! MAC_OR_LINUX_
+        }
     }
     if (lOdLogFile_)
     {
@@ -1984,12 +2006,17 @@ ODLInit_
     }
     if (lOdLogFile_)
     {
-        odWriteTime_(lOdLogFile_);
-        fprintf(lOdLogFile_, "%s\n", stars);
-        fflush(lOdLogFile_);
+        if (nullptr != stars)
+        {
+            odWriteTime_(lOdLogFile_);
+            fprintf(lOdLogFile_, "%s\n", stars);
+            fflush(lOdLogFile_);
+        }
     }
     else
     {
+        if (nullptr != stars)
+        {
 #  if MAC_OR_LINUX_
 #   if defined(__OBJC__)
         NSLog(@ "%s", stars);
@@ -2001,6 +2028,7 @@ ODLInit_
         fprintf(ODL_STREAM_, "%s\n", stars);
         fflush(ODL_STREAM_);
 #  endif // ! MAC_OR_LINUX_
+        }
     }
     free(stars);
     ODL_FREE_PREFIX_();
@@ -2075,8 +2103,11 @@ ODLLS_
 
     ODL_CREATE_INDENT_();
     ODL_CREATE_PREFIX_();
-    memset(blankCaption, ' ', captionLength);
-    blankCaption[captionLength] = '\0';
+    if (nullptr != blankCaption)
+    {
+        memset(blankCaption, ' ', captionLength);
+        blankCaption[captionLength] = '\0';
+    }
     // Prefill the line buffer
     memset(lineBuffer, ' ', sizeof(lineBuffer) - 1);
     lineBuffer[sizeof(lineBuffer) - 1] = '\0';
@@ -3104,8 +3135,11 @@ ODLPacket_
                 buffer, size);
 #  endif // ! MAC_OR_LINUX_
     }
-    memset(blankCaption, ' ', captionLength);
-    blankCaption[captionLength] = '\0';
+    if (nullptr != blankCaption)
+    {
+        memset(blankCaption, ' ', captionLength);
+        blankCaption[captionLength] = '\0';
+    }
     memset(lineBuffer, ' ', sizeof(lineBuffer) - 1);
     lineBuffer[sizeof(lineBuffer) - 1] = '\0';
     for (int left = size, ii = 0; left > 0;

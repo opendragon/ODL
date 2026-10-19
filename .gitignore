@@ -29,6 +29,7 @@ odlC.vcxproj
 odlC.vcxproj.filters
 CPackConfig.cmake
 CPackSourceConfig.cmake
+compile_commands.json
 *.dmg
 _CPack_Packages
 *.deb

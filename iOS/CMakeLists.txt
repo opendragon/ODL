@@ -68,6 +68,7 @@ set(CMAKE_INSTALL_PREFIX "/opt/odl" CACHE STRING "Fixes install path for ODL" FO
 cmake_policy(SET CMP0042 OLD)
 
 set(CMAKE_USE_RELATIVE_PATHS ON CACHE BOOL "Always set file paths as relative")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Add the ODL target path so that ODL can be found
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
